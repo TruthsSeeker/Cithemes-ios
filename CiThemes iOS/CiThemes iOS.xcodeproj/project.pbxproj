@@ -1,0 +1,690 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		622EC83E26A6EEC900786192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC83D26A6EEC900786192 /* AppDelegate.swift */; };
+		622EC84026A6EEC900786192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC83F26A6EEC900786192 /* SceneDelegate.swift */; };
+		622EC84226A6EEC900786192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC84126A6EEC900786192 /* ViewController.swift */; };
+		622EC84526A6EEC900786192 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 622EC84326A6EEC900786192 /* Main.storyboard */; };
+		622EC84726A6EECA00786192 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 622EC84626A6EECA00786192 /* Assets.xcassets */; };
+		622EC84A26A6EECA00786192 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 622EC84826A6EECA00786192 /* LaunchScreen.storyboard */; };
+		622EC85526A6EECA00786192 /* CiThemes_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC85426A6EECA00786192 /* CiThemes_iOSTests.swift */; };
+		622EC86026A6EECA00786192 /* CiThemes_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC85F26A6EECA00786192 /* CiThemes_iOSUITests.swift */; };
+		622EC87626A6FCD200786192 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC87426A6FCD200786192 /* RankingTableViewCell.swift */; };
+		622EC87726A6FCD200786192 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 622EC87526A6FCD200786192 /* RankingTableViewCell.xib */; };
+		622EC88326A703D400786192 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC87926A703D300786192 /* OpenSans-Italic.ttf */; };
+		622EC88426A703D400786192 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC87A26A703D400786192 /* OpenSans-LightItalic.ttf */; };
+		622EC88526A703D400786192 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC87B26A703D400786192 /* OpenSans-Bold.ttf */; };
+		622EC88626A703D400786192 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC87C26A703D400786192 /* OpenSans-ExtraBoldItalic.ttf */; };
+		622EC88726A703D400786192 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC87D26A703D400786192 /* OpenSans-SemiBold.ttf */; };
+		622EC88826A703D400786192 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC87E26A703D400786192 /* OpenSans-SemiBoldItalic.ttf */; };
+		622EC88926A703D400786192 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC87F26A703D400786192 /* OpenSans-BoldItalic.ttf */; };
+		622EC88A26A703D400786192 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88026A703D400786192 /* OpenSans-Light.ttf */; };
+		622EC88B26A703D400786192 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88126A703D400786192 /* OpenSans-Regular.ttf */; };
+		622EC88C26A703D400786192 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88226A703D400786192 /* OpenSans-ExtraBold.ttf */; };
+		622EC89026A704B700786192 /* Raleway-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */; };
+		622EC89326A70A2A00786192 /* SongInfoLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC89226A70A2A00786192 /* SongInfoLight.swift */; };
+		62C41A9A2780932B00B6490E /* SongListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C41A992780932B00B6490E /* SongListViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		622EC85126A6EECA00786192 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 622EC83226A6EEC900786192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 622EC83926A6EEC900786192;
+			remoteInfo = "CiThemes iOS";
+		};
+		622EC85C26A6EECA00786192 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 622EC83226A6EEC900786192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 622EC83926A6EEC900786192;
+			remoteInfo = "CiThemes iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		622EC83A26A6EEC900786192 /* CiThemes iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CiThemes iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		622EC83D26A6EEC900786192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		622EC83F26A6EEC900786192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		622EC84126A6EEC900786192 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		622EC84426A6EEC900786192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		622EC84626A6EECA00786192 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		622EC84926A6EECA00786192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		622EC84B26A6EECA00786192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		622EC85026A6EECA00786192 /* CiThemes iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CiThemes iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		622EC85426A6EECA00786192 /* CiThemes_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiThemes_iOSTests.swift; sourceTree = "<group>"; };
+		622EC85626A6EECA00786192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		622EC85B26A6EECA00786192 /* CiThemes iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CiThemes iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		622EC85F26A6EECA00786192 /* CiThemes_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiThemes_iOSUITests.swift; sourceTree = "<group>"; };
+		622EC86126A6EECA00786192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		622EC87426A6FCD200786192 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
+		622EC87526A6FCD200786192 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
+		622EC87926A703D300786192 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		622EC87A26A703D400786192 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		622EC87B26A703D400786192 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		622EC87C26A703D400786192 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		622EC87D26A703D400786192 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		622EC87E26A703D400786192 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		622EC87F26A703D400786192 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		622EC88026A703D400786192 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		622EC88126A703D400786192 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		622EC88226A703D400786192 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		622EC89226A70A2A00786192 /* SongInfoLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoLight.swift; sourceTree = "<group>"; };
+		62C41A992780932B00B6490E /* SongListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		622EC83726A6EEC900786192 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		622EC84D26A6EECA00786192 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		622EC85826A6EECA00786192 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		622EC83126A6EEC900786192 = {
+			isa = PBXGroup;
+			children = (
+				622EC83C26A6EEC900786192 /* CiThemes iOS */,
+				622EC85326A6EECA00786192 /* CiThemes iOSTests */,
+				622EC85E26A6EECA00786192 /* CiThemes iOSUITests */,
+				622EC83B26A6EEC900786192 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		622EC83B26A6EEC900786192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				622EC83A26A6EEC900786192 /* CiThemes iOS.app */,
+				622EC85026A6EECA00786192 /* CiThemes iOSTests.xctest */,
+				622EC85B26A6EECA00786192 /* CiThemes iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		622EC83C26A6EEC900786192 /* CiThemes iOS */ = {
+			isa = PBXGroup;
+			children = (
+				62C41A982780931500B6490E /* ViewModels */,
+				622EC89126A70A0800786192 /* Models */,
+				622EC87826A703B400786192 /* fonts */,
+				622EC86F26A6F0BF00786192 /* Views */,
+				622EC83D26A6EEC900786192 /* AppDelegate.swift */,
+				622EC83F26A6EEC900786192 /* SceneDelegate.swift */,
+				622EC84126A6EEC900786192 /* ViewController.swift */,
+				622EC84326A6EEC900786192 /* Main.storyboard */,
+				622EC84626A6EECA00786192 /* Assets.xcassets */,
+				622EC84826A6EECA00786192 /* LaunchScreen.storyboard */,
+				622EC84B26A6EECA00786192 /* Info.plist */,
+			);
+			path = "CiThemes iOS";
+			sourceTree = "<group>";
+		};
+		622EC85326A6EECA00786192 /* CiThemes iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				622EC85426A6EECA00786192 /* CiThemes_iOSTests.swift */,
+				622EC85626A6EECA00786192 /* Info.plist */,
+			);
+			path = "CiThemes iOSTests";
+			sourceTree = "<group>";
+		};
+		622EC85E26A6EECA00786192 /* CiThemes iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				622EC85F26A6EECA00786192 /* CiThemes_iOSUITests.swift */,
+				622EC86126A6EECA00786192 /* Info.plist */,
+			);
+			path = "CiThemes iOSUITests";
+			sourceTree = "<group>";
+		};
+		622EC86F26A6F0BF00786192 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				622EC87426A6FCD200786192 /* RankingTableViewCell.swift */,
+				622EC87526A6FCD200786192 /* RankingTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		622EC87826A703B400786192 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */,
+				622EC87B26A703D400786192 /* OpenSans-Bold.ttf */,
+				622EC87F26A703D400786192 /* OpenSans-BoldItalic.ttf */,
+				622EC88226A703D400786192 /* OpenSans-ExtraBold.ttf */,
+				622EC87C26A703D400786192 /* OpenSans-ExtraBoldItalic.ttf */,
+				622EC87926A703D300786192 /* OpenSans-Italic.ttf */,
+				622EC88026A703D400786192 /* OpenSans-Light.ttf */,
+				622EC87A26A703D400786192 /* OpenSans-LightItalic.ttf */,
+				622EC88126A703D400786192 /* OpenSans-Regular.ttf */,
+				622EC87D26A703D400786192 /* OpenSans-SemiBold.ttf */,
+				622EC87E26A703D400786192 /* OpenSans-SemiBoldItalic.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		622EC89126A70A0800786192 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				622EC89226A70A2A00786192 /* SongInfoLight.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		62C41A982780931500B6490E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				62C41A992780932B00B6490E /* SongListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		622EC83926A6EEC900786192 /* CiThemes iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 622EC86426A6EECA00786192 /* Build configuration list for PBXNativeTarget "CiThemes iOS" */;
+			buildPhases = (
+				622EC83626A6EEC900786192 /* Sources */,
+				622EC83726A6EEC900786192 /* Frameworks */,
+				622EC83826A6EEC900786192 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CiThemes iOS";
+			productName = "CiThemes iOS";
+			productReference = 622EC83A26A6EEC900786192 /* CiThemes iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		622EC84F26A6EECA00786192 /* CiThemes iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 622EC86726A6EECA00786192 /* Build configuration list for PBXNativeTarget "CiThemes iOSTests" */;
+			buildPhases = (
+				622EC84C26A6EECA00786192 /* Sources */,
+				622EC84D26A6EECA00786192 /* Frameworks */,
+				622EC84E26A6EECA00786192 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				622EC85226A6EECA00786192 /* PBXTargetDependency */,
+			);
+			name = "CiThemes iOSTests";
+			productName = "CiThemes iOSTests";
+			productReference = 622EC85026A6EECA00786192 /* CiThemes iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		622EC85A26A6EECA00786192 /* CiThemes iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 622EC86A26A6EECA00786192 /* Build configuration list for PBXNativeTarget "CiThemes iOSUITests" */;
+			buildPhases = (
+				622EC85726A6EECA00786192 /* Sources */,
+				622EC85826A6EECA00786192 /* Frameworks */,
+				622EC85926A6EECA00786192 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				622EC85D26A6EECA00786192 /* PBXTargetDependency */,
+			);
+			name = "CiThemes iOSUITests";
+			productName = "CiThemes iOSUITests";
+			productReference = 622EC85B26A6EECA00786192 /* CiThemes iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		622EC83226A6EEC900786192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					622EC83926A6EEC900786192 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					622EC84F26A6EECA00786192 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 622EC83926A6EEC900786192;
+					};
+					622EC85A26A6EECA00786192 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 622EC83926A6EEC900786192;
+					};
+				};
+			};
+			buildConfigurationList = 622EC83526A6EEC900786192 /* Build configuration list for PBXProject "CiThemes iOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 622EC83126A6EEC900786192;
+			productRefGroup = 622EC83B26A6EEC900786192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				622EC83926A6EEC900786192 /* CiThemes iOS */,
+				622EC84F26A6EECA00786192 /* CiThemes iOSTests */,
+				622EC85A26A6EECA00786192 /* CiThemes iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		622EC83826A6EEC900786192 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				622EC84A26A6EECA00786192 /* LaunchScreen.storyboard in Resources */,
+				622EC89026A704B700786192 /* Raleway-VariableFont_wght.ttf in Resources */,
+				622EC88726A703D400786192 /* OpenSans-SemiBold.ttf in Resources */,
+				622EC88526A703D400786192 /* OpenSans-Bold.ttf in Resources */,
+				622EC88926A703D400786192 /* OpenSans-BoldItalic.ttf in Resources */,
+				622EC84726A6EECA00786192 /* Assets.xcassets in Resources */,
+				622EC88826A703D400786192 /* OpenSans-SemiBoldItalic.ttf in Resources */,
+				622EC88A26A703D400786192 /* OpenSans-Light.ttf in Resources */,
+				622EC88426A703D400786192 /* OpenSans-LightItalic.ttf in Resources */,
+				622EC87726A6FCD200786192 /* RankingTableViewCell.xib in Resources */,
+				622EC88C26A703D400786192 /* OpenSans-ExtraBold.ttf in Resources */,
+				622EC88326A703D400786192 /* OpenSans-Italic.ttf in Resources */,
+				622EC84526A6EEC900786192 /* Main.storyboard in Resources */,
+				622EC88B26A703D400786192 /* OpenSans-Regular.ttf in Resources */,
+				622EC88626A703D400786192 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		622EC84E26A6EECA00786192 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		622EC85926A6EECA00786192 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		622EC83626A6EEC900786192 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				622EC84226A6EEC900786192 /* ViewController.swift in Sources */,
+				62C41A9A2780932B00B6490E /* SongListViewModel.swift in Sources */,
+				622EC83E26A6EEC900786192 /* AppDelegate.swift in Sources */,
+				622EC87626A6FCD200786192 /* RankingTableViewCell.swift in Sources */,
+				622EC84026A6EEC900786192 /* SceneDelegate.swift in Sources */,
+				622EC89326A70A2A00786192 /* SongInfoLight.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		622EC84C26A6EECA00786192 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				622EC85526A6EECA00786192 /* CiThemes_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		622EC85726A6EECA00786192 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				622EC86026A6EECA00786192 /* CiThemes_iOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		622EC85226A6EECA00786192 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 622EC83926A6EEC900786192 /* CiThemes iOS */;
+			targetProxy = 622EC85126A6EECA00786192 /* PBXContainerItemProxy */;
+		};
+		622EC85D26A6EECA00786192 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 622EC83926A6EEC900786192 /* CiThemes iOS */;
+			targetProxy = 622EC85C26A6EECA00786192 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		622EC84326A6EEC900786192 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				622EC84426A6EEC900786192 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		622EC84826A6EECA00786192 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				622EC84926A6EECA00786192 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		622EC86226A6EECA00786192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		622EC86326A6EECA00786192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		622EC86526A6EECA00786192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GNZ5A99724;
+				INFOPLIST_FILE = "CiThemes iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "loicheinrich.dev.CiThemes-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		622EC86626A6EECA00786192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GNZ5A99724;
+				INFOPLIST_FILE = "CiThemes iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "loicheinrich.dev.CiThemes-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		622EC86826A6EECA00786192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GNZ5A99724;
+				INFOPLIST_FILE = "CiThemes iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "loicheinrich.dev.CiThemes-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CiThemes iOS.app/CiThemes iOS";
+			};
+			name = Debug;
+		};
+		622EC86926A6EECA00786192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GNZ5A99724;
+				INFOPLIST_FILE = "CiThemes iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "loicheinrich.dev.CiThemes-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CiThemes iOS.app/CiThemes iOS";
+			};
+			name = Release;
+		};
+		622EC86B26A6EECA00786192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GNZ5A99724;
+				INFOPLIST_FILE = "CiThemes iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "loicheinrich.dev.CiThemes-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "CiThemes iOS";
+			};
+			name = Debug;
+		};
+		622EC86C26A6EECA00786192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GNZ5A99724;
+				INFOPLIST_FILE = "CiThemes iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "loicheinrich.dev.CiThemes-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "CiThemes iOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		622EC83526A6EEC900786192 /* Build configuration list for PBXProject "CiThemes iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				622EC86226A6EECA00786192 /* Debug */,
+				622EC86326A6EECA00786192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		622EC86426A6EECA00786192 /* Build configuration list for PBXNativeTarget "CiThemes iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				622EC86526A6EECA00786192 /* Debug */,
+				622EC86626A6EECA00786192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		622EC86726A6EECA00786192 /* Build configuration list for PBXNativeTarget "CiThemes iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				622EC86826A6EECA00786192 /* Debug */,
+				622EC86926A6EECA00786192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		622EC86A26A6EECA00786192 /* Build configuration list for PBXNativeTarget "CiThemes iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				622EC86B26A6EECA00786192 /* Debug */,
+				622EC86C26A6EECA00786192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 622EC83226A6EEC900786192 /* Project object */;
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CiThemes_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOu-ct-JMS">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="204"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LosAngeles" translatesAutoresizingMaskIntoConstraints="NO" id="SED-Jg-XL1">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="204"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SED-Jg-XL1" secondAttribute="trailing" id="4oI-w6-4sp"/>
+                                    <constraint firstItem="SED-Jg-XL1" firstAttribute="leading" secondItem="eOu-ct-JMS" secondAttribute="leading" id="9Xd-Db-7JI"/>
+                                    <constraint firstAttribute="height" constant="204" placeholder="YES" id="AQc-8h-FHK"/>
+                                    <constraint firstItem="SED-Jg-XL1" firstAttribute="top" secondItem="eOu-ct-JMS" secondAttribute="top" id="S4F-L8-231"/>
+                                    <constraint firstAttribute="bottom" secondItem="SED-Jg-XL1" secondAttribute="bottom" id="uLc-aC-nlN"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GhQ-0b-6FD">
+                                <rect key="frame" x="0.0" y="204" width="414" height="658"/>
+                                <color key="backgroundColor" name="Background"/>
+                                <color key="sectionIndexBackgroundColor" name="Background"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="brP-pg-NVZ" customClass="RankingTableViewCell" customModule="CiThemes_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="brP-pg-NVZ" id="wCy-Uq-2l2">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" name="Background"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GhQ-0b-6FD" secondAttribute="bottom" id="6l5-jD-mgC"/>
+                            <constraint firstItem="GhQ-0b-6FD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="T9I-t2-jLw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eOu-ct-JMS" secondAttribute="trailing" id="bpH-2G-WWG"/>
+                            <constraint firstItem="eOu-ct-JMS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dvZ-J7-wlD"/>
+                            <constraint firstItem="GhQ-0b-6FD" firstAttribute="top" secondItem="eOu-ct-JMS" secondAttribute="bottom" id="fXU-rK-Wkw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GhQ-0b-6FD" secondAttribute="trailing" id="kYH-kK-PdJ"/>
+                            <constraint firstItem="eOu-ct-JMS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kse-Mx-DXq"/>
+                            <constraint firstItem="GhQ-0b-6FD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rqR-2p-8Ah"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerView" destination="eOu-ct-JMS" id="fnp-9S-V9b"/>
+                        <outlet property="tableView" destination="GhQ-0b-6FD" id="xvP-oM-vIb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-913" y="159"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LosAngeles" width="1280" height="720"/>
+        <namedColor name="Background">
+            <color red="0.94999998807907104" green="0.95999997854232788" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
