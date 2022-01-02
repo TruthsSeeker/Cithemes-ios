@@ -69,8 +69,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITableVie
         return UISwipeActionsConfiguration(actions: [dislikeAction])
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let likeAction = UIContextualAction(style: .normal, title: "Like") { [unowned self] Action, view, handler in
+            self.likeHandler(indexPath)
+            handler(true)
+        }
+        
+        //TODO: Favorite action
+        
+        return UISwipeActionsConfiguration(actions: [likeAction])
+    }
+    
     private func dislikeHandler(_ indexPath: IndexPath) {
         let songId = orderedSongs[indexPath.row].id
         songListVM.update(id: songId, vote: .Down)
+    }
+    
+    private func likeHandler(_ indexPath: IndexPath) {
+        let songId = orderedSongs[indexPath.row].id
+        songListVM.update(id: songId, vote: .Up)
     }
 }
