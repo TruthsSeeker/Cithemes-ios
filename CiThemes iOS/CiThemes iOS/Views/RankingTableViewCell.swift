@@ -14,7 +14,6 @@ class RankingTableViewCell: UITableViewCell {
     @IBOutlet weak var voteStack: UIStackView!
     @IBOutlet weak var voteLabel: UILabel!
     
-    var voteTapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,19 +32,12 @@ class RankingTableViewCell: UITableViewCell {
         let liningRaleway = UIFont(descriptor: descriptor, size: 18.0)
         rankLabel.font = liningRaleway
         voteLabel.font = liningRaleway
-        
-        voteTapRecognizer.addTarget(self, action: #selector(voteTapped))
-        voteStack.addGestureRecognizer(voteTapRecognizer)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    @objc func voteTapped(_ sender: UITapGestureRecognizer) {
-        
     }
     
 }

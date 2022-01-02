@@ -24,6 +24,8 @@ class ViewController: UIViewController {
         tableView.prefetchDataSource = self
         bindViewModel()
         
+        tableView.register(UINib(nibName: "FirstRankTableViewCell", bundle: nil), forCellReuseIdentifier: "firstCell")
+        tableView.register(UINib(nibName: "PodiumTableViewCell", bundle: nil), forCellReuseIdentifier: "podiumCell")
         tableView.register(UINib(nibName: "RankingTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         let safeAreaTopHeight = UIApplication.shared.windows[0].safeAreaInsets.top
         self.headerView.addConstraint(NSLayoutConstraint(item: self.headerView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 160 + safeAreaTopHeight))
@@ -48,13 +50,25 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? RankingTableViewCell {
-            let songInfo = self.orderedSongs[indexPath.row]
-            cell.artistLabel.text = songInfo.artist
-            cell.songTitleLabel.text = songInfo.title
-            cell.rankLabel.text = String(indexPath.row + 1)
-            cell.voteLabel.text = String(songInfo.score)
-            return cell
+        switch indexPath.row {
+        case 0:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "firstCell", for: indexPath) as? FirstRankTableViewCell {
+                let songInfo = self.orderedSongs[indexPath.row]
+                cell.artistLabel.text = songInfo.artist
+                cell.songTitleLabel.text = songInfo.title
+                cell.rankLabel.text = String(indexPath.row + 1)
+                cell.voteLabel.text = String(songInfo.score)
+                return cell
+            }
+        default:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? RankingTableViewCell {
+                let songInfo = self.orderedSongs[indexPath.row]
+                cell.artistLabel.text = songInfo.artist
+                cell.songTitleLabel.text = songInfo.title
+                cell.rankLabel.text = String(indexPath.row + 1)
+                cell.voteLabel.text = String(songInfo.score)
+                return cell
+            }
         }
         
         return UITableViewCell()

@@ -38,7 +38,7 @@
                                     <constraint firstAttribute="width" constant="40" id="JSU-gh-GQY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="RalewayItalic-SemiBold" family="Raleway" pointSize="24"/>
-                                <color key="textColor" name="Relief"/>
+                                <color key="textColor" name="Accent"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="g7T-vO-yX9">
@@ -117,6 +117,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="Accent">
+            <color red="0.76470588235294112" green="0.85882352941176465" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Background">
             <color red="0.94999998807907104" green="0.95999997854232788" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -125,9 +128,6 @@
         </namedColor>
         <namedColor name="FontSecondary">
             <color red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Relief">
-            <color red="0.59607843137254901" green="0.75686274509803919" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
