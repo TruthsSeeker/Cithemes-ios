@@ -75,7 +75,7 @@
     <resources>
         <image name="LosAngeles" width="1280" height="720"/>
         <namedColor name="Background">
-            <color red="0.94999998807907104" green="0.95999997854232788" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.95686274509803926" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

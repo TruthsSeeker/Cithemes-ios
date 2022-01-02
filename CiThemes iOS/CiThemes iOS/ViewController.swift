@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         bindViewModel()
         
         tableView.register(UINib(nibName: "FirstRankTableViewCell", bundle: nil), forCellReuseIdentifier: "firstCell")
-        tableView.register(UINib(nibName: "PodiumTableViewCell", bundle: nil), forCellReuseIdentifier: "podiumCell")
+        tableView.register(UINib(nibName: "PodiumRankTableViewCell", bundle: nil), forCellReuseIdentifier: "podiumCell")
         tableView.register(UINib(nibName: "RankingTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         let safeAreaTopHeight = UIApplication.shared.windows[0].safeAreaInsets.top
         self.headerView.addConstraint(NSLayoutConstraint(item: self.headerView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 160 + safeAreaTopHeight))
@@ -57,6 +57,26 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITableVie
                 cell.artistLabel.text = songInfo.artist
                 cell.songTitleLabel.text = songInfo.title
                 cell.rankLabel.text = String(indexPath.row + 1)
+                cell.voteLabel.text = String(songInfo.score)
+                return cell
+            }
+        case 1:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "podiumCell", for: indexPath) as? PodiumRankTableViewCell {
+                let songInfo = self.orderedSongs[indexPath.row]
+                cell.artistLabel.text = songInfo.artist
+                cell.songTitleLabel.text = songInfo.title
+                cell.rankLabel.text = String(indexPath.row + 1)
+                cell.rankLabel.textColor = UIColor(named: "Silver")
+                cell.voteLabel.text = String(songInfo.score)
+                return cell
+            }
+        case 2:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "podiumCell", for: indexPath) as? PodiumRankTableViewCell {
+                let songInfo = self.orderedSongs[indexPath.row]
+                cell.artistLabel.text = songInfo.artist
+                cell.songTitleLabel.text = songInfo.title
+                cell.rankLabel.text = String(indexPath.row + 1)
+                cell.rankLabel.textColor = UIColor(named: "Bronze")
                 cell.voteLabel.text = String(songInfo.score)
                 return cell
             }

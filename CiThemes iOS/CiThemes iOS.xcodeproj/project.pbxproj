@@ -29,6 +29,8 @@
 		622EC88C26A703D400786192 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88226A703D400786192 /* OpenSans-ExtraBold.ttf */; };
 		622EC89026A704B700786192 /* Raleway-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */; };
 		622EC89326A70A2A00786192 /* SongInfoLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC89226A70A2A00786192 /* SongInfoLight.swift */; };
+		62A681D4278208E2008C7AEA /* PodiumRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62A681D3278208E2008C7AEA /* PodiumRankTableViewCell.xib */; };
+		62A681D6278208F1008C7AEA /* PodiumRankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A681D5278208F1008C7AEA /* PodiumRankTableViewCell.swift */; };
 		62C41A9A2780932B00B6490E /* SongListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C41A992780932B00B6490E /* SongListViewModel.swift */; };
 		62C41A9C2781AE3B00B6490E /* FirstRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C41A9B2781AE3B00B6490E /* FirstRankTableViewCell.xib */; };
 		62C41A9E2781AE4B00B6490E /* FirstRankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C41A9D2781AE4B00B6490E /* FirstRankTableViewCell.swift */; };
@@ -80,6 +82,8 @@
 		622EC88226A703D400786192 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		622EC89226A70A2A00786192 /* SongInfoLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoLight.swift; sourceTree = "<group>"; };
+		62A681D3278208E2008C7AEA /* PodiumRankTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodiumRankTableViewCell.xib; sourceTree = "<group>"; };
+		62A681D5278208F1008C7AEA /* PodiumRankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumRankTableViewCell.swift; sourceTree = "<group>"; };
 		62C41A992780932B00B6490E /* SongListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListViewModel.swift; sourceTree = "<group>"; };
 		62C41A9B2781AE3B00B6490E /* FirstRankTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstRankTableViewCell.xib; sourceTree = "<group>"; };
 		62C41A9D2781AE4B00B6490E /* FirstRankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRankTableViewCell.swift; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 				622EC87526A6FCD200786192 /* RankingTableViewCell.xib */,
 				62C41A9B2781AE3B00B6490E /* FirstRankTableViewCell.xib */,
 				62C41A9D2781AE4B00B6490E /* FirstRankTableViewCell.swift */,
+				62A681D3278208E2008C7AEA /* PodiumRankTableViewCell.xib */,
+				62A681D5278208F1008C7AEA /* PodiumRankTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 				622EC89026A704B700786192 /* Raleway-VariableFont_wght.ttf in Resources */,
 				62C41A9C2781AE3B00B6490E /* FirstRankTableViewCell.xib in Resources */,
 				622EC88726A703D400786192 /* OpenSans-SemiBold.ttf in Resources */,
+				62A681D4278208E2008C7AEA /* PodiumRankTableViewCell.xib in Resources */,
 				622EC88526A703D400786192 /* OpenSans-Bold.ttf in Resources */,
 				622EC88926A703D400786192 /* OpenSans-BoldItalic.ttf in Resources */,
 				622EC84726A6EECA00786192 /* Assets.xcassets in Resources */,
@@ -359,6 +366,7 @@
 				62C41A9A2780932B00B6490E /* SongListViewModel.swift in Sources */,
 				622EC83E26A6EEC900786192 /* AppDelegate.swift in Sources */,
 				622EC87626A6FCD200786192 /* RankingTableViewCell.swift in Sources */,
+				62A681D6278208F1008C7AEA /* PodiumRankTableViewCell.swift in Sources */,
 				622EC84026A6EEC900786192 /* SceneDelegate.swift in Sources */,
 				622EC89326A70A2A00786192 /* SongInfoLight.swift in Sources */,
 			);
