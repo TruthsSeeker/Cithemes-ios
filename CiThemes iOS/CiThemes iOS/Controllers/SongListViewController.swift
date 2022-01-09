@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class ViewController: UIViewController {
+class SongListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: UIView!
     
@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.prefetchDataSource = self
+        tableView.separatorStyle = .none
         bindViewModel()
         
         tableView.register(UINib(nibName: "FirstRankTableViewCell", bundle: nil), forCellReuseIdentifier: "firstCell")
@@ -29,6 +30,7 @@ class ViewController: UIViewController {
         tableView.register(UINib(nibName: "RankingTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         let safeAreaTopHeight = UIApplication.shared.windows[0].safeAreaInsets.top
         self.headerView.addConstraint(NSLayoutConstraint(item: self.headerView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 160 + safeAreaTopHeight))
+
     }
     
     private func bindViewModel() {
@@ -41,7 +43,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+extension SongListViewController: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
     }
     
@@ -112,6 +114,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITableVie
         //TODO: Favorite action
         
         return UISwipeActionsConfiguration(actions: [likeAction])
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        print("Test")
+        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "SongInfo") as? SongDetailViewController {
+            let detailViewModel = SongDetailViewModel()
+            let songDetail = SongInfoFull(light: orderedSongs[indexPath.row])
+            detailViewModel.details = songDetail
+            controller.detailVM = detailViewModel
+            
+            present(controller, animated: true, completion: nil)
+        }
+        return nil
     }
     
     private func dislikeHandler(_ indexPath: IndexPath) {

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		622EC83E26A6EEC900786192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC83D26A6EEC900786192 /* AppDelegate.swift */; };
 		622EC84026A6EEC900786192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC83F26A6EEC900786192 /* SceneDelegate.swift */; };
-		622EC84226A6EEC900786192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC84126A6EEC900786192 /* ViewController.swift */; };
+		622EC84226A6EEC900786192 /* SongListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC84126A6EEC900786192 /* SongListViewController.swift */; };
 		622EC84526A6EEC900786192 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 622EC84326A6EEC900786192 /* Main.storyboard */; };
 		622EC84726A6EECA00786192 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 622EC84626A6EECA00786192 /* Assets.xcassets */; };
 		622EC84A26A6EECA00786192 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 622EC84826A6EECA00786192 /* LaunchScreen.storyboard */; };
@@ -29,6 +29,9 @@
 		622EC88C26A703D400786192 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88226A703D400786192 /* OpenSans-ExtraBold.ttf */; };
 		622EC89026A704B700786192 /* Raleway-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */; };
 		622EC89326A70A2A00786192 /* SongInfoLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC89226A70A2A00786192 /* SongInfoLight.swift */; };
+		628FFA702784ACF300343216 /* SongDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628FFA6F2784ACF300343216 /* SongDetailViewController.swift */; };
+		628FFA722784AF1300343216 /* SongDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628FFA712784AF1300343216 /* SongDetailViewModel.swift */; };
+		628FFA742784AF2900343216 /* SongInfoFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628FFA732784AF2900343216 /* SongInfoFull.swift */; };
 		62A681D4278208E2008C7AEA /* PodiumRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62A681D3278208E2008C7AEA /* PodiumRankTableViewCell.xib */; };
 		62A681D6278208F1008C7AEA /* PodiumRankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A681D5278208F1008C7AEA /* PodiumRankTableViewCell.swift */; };
 		62C41A9A2780932B00B6490E /* SongListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C41A992780932B00B6490E /* SongListViewModel.swift */; };
@@ -57,7 +60,7 @@
 		622EC83A26A6EEC900786192 /* CiThemes iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CiThemes iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		622EC83D26A6EEC900786192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		622EC83F26A6EEC900786192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		622EC84126A6EEC900786192 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		622EC84126A6EEC900786192 /* SongListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListViewController.swift; sourceTree = "<group>"; };
 		622EC84426A6EEC900786192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		622EC84626A6EECA00786192 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		622EC84926A6EECA00786192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -82,6 +85,9 @@
 		622EC88226A703D400786192 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		622EC89226A70A2A00786192 /* SongInfoLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoLight.swift; sourceTree = "<group>"; };
+		628FFA6F2784ACF300343216 /* SongDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailViewController.swift; sourceTree = "<group>"; };
+		628FFA712784AF1300343216 /* SongDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailViewModel.swift; sourceTree = "<group>"; };
+		628FFA732784AF2900343216 /* SongInfoFull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoFull.swift; sourceTree = "<group>"; };
 		62A681D3278208E2008C7AEA /* PodiumRankTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodiumRankTableViewCell.xib; sourceTree = "<group>"; };
 		62A681D5278208F1008C7AEA /* PodiumRankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumRankTableViewCell.swift; sourceTree = "<group>"; };
 		62C41A992780932B00B6490E /* SongListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListViewModel.swift; sourceTree = "<group>"; };
@@ -137,13 +143,13 @@
 		622EC83C26A6EEC900786192 /* CiThemes iOS */ = {
 			isa = PBXGroup;
 			children = (
+				628FFA6E2784ACD500343216 /* Controllers */,
 				62C41A982780931500B6490E /* ViewModels */,
 				622EC89126A70A0800786192 /* Models */,
 				622EC87826A703B400786192 /* fonts */,
 				622EC86F26A6F0BF00786192 /* Views */,
 				622EC83D26A6EEC900786192 /* AppDelegate.swift */,
 				622EC83F26A6EEC900786192 /* SceneDelegate.swift */,
-				622EC84126A6EEC900786192 /* ViewController.swift */,
 				622EC84326A6EEC900786192 /* Main.storyboard */,
 				622EC84626A6EECA00786192 /* Assets.xcassets */,
 				622EC84826A6EECA00786192 /* LaunchScreen.storyboard */,
@@ -205,14 +211,25 @@
 			isa = PBXGroup;
 			children = (
 				622EC89226A70A2A00786192 /* SongInfoLight.swift */,
+				628FFA732784AF2900343216 /* SongInfoFull.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		628FFA6E2784ACD500343216 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				622EC84126A6EEC900786192 /* SongListViewController.swift */,
+				628FFA6F2784ACF300343216 /* SongDetailViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		62C41A982780931500B6490E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				62C41A992780932B00B6490E /* SongListViewModel.swift */,
+				628FFA712784AF1300343216 /* SongDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -362,11 +379,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				62C41A9E2781AE4B00B6490E /* FirstRankTableViewCell.swift in Sources */,
-				622EC84226A6EEC900786192 /* ViewController.swift in Sources */,
+				622EC84226A6EEC900786192 /* SongListViewController.swift in Sources */,
+				628FFA722784AF1300343216 /* SongDetailViewModel.swift in Sources */,
 				62C41A9A2780932B00B6490E /* SongListViewModel.swift in Sources */,
+				628FFA702784ACF300343216 /* SongDetailViewController.swift in Sources */,
 				622EC83E26A6EEC900786192 /* AppDelegate.swift in Sources */,
 				622EC87626A6FCD200786192 /* RankingTableViewCell.swift in Sources */,
 				62A681D6278208F1008C7AEA /* PodiumRankTableViewCell.swift in Sources */,
+				628FFA742784AF2900343216 /* SongInfoFull.swift in Sources */,
 				622EC84026A6EEC900786192 /* SceneDelegate.swift in Sources */,
 				622EC89326A70A2A00786192 /* SongInfoLight.swift in Sources */,
 			);
