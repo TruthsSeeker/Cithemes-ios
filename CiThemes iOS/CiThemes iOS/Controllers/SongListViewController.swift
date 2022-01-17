@@ -7,6 +7,8 @@
 
 import UIKit
 import Combine
+import SwiftUI
+
 
 class SongListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +33,13 @@ class SongListViewController: UIViewController {
         let safeAreaTopHeight = UIApplication.shared.windows[0].safeAreaInsets.top
         self.headerView.addConstraint(NSLayoutConstraint(item: self.headerView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 160 + safeAreaTopHeight))
 
+        let buttonTapAction = { [unowned self] in
+            print("test")
+        }
+        let searchButton = UIHostingController(rootView: SearchButton(width: 30, height: 30, action: buttonTapAction))
+        searchButton.view.backgroundColor = .clear
+        view.addSubview(searchButton.view)
+        activateConstraints(forButton: searchButton.view)
     }
     
     private func bindViewModel() {
@@ -39,7 +48,14 @@ class SongListViewController: UIViewController {
             self?.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
         }.store(in: &cancellables)
     }
-
+    
+    
+    fileprivate func activateConstraints(forButton button: UIView) {
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24).isActive = true
+        button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
+    }
+    
     
 }
 
@@ -106,10 +122,11 @@ extension SongListViewController: UITableViewDelegate, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let likeAction = UIContextualAction(style: .normal, title: "Like") { [unowned self] Action, view, handler in
+        let likeAction = UIContextualAction(style: .normal, title: "Like") { [unowned self] action, view, handler in
             self.likeHandler(indexPath)
             handler(true)
         }
+        likeAction.image
         
         //TODO: Favorite action
         

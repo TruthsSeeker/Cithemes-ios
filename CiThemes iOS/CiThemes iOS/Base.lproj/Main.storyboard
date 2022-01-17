@@ -29,6 +29,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OzJ-Vd-srD">
                                 <rect key="frame" x="8" y="348" width="398" height="200"/>
                                 <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="G4U-AL-mUC">
+                                        <rect key="frame" x="179" y="80" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="QwC-mb-g6U"/>
+                                            <constraint firstAttribute="height" constant="40" id="SmW-uF-QV6"/>
+                                        </constraints>
+                                    </activityIndicatorView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="BbV-yz-zL1">
                                         <rect key="frame" x="8" y="8" width="382" height="184"/>
                                         <subviews>
@@ -132,7 +139,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4kW-ds-I5B">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBA-p0-b3u">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPOTIFY PREVIEW PLAYER PLACEHOLDER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBA-p0-b3u">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -171,33 +178,46 @@
                                 <color key="backgroundColor" name="Accent"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="BbV-yz-zL1" secondAttribute="trailing" constant="8" id="Ai7-V6-I8Y"/>
+                                    <constraint firstItem="G4U-AL-mUC" firstAttribute="centerX" secondItem="OzJ-Vd-srD" secondAttribute="centerX" id="KOm-Sc-OuJ"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="RWJ-3d-eVl"/>
                                     <constraint firstAttribute="bottom" secondItem="BbV-yz-zL1" secondAttribute="bottom" constant="8" id="TQ2-fc-ux4"/>
                                     <constraint firstItem="BbV-yz-zL1" firstAttribute="top" secondItem="OzJ-Vd-srD" secondAttribute="top" constant="8" id="eGE-1y-WH3"/>
+                                    <constraint firstItem="G4U-AL-mUC" firstAttribute="centerY" secondItem="OzJ-Vd-srD" secondAttribute="centerY" id="jOV-AF-FWe"/>
                                     <constraint firstItem="BbV-yz-zL1" firstAttribute="leading" secondItem="OzJ-Vd-srD" secondAttribute="leading" constant="8" id="pfj-go-En9"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1Xr-Ln-aeC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="OzJ-Vd-srD" firstAttribute="leading" secondItem="1Xr-Ln-aeC" secondAttribute="leading" constant="8" id="8I6-xl-vUc"/>
                             <constraint firstItem="OzJ-Vd-srD" firstAttribute="centerX" secondItem="dzR-xl-B5s" secondAttribute="centerX" id="SzC-6y-pqd"/>
                             <constraint firstItem="OzJ-Vd-srD" firstAttribute="centerY" secondItem="dzR-xl-B5s" secondAttribute="centerY" id="kA8-TG-9bN"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="GEE-f0-HKp" appends="YES" id="nuj-kx-vwO"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="albumLabel" destination="Oc3-D1-m9F" id="pOX-ha-dWB"/>
                         <outlet property="artistLabel" destination="1Wv-Fv-AC0" id="kB4-Z4-dJm"/>
                         <outlet property="containerView" destination="OzJ-Vd-srD" id="lrK-5a-q7N"/>
                         <outlet property="lengthLabel" destination="Eya-1Y-Zpu" id="FZ2-CD-jVe"/>
+                        <outlet property="loadingIndicator" destination="G4U-AL-mUC" id="ycc-cL-Zd4"/>
+                        <outlet property="mainStack" destination="BbV-yz-zL1" id="bTD-4h-O8F"/>
                         <outlet property="releasedLabel" destination="DPN-k5-u4z" id="udQ-LE-mi2"/>
                         <outlet property="titleLabel" destination="hcV-fH-8Nt" id="O8m-UE-vQK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gtE-Yx-Zbi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="GEE-f0-HKp">
+                    <connections>
+                        <action selector="tapGesture:" destination="ZAb-aY-TxT" id="2W2-sC-nbn"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1665" y="-462"/>
+            <point key="canvasLocation" x="-1665.217391304348" y="-462.05357142857139"/>
         </scene>
         <!--Song List View Controller-->
         <scene sceneID="tne-QT-ifu">
