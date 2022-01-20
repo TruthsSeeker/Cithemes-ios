@@ -36,7 +36,7 @@ class SongListViewController: UIViewController {
         let buttonTapAction = { [unowned self] in
             print("test")
         }
-        let searchButton = UIHostingController(rootView: SearchButton(width: 30, height: 30, action: buttonTapAction))
+        let searchButton = UIHostingController(rootView: SearchButton(width: 45, height: 45, action: buttonTapAction))
         searchButton.view.backgroundColor = .clear
         view.addSubview(searchButton.view)
         activateConstraints(forButton: searchButton.view)

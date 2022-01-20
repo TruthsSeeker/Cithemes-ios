@@ -30,6 +30,8 @@
 		622EC89026A704B700786192 /* Raleway-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */; };
 		622EC89326A70A2A00786192 /* SongInfoLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC89226A70A2A00786192 /* SongInfoLight.swift */; };
 		6234399D278EE0E20016093C /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6234399C278EE0E20016093C /* SearchButton.swift */; };
+		62858BDB2799563B005C0D34 /* SongSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BDA2799563B005C0D34 /* SongSearchController.swift */; };
+		62858BE127995E3C005C0D34 /* SongSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BE027995E3C005C0D34 /* SongSearchBar.swift */; };
 		628FFA702784ACF300343216 /* SongDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628FFA6F2784ACF300343216 /* SongDetailViewController.swift */; };
 		628FFA722784AF1300343216 /* SongDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628FFA712784AF1300343216 /* SongDetailViewModel.swift */; };
 		628FFA742784AF2900343216 /* SongInfoFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628FFA732784AF2900343216 /* SongInfoFull.swift */; };
@@ -87,6 +89,8 @@
 		622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		622EC89226A70A2A00786192 /* SongInfoLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoLight.swift; sourceTree = "<group>"; };
 		6234399C278EE0E20016093C /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
+		62858BDA2799563B005C0D34 /* SongSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchController.swift; sourceTree = "<group>"; };
+		62858BE027995E3C005C0D34 /* SongSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchBar.swift; sourceTree = "<group>"; };
 		628FFA6F2784ACF300343216 /* SongDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailViewController.swift; sourceTree = "<group>"; };
 		628FFA712784AF1300343216 /* SongDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailViewModel.swift; sourceTree = "<group>"; };
 		628FFA732784AF2900343216 /* SongInfoFull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoFull.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				62A681D3278208E2008C7AEA /* PodiumRankTableViewCell.xib */,
 				62A681D5278208F1008C7AEA /* PodiumRankTableViewCell.swift */,
 				6234399C278EE0E20016093C /* SearchButton.swift */,
+				62858BE027995E3C005C0D34 /* SongSearchBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 			children = (
 				622EC84126A6EEC900786192 /* SongListViewController.swift */,
 				628FFA6F2784ACF300343216 /* SongDetailViewController.swift */,
+				62858BDA2799563B005C0D34 /* SongSearchController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -390,8 +396,10 @@
 				622EC87626A6FCD200786192 /* RankingTableViewCell.swift in Sources */,
 				62A681D6278208F1008C7AEA /* PodiumRankTableViewCell.swift in Sources */,
 				628FFA742784AF2900343216 /* SongInfoFull.swift in Sources */,
+				62858BDB2799563B005C0D34 /* SongSearchController.swift in Sources */,
 				622EC84026A6EEC900786192 /* SceneDelegate.swift in Sources */,
 				622EC89326A70A2A00786192 /* SongInfoLight.swift in Sources */,
+				62858BE127995E3C005C0D34 /* SongSearchBar.swift in Sources */,
 				6234399D278EE0E20016093C /* SearchButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
