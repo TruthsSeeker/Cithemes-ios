@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct SongInfoFull: Codable {
+//TODO: Refactor SongInfoLight into this with just SongInfo as name
+struct SongInfoFull: Codable, Identifiable {
     let id: String?
     let title: String?
     let artist: String?

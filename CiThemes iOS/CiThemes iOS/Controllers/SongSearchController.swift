@@ -8,10 +8,30 @@
 import SwiftUI
 
 struct SongSearchController: View {
+    @StateObject var searchVM: SongSearchViewModel = SongSearchViewModel()
     var body: some View {
-        ZStack{
-            Color("Background", bundle: nil).ignoresSafeArea()
-            
+        ZStack(alignment: .top){
+            Color("Background", bundle: nil)
+            GeometryReader { geo in
+                VStack{
+                    SearchBar(search: $searchVM.searchTerms, height: 45, buttonAction: {searchVM.search()})
+                    if searchVM.results.isEmpty {
+                        Image("search-arrow", bundle: nil)
+                            .resizable()
+                            .frame(maxHeight: geo.size.height/2)
+                            .foregroundColor(Color("Relief"))
+                        Text("Search for a song")
+                            .font(.custom("RalewayDots-Regular", size: 48))
+                            .foregroundColor(Color("Relief"))
+                    } else {
+                        List(searchVM.results) { result in
+                            Text(result.title ?? "")
+                        }
+                    }
+                    
+                }
+                .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
+            }
         }
         
     }

@@ -34,7 +34,8 @@ class SongListViewController: UIViewController {
         self.headerView.addConstraint(NSLayoutConstraint(item: self.headerView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 160 + safeAreaTopHeight))
 
         let buttonTapAction = { [unowned self] in
-            print("test")
+            let searchController = UIHostingController(rootView: SongSearchController())
+            self.present(searchController, animated: true, completion: nil)
         }
         let searchButton = UIHostingController(rootView: SearchButton(width: 45, height: 45, action: buttonTapAction))
         searchButton.view.backgroundColor = .clear
