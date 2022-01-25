@@ -10,7 +10,7 @@ import Combine
 
 final class SongSearchViewModel: ObservableObject {
     @Published var searchTerms: String = ""
-    @Published var results: [SongInfoFull] = []
+    @Published var results: [SongInfo] = []
     @Published var loading: Bool = false
     
     func search() {
@@ -20,7 +20,7 @@ final class SongSearchViewModel: ObservableObject {
             self?.loading = false
             self?.results = { count in
                 return Array(repeating: 0, count: count).map({ _ in
-                    return SongInfoFull(id: "1", title: self?.searchTerms, artist: "Red Hot Chili Peppers", album: "Blood Sugar Sex Magik", score: 450, release: "1991", duration: "4:33", preview: nil, originalSuggestion: nil, spotifyURI: nil, albumCoverURL: nil)
+                    return SongInfo(id: UUID().uuidString, title: self?.searchTerms, artist: "Red Hot Chili Peppers", album: "Blood Sugar Sex Magik", score: 450, release: "1991", duration: "4:33", preview: nil, originalSuggestion: nil, spotifyURI: nil, albumCoverURL: URL(string: "https://picsum.photos/200/300"))
                 })
             }(50)
             

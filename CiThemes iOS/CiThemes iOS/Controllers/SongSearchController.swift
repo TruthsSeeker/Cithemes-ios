@@ -11,7 +11,7 @@ struct SongSearchController: View {
     @StateObject var searchVM: SongSearchViewModel = SongSearchViewModel()
     var body: some View {
         ZStack(alignment: .top){
-            Color("Background", bundle: nil)
+            Color.background
             GeometryReader { geo in
                 VStack{
                     SearchBar(search: $searchVM.searchTerms, height: 45, buttonAction: {searchVM.search()})
@@ -19,13 +19,13 @@ struct SongSearchController: View {
                         Image("search-arrow", bundle: nil)
                             .resizable()
                             .frame(maxHeight: geo.size.height/2)
-                            .foregroundColor(Color("Relief"))
+                            .foregroundColor(Color.relief)
                         Text("Search for a song")
                             .font(.custom("RalewayDots-Regular", size: 48))
-                            .foregroundColor(Color("Relief"))
+                            .foregroundColor(Color.relief)
                     } else {
                         List(searchVM.results) { result in
-                            Text(result.title ?? "")
+                            SongSearchResult(song: result)
                         }
                     }
                     

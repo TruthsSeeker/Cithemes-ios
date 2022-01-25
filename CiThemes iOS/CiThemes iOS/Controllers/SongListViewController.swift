@@ -15,7 +15,7 @@ class SongListViewController: UIViewController {
     @IBOutlet weak var headerView: UIView!
     
     var songListVM = SongListViewModel()
-    lazy var orderedSongs: [SongInfoLight] = songListVM.songsDict.values.sorted(by: {$0.score > $1.score})
+    lazy var orderedSongs: [SongInfo] = songListVM.songsDict.values.sorted(by: {$0.score > $1.score})
     private var cancellables: Set<AnyCancellable> = []
 
     override func viewDidLoad() {
@@ -138,8 +138,8 @@ extension SongListViewController: UITableViewDelegate, UITableViewDataSource, UI
         print("Test")
         if let controller = self.storyboard?.instantiateViewController(withIdentifier: "SongInfo") as? SongDetailViewController {
             let detailViewModel = SongDetailViewModel()
-            let songDetail = SongInfoFull(light: orderedSongs[indexPath.row])
-            detailViewModel.details = songDetail
+            
+            detailViewModel.details = orderedSongs[indexPath.row]
             controller.detailVM = detailViewModel
             
             present(controller, animated: true, completion: nil)
