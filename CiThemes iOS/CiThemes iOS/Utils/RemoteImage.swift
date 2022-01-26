@@ -19,12 +19,14 @@ struct RemoteImage: View {
     
     @ViewBuilder
     var body: some View {
-        
-        
         if let data = loader.data, let image = UIImage(data: data) {
             Image(uiImage: image)
-        } else {
+                .resizable()
+                .scaledToFill()
+        } else if let placeholder = placeholder {
             placeholder
+                .resizable()
+                .scaledToFill()
         }
     }
 }
@@ -46,7 +48,7 @@ fileprivate class ImageLoader: ObservableObject {
             guard let data = data else {
                 return
             }
-            DispatchQueue.main.async { [unowned self] in
+            DispatchQueue.main.async {
                 self.data = data
             }
         }.resume()

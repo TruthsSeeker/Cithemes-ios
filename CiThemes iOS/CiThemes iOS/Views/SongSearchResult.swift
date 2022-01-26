@@ -10,13 +10,36 @@ import SwiftUI
 struct SongSearchResult: View {
     let song: SongInfo
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             Rectangle()
                 .frame(height: 60, alignment: .center)
             .foregroundColor(Color.background)
-            HStack {
+            HStack(alignment: .top) {
                 RemoteImage(song.albumCoverURL, placeholder: Image("LosAngeles"))
+                    .frame(width: 45, height: 45, alignment: .center)
+                    .cornerRadius(8)
+                    .clipped()
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(song.title ?? "")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(Font.customFont(.openSans, size: 14))
+                        .foregroundColor(Color.fontMain)
+                    Text(song.artist ?? "")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(Font.customFont(.ralewayRegular, size: 10))
+                        .foregroundColor(Color.fontSecondary)
+                }
+                
+                
+                VStack {
+                    Text(String(song.score))
+                        .frame(height: 45)
+                }
             }
+            .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+            
+            
         }
     }
 }

@@ -10,6 +10,7 @@
 		6207D28B279EDBEE00969803 /* SongSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6207D28A279EDBEE00969803 /* SongSearchResult.swift */; };
 		6207D28E279EE63100969803 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6207D28D279EE63100969803 /* Color+Theme.swift */; };
 		6207D29027A0565C00969803 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6207D28F27A0565C00969803 /* RemoteImage.swift */; };
+		6207D29427A1655400969803 /* Font+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6207D29327A1655400969803 /* Font+Custom.swift */; };
 		622EC83E26A6EEC900786192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC83D26A6EEC900786192 /* AppDelegate.swift */; };
 		622EC84026A6EEC900786192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC83F26A6EEC900786192 /* SceneDelegate.swift */; };
 		622EC84226A6EEC900786192 /* SongListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC84126A6EEC900786192 /* SongListViewController.swift */; };
@@ -67,6 +68,7 @@
 		6207D28A279EDBEE00969803 /* SongSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchResult.swift; sourceTree = "<group>"; };
 		6207D28D279EE63100969803 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		6207D28F27A0565C00969803 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		6207D29327A1655400969803 /* Font+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Custom.swift"; sourceTree = "<group>"; };
 		622EC83A26A6EEC900786192 /* CiThemes iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CiThemes iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		622EC83D26A6EEC900786192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		622EC83F26A6EEC900786192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				6207D28D279EE63100969803 /* Color+Theme.swift */,
 				6207D28F27A0565C00969803 /* RemoteImage.swift */,
+				6207D29327A1655400969803 /* Font+Custom.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				62858BE7279ADD6E005C0D34 /* SongInfo.swift in Sources */,
 				62858BE527998AA5005C0D34 /* SongSearchViewModel.swift in Sources */,
 				62858BDB2799563B005C0D34 /* SongSearchController.swift in Sources */,
+				6207D29427A1655400969803 /* Font+Custom.swift in Sources */,
 				622EC84026A6EEC900786192 /* SceneDelegate.swift in Sources */,
 				62858BE127995E3C005C0D34 /* SearchBar.swift in Sources */,
 				6234399D278EE0E20016093C /* SearchButton.swift in Sources */,
