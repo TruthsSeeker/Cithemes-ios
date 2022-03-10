@@ -53,7 +53,7 @@ class SongDetailViewController: UIViewController {
             self.artistLabel.text = info?.artist
             self.albumLabel.text = info?.album
             self.releasedLabel.text = info?.release
-            self.lengthLabel.text = info?.duration
+            self.lengthLabel.text = TimeInterval(Double(info?.duration ?? 0)/1000).minuteSecond
         }.store(in: &cancellables)
     }
 

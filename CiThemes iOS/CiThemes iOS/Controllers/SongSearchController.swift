@@ -26,7 +26,9 @@ struct SongSearchController: View {
                     } else {
                         List(searchVM.results) { result in
                             SongSearchResult(song: result)
+                                .listRowBackground(Color.clear)
                         }
+                        .listRowBackground(Color.red)
                     }
                     
                 }

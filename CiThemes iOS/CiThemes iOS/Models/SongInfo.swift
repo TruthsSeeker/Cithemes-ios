@@ -14,7 +14,7 @@ struct SongInfo: Codable, Identifiable {
     var album: String? = nil
     var score: Int = 0
     var release: String? = nil
-    var duration: String? = nil
+    var duration: Int? = nil
     var preview: URL? = nil
     var originalSuggestion: String? = nil
     var spotifyURI: URL? = nil
