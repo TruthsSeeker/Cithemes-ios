@@ -14,12 +14,12 @@ final class SongListViewModel: ObservableObject {
         case Down
     }
     #if DEBUG
-    @Published var songsDict: [String:SongInfo] = { count in
-        var dict: [String: SongInfo] = [:]
+    @Published var songsDict: [String:PlaylistEntry] = { count in
+        var dict: [String: PlaylistEntry] = [:]
         for song in Array(repeating: 0, count: count).map({ _ in
-            return SongInfo(id: UUID().uuidString, title: String(Int.random(in: 1...100000)), artist: String(Int.random(in: 1...100000)), score: Int.random(in: 0...1000))
+            return PlaylistEntry(id: UUID().uuidString, songInfo: SongInfo(id: UUID().uuidString, title: String(Int.random(in: 1...100000)), artist: String(Int.random(in: 1...100000))), votes: Int.random(in: 0...1000), cityId: nil)
         }) {
-            dict[song.id] = song
+            dict[song.id ?? ""] = song
         }
         return dict
     }(50)
@@ -30,8 +30,8 @@ final class SongListViewModel: ObservableObject {
     
     func update(id: String, vote: VoteType) {
         if let song = songsDict[id] {
-            let newScore = song.score + (vote == .Down ? -1 : 1)
-            songsDict[id]?.score = newScore
+            let newScore = song.votes + (vote == .Down ? -1 : 1)
+            songsDict[id]?.votes = newScore
             
         }
     }

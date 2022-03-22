@@ -16,6 +16,7 @@ struct SearchBar: View {
         HStack(alignment: .bottom, spacing: 4){
             VStack(alignment: .center, spacing: 6) {
                 TextField(label, text: $search)
+                    
                 Rectangle()
                     .frame(height: 1, alignment: .trailing)
                     .foregroundColor(Color("Relief", bundle: nil))

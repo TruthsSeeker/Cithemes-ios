@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,16 +44,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="dFY-pm-8RL">
-                                <rect key="frame" x="68" y="0.0" width="212" height="74"/>
+                                <rect key="frame" x="68" y="0.0" width="206" height="74"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eaz-TS-QGb">
-                                        <rect key="frame" x="0.0" y="0.0" width="212" height="37"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="206" height="37"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                         <color key="textColor" name="FontMain"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQ1-dZ-0JH">
-                                        <rect key="frame" x="0.0" y="37" width="212" height="37"/>
+                                        <rect key="frame" x="0.0" y="37" width="206" height="37"/>
                                         <fontDescription key="fontDescription" name="RalewayRoman-Bold" family="Raleway" pointSize="14"/>
                                         <color key="textColor" name="FontSecondary"/>
                                         <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DxF-ha-Ywu">
-                                <rect key="frame" x="284" y="0.0" width="50" height="74"/>
+                                <rect key="frame" x="278" y="0.0" width="50" height="74"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="376" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEI-v0-LEX">
                                         <rect key="frame" x="10.5" y="0.0" width="29.5" height="74"/>
@@ -91,7 +91,7 @@
                             <constraint firstAttribute="height" constant="74" id="LET-AW-wa6"/>
                             <constraint firstAttribute="bottom" secondItem="DxF-ha-Ywu" secondAttribute="bottom" id="LTG-zW-wHe"/>
                             <constraint firstItem="sWJ-Zm-OkB" firstAttribute="trailing" secondItem="LYK-e5-5zi" secondAttribute="trailing" id="Pwf-Sm-trF"/>
-                            <constraint firstAttribute="trailing" secondItem="DxF-ha-Ywu" secondAttribute="trailing" id="SMR-av-Dzz"/>
+                            <constraint firstAttribute="trailing" secondItem="DxF-ha-Ywu" secondAttribute="trailing" constant="6" id="SMR-av-Dzz"/>
                             <constraint firstItem="DxF-ha-Ywu" firstAttribute="top" secondItem="tri-p3-Cdu" secondAttribute="top" id="UFh-65-Hln"/>
                             <constraint firstItem="dFY-pm-8RL" firstAttribute="leading" secondItem="LYK-e5-5zi" secondAttribute="trailing" constant="12" id="bb8-Vu-eIe"/>
                             <constraint firstItem="sWJ-Zm-OkB" firstAttribute="leading" secondItem="LYK-e5-5zi" secondAttribute="leading" id="eOs-Im-bbA"/>

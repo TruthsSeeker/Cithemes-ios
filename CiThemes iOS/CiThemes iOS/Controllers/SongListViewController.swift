@@ -15,7 +15,7 @@ class SongListViewController: UIViewController {
     @IBOutlet weak var headerView: UIView!
     
     var songListVM = SongListViewModel()
-    lazy var orderedSongs: [SongInfo] = songListVM.songsDict.values.sorted(by: {$0.score > $1.score})
+    lazy var orderedSongs: [PlaylistEntry] = songListVM.songsDict.values.sorted(by: {$0.votes > $1.votes})
     private var cancellables: Set<AnyCancellable> = []
 
     override func viewDidLoad() {
@@ -30,11 +30,12 @@ class SongListViewController: UIViewController {
         tableView.register(UINib(nibName: "FirstRankTableViewCell", bundle: nil), forCellReuseIdentifier: "firstCell")
         tableView.register(UINib(nibName: "PodiumRankTableViewCell", bundle: nil), forCellReuseIdentifier: "podiumCell")
         tableView.register(UINib(nibName: "RankingTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        let safeAreaTopHeight = UIApplication.shared.windows[0].safeAreaInsets.top
+        let safeAreaTopHeight = self.view.window?.safeAreaInsets.top ?? 0
         self.headerView.addConstraint(NSLayoutConstraint(item: self.headerView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 160 + safeAreaTopHeight))
 
         let buttonTapAction = { [unowned self] in
             let searchController = UIHostingController(rootView: SongSearchController())
+            searchController.view.backgroundColor = UIColor(Color.background)
             self.present(searchController, animated: true, completion: nil)
         }
         let searchButton = UIHostingController(rootView: SearchButton(width: 45, height: 45, action: buttonTapAction))
@@ -45,7 +46,7 @@ class SongListViewController: UIViewController {
     
     private func bindViewModel() {
         songListVM.$songsDict.sink { [weak self] dict in
-            self?.orderedSongs = dict.values.sorted(by: {$0.score > $1.score})
+            self?.orderedSongs = dict.values.sorted(by: {$0.votes > $1.votes})
             self?.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
         }.store(in: &cancellables)
     }
@@ -72,40 +73,44 @@ extension SongListViewController: UITableViewDelegate, UITableViewDataSource, UI
         switch indexPath.row {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "firstCell", for: indexPath) as? FirstRankTableViewCell {
-                let songInfo = self.orderedSongs[indexPath.row]
-                cell.artistLabel.text = songInfo.artist
-                cell.songTitleLabel.text = songInfo.title
+                let entry = self.orderedSongs[indexPath.row]
+                let songInfo = entry.songInfo
+                cell.artistLabel.text = songInfo?.artist
+                cell.songTitleLabel.text = songInfo?.title
                 cell.rankLabel.text = String(indexPath.row + 1)
-                cell.voteLabel.text = String(songInfo.score)
+                cell.voteLabel.text = String(entry.votes)
                 return cell
             }
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "podiumCell", for: indexPath) as? PodiumRankTableViewCell {
-                let songInfo = self.orderedSongs[indexPath.row]
-                cell.artistLabel.text = songInfo.artist
-                cell.songTitleLabel.text = songInfo.title
+                let entry = self.orderedSongs[indexPath.row]
+                let songInfo = entry.songInfo
+                cell.artistLabel.text = songInfo?.artist
+                cell.songTitleLabel.text = songInfo?.title
                 cell.rankLabel.text = String(indexPath.row + 1)
                 cell.rankLabel.textColor = UIColor(named: "Silver")
-                cell.voteLabel.text = String(songInfo.score)
+                cell.voteLabel.text = String(entry.votes)
                 return cell
             }
         case 2:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "podiumCell", for: indexPath) as? PodiumRankTableViewCell {
-                let songInfo = self.orderedSongs[indexPath.row]
-                cell.artistLabel.text = songInfo.artist
-                cell.songTitleLabel.text = songInfo.title
+                let entry = self.orderedSongs[indexPath.row]
+                let songInfo = entry.songInfo
+                cell.artistLabel.text = songInfo?.artist
+                cell.songTitleLabel.text = songInfo?.title
                 cell.rankLabel.text = String(indexPath.row + 1)
                 cell.rankLabel.textColor = UIColor(named: "Bronze")
-                cell.voteLabel.text = String(songInfo.score)
+                cell.voteLabel.text = String(entry.votes)
                 return cell
             }
         default:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? RankingTableViewCell {
-                let songInfo = self.orderedSongs[indexPath.row]
-                cell.artistLabel.text = songInfo.artist
-                cell.songTitleLabel.text = songInfo.title
+                let entry = self.orderedSongs[indexPath.row]
+                let songInfo = entry.songInfo
+                cell.artistLabel.text = songInfo?.artist
+                cell.songTitleLabel.text = songInfo?.title
                 cell.rankLabel.text = String(indexPath.row + 1)
-                cell.voteLabel.text = String(songInfo.score)
+                cell.voteLabel.text = String(entry.votes)
                 return cell
             }
         }
@@ -127,8 +132,6 @@ extension SongListViewController: UITableViewDelegate, UITableViewDataSource, UI
             self.likeHandler(indexPath)
             handler(true)
         }
-        likeAction.image
-        
         //TODO: Favorite action
         
         return UISwipeActionsConfiguration(actions: [likeAction])
@@ -139,7 +142,7 @@ extension SongListViewController: UITableViewDelegate, UITableViewDataSource, UI
         if let controller = self.storyboard?.instantiateViewController(withIdentifier: "SongInfo") as? SongDetailViewController {
             let detailViewModel = SongDetailViewModel()
             
-            detailViewModel.details = orderedSongs[indexPath.row]
+            detailViewModel.details = orderedSongs[indexPath.row].songInfo
             controller.detailVM = detailViewModel
             
             present(controller, animated: true, completion: nil)
@@ -148,12 +151,12 @@ extension SongListViewController: UITableViewDelegate, UITableViewDataSource, UI
     }
     
     private func dislikeHandler(_ indexPath: IndexPath) {
-        let songId = orderedSongs[indexPath.row].id
+        guard let songId = orderedSongs[indexPath.row].id else { return }
         songListVM.update(id: songId, vote: .Down)
     }
     
     private func likeHandler(_ indexPath: IndexPath) {
-        let songId = orderedSongs[indexPath.row].id
+        guard let songId = orderedSongs[indexPath.row].id else { return  }
         songListVM.update(id: songId, vote: .Up)
     }
 }

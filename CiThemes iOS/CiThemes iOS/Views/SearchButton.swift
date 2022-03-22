@@ -31,7 +31,6 @@ struct SearchButton: View {
         .frame(width: width, height: height, alignment: .center)
         .cornerRadius(width)
         .shadow(color: .gray, radius: 2, x: 2, y: 2)
-        
     }
 }
 
