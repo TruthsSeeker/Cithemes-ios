@@ -26,6 +26,8 @@ final class SongListViewModel: ObservableObject {
     #else
     @Published var songsDict: [String: SongInfoFull] = [:]
     #endif
+    
+    @Published var cityId: Int = 1
 
     
     func update(id: String, vote: VoteType) {

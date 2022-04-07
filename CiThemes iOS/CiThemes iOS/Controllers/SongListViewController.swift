@@ -14,7 +14,7 @@ class SongListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: UIView!
     
-    var songListVM = SongListViewModel()
+    @StateObject var songListVM = SongListViewModel()
     lazy var orderedSongs: [PlaylistEntry] = songListVM.songsDict.values.sorted(by: {$0.votes > $1.votes})
     private var cancellables: Set<AnyCancellable> = []
 
@@ -31,14 +31,25 @@ class SongListViewController: UIViewController {
         tableView.register(UINib(nibName: "PodiumRankTableViewCell", bundle: nil), forCellReuseIdentifier: "podiumCell")
         tableView.register(UINib(nibName: "RankingTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
         let safeAreaTopHeight = self.view.window?.safeAreaInsets.top ?? 0
-        self.headerView.addConstraint(NSLayoutConstraint(item: self.headerView!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 160 + safeAreaTopHeight))
+        self.headerView.addConstraint(NSLayoutConstraint(
+                item: self.headerView!,
+                attribute: .height,
+                relatedBy: .equal,
+                toItem: nil,
+                attribute: .height,
+                multiplier: 1,
+                constant: 160 + safeAreaTopHeight))
 
         let buttonTapAction = { [unowned self] in
             let searchController = UIHostingController(rootView: SongSearchController())
             searchController.view.backgroundColor = UIColor(Color.background)
             self.present(searchController, animated: true, completion: nil)
         }
-        let searchButton = UIHostingController(rootView: SearchButton(width: 45, height: 45, action: buttonTapAction))
+        let searchButton = UIHostingController(rootView: SearchButton(
+                width: 45,
+                height: 45,
+                action: buttonTapAction)
+            .environmentObject(songListVM))
         searchButton.view.backgroundColor = .clear
         view.addSubview(searchButton.view)
         activateConstraints(forButton: searchButton.view)

@@ -11,6 +11,7 @@ import Combine
 final class SongDetailViewModel: ObservableObject {
     @Published var details: SongInfo?
     @Published var loading: Bool = false
+    @Published var cityID: Int?
     
     private var voteSubscription: AnyCancellable?
     
@@ -18,7 +19,7 @@ final class SongDetailViewModel: ObservableObject {
     private func votePublisher() -> AnyPublisher<Void, Never> {
         guard let url = getUrl(for: "/api/songs/vote") else { return Just(()).eraseToAnyPublisher() }
         var request = URLRequest(url: url)
-        let encoded = try? JSONEncoder().encode(VoteRequest(city_id: 1, song_id: Int.init(details?.id ?? "", format: .number, lenient: true), user_id: 1))
+        let encoded = try? JSONEncoder().encode(VoteRequest(city_id: cityID ?? 1, song_id: Int.init(details?.id ?? "", format: .number, lenient: true), user_id: 1))
         request.httpBody = encoded
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

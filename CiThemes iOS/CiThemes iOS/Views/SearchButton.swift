@@ -30,7 +30,7 @@ struct SearchButton: View {
         .background(Color("Relief", bundle: nil))
         .frame(width: width, height: height, alignment: .center)
         .cornerRadius(width)
-        .shadow(color: .gray, radius: 2, x: 2, y: 2)
+        .shadow(color: .black, radius: 2, x: 2, y: 2)
     }
 }
 
