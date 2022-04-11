@@ -23,7 +23,7 @@ final class SongDetailViewModel: ObservableObject {
     
     
     private func votePublisher() -> AnyPublisher<Void, Never> {
-        guard let url = getUrl(for: "/api/songs/vote") else { return Just(()).eraseToAnyPublisher() }
+        guard let url = getUrl(for: "/songs/vote") else { return Just(()).eraseToAnyPublisher() }
         var request = URLRequest(url: url)
         let encoded = try? JSONEncoder().encode(VoteRequest(city_id: cityID ?? 1, song_id: Int.init(details?.id ?? "", format: .number, lenient: true), user_id: 1))
         request.httpBody = encoded

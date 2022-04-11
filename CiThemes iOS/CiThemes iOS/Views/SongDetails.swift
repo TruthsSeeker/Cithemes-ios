@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SongDetails: View {
     @StateObject private var detailsViewModel: SongDetailViewModel = SongDetailViewModel()
-    @EnvironmentObject var cityContext: SongListViewModel
+    @EnvironmentObject var playlistContext: SongListViewModel
     let details: SongInfo
     
     var body: some View {
@@ -88,7 +88,7 @@ struct SongDetails: View {
             }
         }.onAppear {
             detailsViewModel.details = self.details
-    detailsViewModel.cityID = self.cityContext.cityId
+            detailsViewModel.cityID = self.playlistContext.cityId
         }
     }
 }

@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct CityPlaylist: View {
-    @StateObject var playlistVM: SongListViewModel = SongListViewModel.placeholder
+    @StateObject var playlistVM: SongListViewModel = SongListViewModel(list: [], cityId: 1)
     
     @State var searchShown: Bool = false
+    @State var detailedSong: SongInfo?
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -24,28 +26,21 @@ struct CityPlaylist: View {
                         Color.background
                         ScrollView {
                             LazyVStack {
-                                ForEach(0..<playlistVM.songsDict.count) { index in
-                                    PlaylistCell(style: PlaylistCell.CellStyle(rawValue: index), song: playlistVM.songsDict[index])
-                                }
-//                                ForEach(0 ..< playlistVM.songsDict.count) { index in
-//                                    if index == 0 {
-//                                        FirstRankCell(songVM: SongDetailViewModel(details: playlistVM.songsDict[index], cityId: playlistVM.cityId))
-//                                            .listRowBackground(Color.background)
-//                                    } else if index == 1 {
-//                                        PodiumCell(songVM: SongDetailViewModel(details: playlistVM.songsDict[index], cityId: playlistVM.cityId))
-//                                            .listRowBackground(Color.background)
-//                                    } else if index == 2 {
-//                                        PodiumCell(songVM: SongDetailViewModel(details: playlistVM.songsDict[index], cityId: playlistVM.cityId))
-//                                            .listRowBackground(Color.background)
-//                                    } else {
-//                                        PlaylistCell(songVM: SongDetailViewModel(details: playlistVM.songsDict[index], cityId: playlistVM.cityId))
-//                                            .listRowBackground(Color.background)
-//                                    }
-//                                }
                                 
+                                ForEach(Array(playlistVM.songsDict.enumerated()), id: \.1) { index, entry in
+                                    
+                                    PlaylistCell(song: entry , rank: index)
+                                        .onTapGesture {
+                                            withAnimation(Animation.easeIn(duration: 0.2)) {
+                                                detailedSong = entry.songInfo
+                                            }
+                                        }
+                                        .transition(.opacity)
+                                }
                             }
                             
                         }
+                        .environmentObject(playlistVM)
                     
                     }
                 }
@@ -60,8 +55,22 @@ struct CityPlaylist: View {
                 } content: {
                     SongSearchController()
                 }
+                
+                if let item = detailedSong {
+                    SongDetails(details: item)
+                        .edgesIgnoringSafeArea([.top,.bottom])
+                        .onTapGesture {
+                            withAnimation(Animation.easeIn(duration: 0.2)) {
+                                detailedSong = nil
+                            }
+                        }
+                        .transition(.opacity)
+                }
 
             }
+            .environmentObject(playlistVM)
+        }.onAppear {
+            playlistVM.fetch()
         }
     }
 }

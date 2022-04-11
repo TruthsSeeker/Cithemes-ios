@@ -29,6 +29,35 @@ final class SongListViewModel: ObservableObject {
         self.cityId = cityId
     }
     
+    private var playlistSubscription: AnyCancellable?
+    
+    private func playlistPublisher() -> AnyPublisher<[PlaylistEntry], Never> {
+        guard var url = getUrl(for: "/cities/\(cityId)/playlist") else { return Just([]).eraseToAnyPublisher() }
+            
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map { data, response in
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let results = try decoder.decode(RootResponse<[PlaylistEntry]>.self, from: data)
+                    return results.result
+                } catch {
+                    print(error)
+                }
+                return []
+            }
+            .replaceError(with: [])
+            .eraseToAnyPublisher()
+    }
+    
+    func fetch() {
+        playlistSubscription = playlistPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { results in
+                self.songsDict = results
+            })
+    }
+    
     
     func update(id: Int, vote: VoteType) {
         guard let index = songsDict.firstIndex(where: { entry in

@@ -8,24 +8,21 @@
 import SwiftUI
 
 struct PlaylistCell: View {
-    enum CellStyle: Int {
-        case first = 0, second, third
-    }
 
-    let style: PlaylistCell.CellStyle?
     let song: PlaylistEntry
+    let rank: Int
 
     @ViewBuilder
     var body: some View {
-        switch style {
-        case .first:
-            FirstRankCell(song: song, vote: {})
-        case .second:
-            PodiumCell(position: .second, song: song, vote: {})
-        case .third:
-            PodiumCell(position: .third, song: song, vote: {})
-        case nil:
-            NormalCell(song: song, vote: {})
+        switch rank {
+        case 0:
+            FirstRankCell(entry: song)
+        case 1:
+            PodiumCell(position: .second, entry: song)
+        case 2:
+            PodiumCell(position: .third, entry: song)
+        default:
+            NormalCell(entry: song, rank: rank + 1)
         }
     }
 }
@@ -33,6 +30,6 @@ struct PlaylistCell: View {
 
 struct PlaylistCell_Previews: PreviewProvider {
     static var previews: some View {
-        PlaylistCell(style: .first, song: PlaylistEntry(id: 0))
+        PlaylistCell(song: PlaylistEntry(id: 0), rank: 1)
     }
 }

@@ -11,5 +11,15 @@ struct PlaylistEntry: Codable, Identifiable {
     var id: Int
     var songInfo: SongInfo? = nil
     var votes: Int = 0
-    var cityId: String? = nil
+    var cityId: Int? = nil
+}
+
+extension PlaylistEntry: Hashable {
+    static func == (lhs: PlaylistEntry, rhs: PlaylistEntry) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

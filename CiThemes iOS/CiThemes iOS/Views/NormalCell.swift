@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct NormalCell: View {
-    var song: PlaylistEntry
-    var vote: ()->()
+    var entry: PlaylistEntry
+    var rank: Int
+    
+    @EnvironmentObject var context: SongListViewModel
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -18,22 +20,22 @@ struct NormalCell: View {
                 .frame(height: 40, alignment: .center)
             
             HStack {
-                Text("2")
+                Text(String(rank))
                     .frame(width: 50, height: 40, alignment: .center)
                     .font(Font.customFont(.ralewayRegular, size: 24).weight(.semibold))
                     .foregroundColor(Color.accent)
                 
                 VStack(alignment: .leading) {
-                    Text("Title")
+                    Text(entry.songInfo?.title ?? "Unknown Title")
                         .font(Font.customFont(.openSans, size: 14))
                         .foregroundColor(Color.fontMain)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
-                    Text("Artist")
+                    Text(entry.songInfo?.artist ?? "Unknown Artist")
                         .font(Font.customFont(.openSans, size: 10))
                         .foregroundColor(Color.fontSecondary)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
-                Text("Score")
+                Text(String(entry.votes))
                     .font(Font.customFont(.ralewayRegular, size: 17))
                     .foregroundColor(Color.relief)
             }
@@ -46,7 +48,7 @@ struct NormalCell: View {
 
 struct NormalCell_Previews: PreviewProvider {
     static var previews: some View {
-        NormalCell()
+        NormalCell(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), rank: 10)
     }
 }
 

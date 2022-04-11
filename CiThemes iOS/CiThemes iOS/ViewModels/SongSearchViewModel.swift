@@ -16,7 +16,7 @@ final class SongSearchViewModel: ObservableObject {
     private var searchResultsSubscription: AnyCancellable?
     
     private func searchPublisher() -> AnyPublisher<[SongInfo], Never> {
-        guard let url = getUrl(for: "/api/songs/search") else { return Just([]).eraseToAnyPublisher() }
+        guard let url = getUrl(for: "/songs/search") else { return Just([]).eraseToAnyPublisher() }
         var request = URLRequest(url: url)
         let encoded = try? JSONEncoder().encode(["query": self.searchTerms])
         request.httpBody = encoded
