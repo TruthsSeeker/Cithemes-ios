@@ -8,7 +8,7 @@
 import Foundation
 
 struct PlaylistEntry: Codable, Identifiable {
-    var id: String?
+    var id: Int
     var songInfo: SongInfo? = nil
     var votes: Int = 0
     var cityId: String? = nil

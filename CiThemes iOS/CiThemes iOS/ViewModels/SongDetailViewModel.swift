@@ -13,6 +13,12 @@ final class SongDetailViewModel: ObservableObject {
     @Published var loading: Bool = false
     @Published var cityID: Int?
     
+    convenience init(details: SongInfo, cityId: Int) {
+        self.init()
+        self.details = details
+        self.cityID = cityId
+    }
+    
     private var voteSubscription: AnyCancellable?
     
     

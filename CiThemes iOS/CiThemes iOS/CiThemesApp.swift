@@ -11,7 +11,7 @@ import SwiftUI
 struct CiThemesApp: App {
     var body: some Scene {
         WindowGroup {
-                SongSearchController(searchVM: SongSearchViewModel())
+                CityPlaylist()
         }
     }
 }

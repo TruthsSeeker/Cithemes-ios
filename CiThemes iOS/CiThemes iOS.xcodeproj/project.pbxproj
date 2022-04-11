@@ -51,6 +51,8 @@
 		62BEA20927FF19410002FFA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEA20527FF19400002FFA9 /* LaunchScreen.storyboard */; };
 		62BEA20A27FF19410002FFA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEA20727FF19410002FFA9 /* Main.storyboard */; };
 		62BEA20C27FF1A790002FFA9 /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */; };
+		62BEA20E27FF20F40002FFA9 /* CityPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20D27FF20F40002FFA9 /* CityPlaylist.swift */; };
+		62BEA21028002FE30002FFA9 /* NormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20F28002FE30002FFA9 /* NormalCell.swift */; };
 		62C41A9A2780932B00B6490E /* SongListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C41A992780932B00B6490E /* SongListViewModel.swift */; };
 		62C41A9C2781AE3B00B6490E /* FirstRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C41A9B2781AE3B00B6490E /* FirstRankTableViewCell.xib */; };
 		62C41A9E2781AE4B00B6490E /* FirstRankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C41A9D2781AE4B00B6490E /* FirstRankTableViewCell.swift */; };
@@ -127,6 +129,8 @@
 		62BEA20627FF19400002FFA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62BEA20827FF19410002FFA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCell.swift; sourceTree = "<group>"; };
+		62BEA20D27FF20F40002FFA9 /* CityPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPlaylist.swift; sourceTree = "<group>"; };
+		62BEA20F28002FE30002FFA9 /* NormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCell.swift; sourceTree = "<group>"; };
 		62C41A992780932B00B6490E /* SongListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListViewModel.swift; sourceTree = "<group>"; };
 		62C41A9B2781AE3B00B6490E /* FirstRankTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstRankTableViewCell.xib; sourceTree = "<group>"; };
 		62C41A9D2781AE4B00B6490E /* FirstRankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRankTableViewCell.swift; sourceTree = "<group>"; };
@@ -286,6 +290,8 @@
 				6265814927FECE130037D6A8 /* FirstRankCell.swift */,
 				6265818327FEDF8C0037D6A8 /* PodiumCell.swift */,
 				62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */,
+				62BEA20D27FF20F40002FFA9 /* CityPlaylist.swift */,
+				62BEA20F28002FE30002FFA9 /* NormalCell.swift */,
 			);
 			name = "SwiftUI Rewrite";
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				622EC87626A6FCD200786192 /* RankingTableViewCell.swift in Sources */,
 				6265818227FEDA500037D6A8 /* CiThemesApp.swift in Sources */,
 				62A681D6278208F1008C7AEA /* PodiumRankTableViewCell.swift in Sources */,
+				62BEA20E27FF20F40002FFA9 /* CityPlaylist.swift in Sources */,
 				62BEA20C27FF1A790002FFA9 /* PlaylistCell.swift in Sources */,
 				6207D28B279EDBEE00969803 /* SongSearchResult.swift in Sources */,
 				624D0F7827EA21D8003CC730 /* ObservableObject+getUrl.swift in Sources */,
@@ -475,6 +482,7 @@
 				62858BE7279ADD6E005C0D34 /* SongInfo.swift in Sources */,
 				62FA333427DA4FFD00B07426 /* RootResponse.swift in Sources */,
 				62858BE527998AA5005C0D34 /* SongSearchViewModel.swift in Sources */,
+				62BEA21028002FE30002FFA9 /* NormalCell.swift in Sources */,
 				62858BDB2799563B005C0D34 /* SongSearchController.swift in Sources */,
 				624D0F7227E9C5A2003CC730 /* StringIDWrapper.swift in Sources */,
 				6207D29427A1655400969803 /* Font+Custom.swift in Sources */,

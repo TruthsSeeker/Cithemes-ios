@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct FirstRankCell: View {
+    var song: PlaylistEntry
+    var vote: ()->()
+
     var body: some View {
         ZStack(alignment: .leading) {
             Rectangle()
@@ -32,11 +35,11 @@ struct FirstRankCell: View {
                 VStack(alignment: .leading, spacing:16) {
                     Text("Title")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(Font.customFont(.openSans, size: 14))
+                        .font(Font.customFont(.openSans, size: 16))
                         .foregroundColor(Color.fontMain)
                     Text("Artist")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(Font.customFont(.ralewayRegular, size: 10))
+                        .font(Font.customFont(.ralewayRegular, size: 14))
                         .foregroundColor(Color.fontSecondary)
                 }
                 .padding([.trailing], 8)
@@ -52,6 +55,6 @@ struct FirstRankCell: View {
 
 struct FirstRankCell_Previews: PreviewProvider {
     static var previews: some View {
-        FirstRankCell()
+        FirstRankCell(song: PlaylistEntry(id: 0), vote: {})
     }
 }

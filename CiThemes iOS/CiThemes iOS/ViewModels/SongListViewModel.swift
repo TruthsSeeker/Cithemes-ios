@@ -9,33 +9,36 @@ import Foundation
 import Combine
 
 final class SongListViewModel: ObservableObject {
-    enum VoteType {
-        case Up
-        case Down
+    enum VoteType: Int {
+        case Up = 1
+        case Down = -1
     }
-    #if DEBUG
-    @Published var songsDict: [String:PlaylistEntry] = { count in
-        var dict: [String: PlaylistEntry] = [:]
-        for song in Array(repeating: 0, count: count).map({ _ in
-            return PlaylistEntry(id: UUID().uuidString, songInfo: SongInfo(id: UUID().uuidString, title: String(Int.random(in: 1...100000)), artist: String(Int.random(in: 1...100000))), votes: Int.random(in: 0...1000), cityId: nil)
-        }) {
-            dict[song.id ?? ""] = song
-        }
-        return dict
-    }(50)
-    #else
-    @Published var songsDict: [String: SongInfoFull] = [:]
-    #endif
     
-    @Published var cityId: Int = 1
-
-    
-    func update(id: String, vote: VoteType) {
-        if let song = songsDict[id] {
-            let newScore = song.votes + (vote == .Down ? -1 : 1)
-            songsDict[id]?.votes = newScore
-            
+    @Published var cityId: Int
+    var songsDict: [PlaylistEntry] {
+        didSet {
+            songsDict.sort { lhs, rhs in
+                lhs.votes > rhs.votes
+            }
+            objectWillChange.send()
         }
     }
     
+    init(list: [PlaylistEntry], cityId: Int) {
+        self.songsDict = list
+        self.cityId = cityId
+    }
+    
+    
+    func update(id: Int, vote: VoteType) {
+        guard let index = songsDict.firstIndex(where: { entry in
+            entry.id == id
+        }) else { return }
+        
+        songsDict[index] = PlaylistEntry(id: songsDict[index].id, songInfo: songsDict[index].songInfo, votes: songsDict[index].votes + vote.rawValue, cityId: songsDict[index].cityId)
+    }
+    
+    static var placeholder = SongListViewModel(list: Array(repeating: 0, count: 50).map({ _ in
+        return PlaylistEntry(id: UUID().hashValue, songInfo: SongInfo(id: UUID().uuidString, title: String(Int.random(in: 1...100000)), artist: String(Int.random(in: 1...100000))), votes: Int.random(in: 0...1000), cityId: nil)
+    }), cityId: 1)
 }
