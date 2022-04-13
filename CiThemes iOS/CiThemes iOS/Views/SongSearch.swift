@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SongSearchController: View {
+struct SongSearch: View {
     @StateObject var searchVM: SongSearchViewModel = SongSearchViewModel()
     @State private var detailsShown = false
     @State private var shownItem: SongInfo?
@@ -66,6 +66,6 @@ struct SongSearchController: View {
 
 struct SongSearchController_Previews: PreviewProvider {
     static var previews: some View {
-        SongSearchController()
+        SongSearch()
     }
 }

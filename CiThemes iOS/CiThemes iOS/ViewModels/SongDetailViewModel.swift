@@ -20,8 +20,6 @@ final class SongDetailViewModel: ObservableObject {
     }
     
     private var voteSubscription: AnyCancellable?
-    
-    
     private func votePublisher() -> AnyPublisher<Void, Never> {
         guard let url = getUrl(for: "/songs/vote") else { return Just(()).eraseToAnyPublisher() }
         var request = URLRequest(url: url)
@@ -38,7 +36,6 @@ final class SongDetailViewModel: ObservableObject {
             .replaceError(with: ())
             .eraseToAnyPublisher()
     }
-    
     func vote() {
         loading = true
         voteSubscription = votePublisher()

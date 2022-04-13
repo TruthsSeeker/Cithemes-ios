@@ -32,7 +32,7 @@ final class SongListViewModel: ObservableObject {
     private var playlistSubscription: AnyCancellable?
     
     private func playlistPublisher() -> AnyPublisher<[PlaylistEntry], Never> {
-        guard var url = getUrl(for: "/cities/\(cityId)/playlist") else { return Just([]).eraseToAnyPublisher() }
+        guard let url = getUrl(for: "/cities/\(cityId)/playlist") else { return Just([]).eraseToAnyPublisher() }
             
         return URLSession.shared.dataTaskPublisher(for: url)
             .map { data, response in

@@ -53,7 +53,7 @@ struct CityPlaylist: View {
                 .sheet(isPresented: self.$searchShown) {
                     self.searchShown = false
                 } content: {
-                    SongSearchController()
+                    SongSearch()
                 }
                 
                 if let item = detailedSong {
