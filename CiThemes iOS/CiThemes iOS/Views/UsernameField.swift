@@ -29,6 +29,7 @@ struct UsernameField: View {
                         .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
                         .tint(Color.relief)
+                        
                 }
                 Rectangle()
                     .foregroundColor(Color.relief)

@@ -8,35 +8,29 @@
 import SwiftUI
 
 struct LoginSignUp: View {
-    @State var showSignUp: Bool = false
+    @State var loginIsShown: Bool = true
     @StateObject var userVM: UserViewModel = UserViewModel()
     
     var body: some View {
         ZStack{
             Color.background
-            if showSignUp {
-                ZStack{
-                    SignUp(email: $userVM.email, password: $userVM.password) {
-                        userVM.signup()
-                    } loginAction: {
-                        withAnimation(.linear(duration: 0.5)) {
-                            showSignUp.toggle()
-                        }
-                    }
-                }
-                .transition(.flipShow)
-            } else {
-                ZStack{
-                    Login(email: $userVM.email, password: $userVM.password) {
-                        userVM.login()
-                    } signUpAction: {
-                        withAnimation(.linear(duration: 0.5)) {
-                            showSignUp.toggle()
-                        }
-                    }
-                    
-                }
-                .transition(.flipHide)
+            VStack {
+                Spacer()
+                    .frame(height: 120)
+                Text("CiThemes")
+                    .font(Font.customFont(.ralewayDots, size: 72).bold())
+                    .foregroundColor(.attentionGrabbing)
+                Spacer()
+                    .frame(height: 40)
+                FlippableView(isFaceUp: $loginIsShown, frontView: Login(email: $userVM.email, password: $userVM.password, action: {
+                    userVM.login()
+                }, signUpAction: {
+                    loginIsShown.toggle()
+                }), backView: SignUp(email: $userVM.email, password: $userVM.password, action: {
+                    userVM.signup()
+                }, loginAction: {
+                    loginIsShown.toggle()
+            }))
             }
         }
         .edgesIgnoringSafeArea([.top,.bottom])
