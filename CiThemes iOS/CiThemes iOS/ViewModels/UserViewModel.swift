@@ -33,14 +33,16 @@ extension UserViewModel {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         return URLSession.shared.dataTaskPublisher(for: request)
             .map{ data, response in
-                guard let decoded = try? JSONDecoder().decode(RootResponse<User>.self, from: data) else {return User(id: -1, email: "")}
+                guard let decoded = try? JSONDecoder().decode(RootResponse<User>.self, from: data) else {
+                    return User(id: -1, email: "")
+                }
                         
                 return decoded.result
             }
             .eraseToAnyPublisher()
     }
     
-    func signup() {
+    func signup(success: @escaping ()->() = {}) {
         signUpSubscription = signUpSubscriber()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { error in
@@ -48,6 +50,7 @@ extension UserViewModel {
             }, receiveValue: { token in
                 print(token)
                 KeychainHelper.standard.save(token, service: KeychainHelper.service, account: KeychainHelper.account)
+                success()
             })
     }
 }
@@ -68,13 +71,15 @@ extension UserViewModel {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         return URLSession.shared.dataTaskPublisher(for: request)
             .map { data, response in
-                guard let decoded = try? JSONDecoder().decode(RootResponse<User>.self, from: data) else { return User(id: -1, email: "")}
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                guard let decoded = try? decoder.decode(RootResponse<User>.self, from: data) else { return User(id: -1, email: "")}
                 return decoded.result
             }
             .eraseToAnyPublisher()
     }
     
-    func login() {
+    func login(success: @escaping ()->() = {}) {
         loginSubscription = loginSubscriber()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { error in
@@ -83,6 +88,7 @@ extension UserViewModel {
             }, receiveValue: { user in
                 print(user)
                 KeychainHelper.standard.save(user, service: KeychainHelper.service, account: KeychainHelper.account)
+                success()
             })
     }
 }

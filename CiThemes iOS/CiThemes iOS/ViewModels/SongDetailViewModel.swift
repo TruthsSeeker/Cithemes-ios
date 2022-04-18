@@ -13,36 +13,13 @@ final class SongDetailViewModel: ObservableObject {
     @Published var loading: Bool = false
     @Published var cityID: Int?
     
+    private var voteSubscription: AnyCancellable?
+    private var fetchSubscription: AnyCancellable?
+    
     convenience init(details: SongInfo, cityId: Int) {
         self.init()
         self.details = details
         self.cityID = cityId
-    }
-    
-    private var voteSubscription: AnyCancellable?
-    private func votePublisher() -> AnyPublisher<Void, Never> {
-        guard let url = getUrl(for: "/songs/vote") else { return Just(()).eraseToAnyPublisher() }
-        var request = URLRequest(url: url)
-        let encoded = try? JSONEncoder().encode(VoteRequest(city_id: cityID ?? 1, song_id: Int.init(details?.id ?? "", format: .number, lenient: true), user_id: 1))
-        request.httpBody = encoded
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .map{ data, response in
-                print(response)
-                return ()
-            }
-            .replaceError(with: ())
-            .eraseToAnyPublisher()
-    }
-    func vote() {
-        loading = true
-        voteSubscription = votePublisher()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { _ in
-                self.loading = false
-            })
     }
     
     func fetch() {
@@ -56,6 +33,48 @@ final class SongDetailViewModel: ObservableObject {
         #endif
     }
     
+}
+
+extension SongDetailViewModel {
+    //TODO
+//    private func fetchPublisher() -> AnyPublisher<SongInfo, URLError> {
+//        guard let url = getUrl(for: "/songs")
+//    }
+}
+
+//MARK: Vote Request
+extension SongDetailViewModel {
+    private func votePublisher() -> AnyPublisher<Void, URLError> {
+        guard let url = getUrl(for: "/songs/vote") else {
+            return Result.failure(URLError(.badURL)).publisher.eraseToAnyPublisher()
+        }
+        guard let user = KeychainHelper.standard.read(service: KeychainHelper.service, account: KeychainHelper.account, type: User.self), let tokens = user.tokens else {
+            return Result.failure(URLError(.badURL)).publisher.eraseToAnyPublisher()
+        }
+        var request = URLRequest(url: url)
+        let encoded = try? JSONEncoder().encode(VoteRequest(city_id: cityID ?? 1, song_id: Int(details?.id ?? "", format: .number, lenient: true), user_id: user.id))
+        request.httpBody = encoded
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("Bearer \(tokens.accessToken)", forHTTPHeaderField: "Authorization")
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .map{ data, response in
+                print(response)
+                return ()
+            }
+            .eraseToAnyPublisher()
+    }
+    func vote() {
+        loading = true
+        voteSubscription = votePublisher()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { error in
+                print(error)
+            }, receiveValue: { _ in
+                print("Success")
+            })
+    }
 }
 
 fileprivate struct VoteRequest: Encodable {

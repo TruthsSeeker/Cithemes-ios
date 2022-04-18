@@ -11,6 +11,8 @@ struct LoginSignUp: View {
     @State var loginIsShown: Bool = true
     @StateObject var userVM: UserViewModel = UserViewModel()
     
+    var success: () -> () = {}
+    
     var body: some View {
         ZStack{
             Color.background
@@ -21,16 +23,23 @@ struct LoginSignUp: View {
                     .font(Font.customFont(.ralewayDots, size: 72).bold())
                     .foregroundColor(.attentionGrabbing)
                 Spacer()
-                    .frame(height: 40)
-                FlippableView(isFaceUp: $loginIsShown, frontView: Login(email: $userVM.email, password: $userVM.password, action: {
-                    userVM.login()
-                }, signUpAction: {
-                    loginIsShown.toggle()
-                }), backView: SignUp(email: $userVM.email, password: $userVM.password, action: {
-                    userVM.signup()
-                }, loginAction: {
-                    loginIsShown.toggle()
-            }))
+                    .frame(height: 96)
+                FlippableView(isFaceUp: $loginIsShown) {
+                    Login(email: $userVM.email, password: $userVM.password) {
+                        userVM.login() { success() }
+                    } signUpAction: {
+                        loginIsShown.toggle()
+                    }
+
+                } backView: {
+                    SignUp(email: $userVM.email, password: $userVM.password) {
+                        userVM.signup() { success() }
+                    } loginAction: {
+                        loginIsShown.toggle()
+                    }
+
+                }
+
             }
         }
         .edgesIgnoringSafeArea([.top,.bottom])

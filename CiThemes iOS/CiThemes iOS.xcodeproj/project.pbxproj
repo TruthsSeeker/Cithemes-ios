@@ -38,6 +38,7 @@
 		6265814A27FECE130037D6A8 /* FirstRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6265814927FECE130037D6A8 /* FirstRankCell.swift */; };
 		6265818227FEDA500037D6A8 /* CiThemesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6265818127FEDA500037D6A8 /* CiThemesApp.swift */; };
 		6265818427FEDF8C0037D6A8 /* PodiumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6265818327FEDF8C0037D6A8 /* PodiumCell.swift */; };
+		627E4A5028081ADB007B4107 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627E4A4F28081ADB007B4107 /* Validator.swift */; };
 		62858BDB2799563B005C0D34 /* SongSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BDA2799563B005C0D34 /* SongSearch.swift */; };
 		62858BE127995E3C005C0D34 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BE027995E3C005C0D34 /* SearchBar.swift */; };
 		62858BE327998122005C0D34 /* RalewayDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62858BE227997D35005C0D34 /* RalewayDots-Regular.ttf */; };
@@ -50,7 +51,6 @@
 		629D18B82805A0C50014F2E1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629D18B72805A0C50014F2E1 /* User.swift */; };
 		629D18BA2805A1450014F2E1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629D18B92805A1450014F2E1 /* UserViewModel.swift */; };
 		629D18BC2805A1C10014F2E1 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629D18BB2805A1C10014F2E1 /* Token.swift */; };
-		629D18BE2805C5D40014F2E1 /* AnyTransition+Flip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629D18BD2805C5D40014F2E1 /* AnyTransition+Flip.swift */; };
 		629D18C02805CDDC0014F2E1 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629D18BF2805CDDC0014F2E1 /* Login.swift */; };
 		629D18C22805CE860014F2E1 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629D18C12805CE860014F2E1 /* SignUp.swift */; };
 		62A3549427DB680E00161906 /* SongDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A3549327DB680E00161906 /* SongDetails.swift */; };
@@ -119,6 +119,7 @@
 		6265814927FECE130037D6A8 /* FirstRankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRankCell.swift; sourceTree = "<group>"; };
 		6265818127FEDA500037D6A8 /* CiThemesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiThemesApp.swift; sourceTree = "<group>"; };
 		6265818327FEDF8C0037D6A8 /* PodiumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumCell.swift; sourceTree = "<group>"; };
+		627E4A4F28081ADB007B4107 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		62858BDA2799563B005C0D34 /* SongSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearch.swift; sourceTree = "<group>"; };
 		62858BE027995E3C005C0D34 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		62858BE227997D35005C0D34 /* RalewayDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RalewayDots-Regular.ttf"; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 		629D18B72805A0C50014F2E1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		629D18B92805A1450014F2E1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		629D18BB2805A1C10014F2E1 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		629D18BD2805C5D40014F2E1 /* AnyTransition+Flip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+Flip.swift"; sourceTree = "<group>"; };
 		629D18BF2805CDDC0014F2E1 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		629D18C12805CE860014F2E1 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		62A3549327DB680E00161906 /* SongDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetails.swift; sourceTree = "<group>"; };
@@ -181,9 +181,9 @@
 				624D0F7127E9C5A2003CC730 /* StringIDWrapper.swift */,
 				624D0F7527E9CA9C003CC730 /* StringURLWrapper.swift */,
 				624D0F7727EA21D8003CC730 /* ObservableObject+getUrl.swift */,
-				629D18BD2805C5D40014F2E1 /* AnyTransition+Flip.swift */,
 				6224B8E82806DD3F0004AEEA /* KeychainHelper.swift */,
 				6224B8EC28072FD00004AEEA /* FlippableView.swift */,
+				627E4A4F28081ADB007B4107 /* Validator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -471,6 +471,7 @@
 				622EC83E26A6EEC900786192 /* AppDelegate.swift in Sources */,
 				629D18BC2805A1C10014F2E1 /* Token.swift in Sources */,
 				6265818227FEDA500037D6A8 /* CiThemesApp.swift in Sources */,
+				627E4A5028081ADB007B4107 /* Validator.swift in Sources */,
 				629D18B82805A0C50014F2E1 /* User.swift in Sources */,
 				62BEA20E27FF20F40002FFA9 /* CityPlaylist.swift in Sources */,
 				62BEA20C27FF1A790002FFA9 /* PlaylistCell.swift in Sources */,
@@ -494,7 +495,6 @@
 				62858BE127995E3C005C0D34 /* SearchBar.swift in Sources */,
 				6224B8E92806DD3F0004AEEA /* KeychainHelper.swift in Sources */,
 				624D0F7627E9CA9C003CC730 /* StringURLWrapper.swift in Sources */,
-				629D18BE2805C5D40014F2E1 /* AnyTransition+Flip.swift in Sources */,
 				62FA333227DA408600B07426 /* TimeInterval+Conversions.swift in Sources */,
 				6234399D278EE0E20016093C /* SearchButton.swift in Sources */,
 			);

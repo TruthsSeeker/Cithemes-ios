@@ -10,6 +10,7 @@ import SwiftUI
 struct SongDetails: View {
     @StateObject private var detailsViewModel: SongDetailViewModel = SongDetailViewModel()
     @EnvironmentObject var playlistContext: SongListViewModel
+    @State var showLogin: Bool = false
     let details: SongInfo
     
     var body: some View {
@@ -77,7 +78,19 @@ struct SongDetails: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Button("Vote", action: detailsViewModel.vote)
+                    Button("Vote") {
+                        guard let user = KeychainHelper.standard.read(service: KeychainHelper.service, account: KeychainHelper.account, type: User.self) else {
+                            showLogin.toggle()
+                            return
+                        }
+                        detailsViewModel.vote()
+                        
+                    }
+                    .sheet(isPresented: $showLogin) {
+                        LoginSignUp(loginIsShown: true, userVM: UserViewModel()) {
+                            showLogin.toggle()
+                        }
+                    }
                 }
                 .padding(EdgeInsets(top: 12, leading: 8, bottom: 12, trailing: 8))
                 .frame(width: geo.size.width * 0.9)
@@ -95,6 +108,6 @@ struct SongDetails: View {
 
 struct SongDetails_Previews: PreviewProvider {
     static var previews: some View {
-        SongDetails(details: SongInfo.example)
+        SongDetails(details: SongInfo.example).environmentObject(SongListViewModel(list: [], cityId: 1))
     }
 }

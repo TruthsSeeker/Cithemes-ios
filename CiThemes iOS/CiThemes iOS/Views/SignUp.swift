@@ -8,29 +8,61 @@
 import SwiftUI
 
 struct SignUp: View {
+    enum Field: Hashable {
+        case email
+        case password
+        case confirm
+    }
+    
     @Binding var email: String
+    @State var emailValid: Bool = true
     @Binding var password: String
+    @State var passwordValid: Bool = true
     @State var confirmPassword: String = ""
+    @State var confirmValid: Bool = true
+    @FocusState var focus: Field?
     let action: ()->()
     let loginAction: ()->()
     var body: some View {
         VStack {
-            Spacer()
-            UsernameField(username: $email)
+            UsernameField(username: $email, valid: $emailValid)
                 .padding([.trailing, .leading], 42)
+                .focused($focus, equals: .email)
+                .submitLabel(.next)
+                .onSubmit {
+                    focus = .password
+                }
+            
             Spacer()
                 .frame(height: 48)
-            PasswordField(password: $password, placeholder: "Password")
+            
+            PasswordField(password: $password, valid: $passwordValid, placeholder: "Password")
                 .padding([.trailing, .leading], 42)
+                .focused($focus, equals: .password)
+                .submitLabel(.next)
+                .onSubmit {
+                    focus = .confirm
+                }
+            
             Spacer()
                 .frame(height: 36)
-            PasswordField(password: $confirmPassword, placeholder: "Confirm Password")
+            
+            PasswordField(password: $confirmPassword, valid: $passwordValid, placeholder: "Confirm Password")
                 .padding([.trailing, .leading], 42)
+                .focused($focus, equals: .confirm)
+                .submitLabel(.done)
+            
             Spacer()
-                .frame(height: 74)
+                .frame(height: 48)
+            
             Button {
-                print("email:\(email),\(password)")
-                action()
+                focus = nil
+                emailValid = Validator.standard.validate(email, regex: Validator.emailRegex)
+                passwordValid = Validator.standard.validate(password, regex: Validator.passwordRegex)
+                confirmValid = password == confirmPassword
+                if emailValid && passwordValid && confirmValid {
+                    action()
+                }
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
@@ -40,15 +72,17 @@ struct SignUp: View {
                         .foregroundColor(.fontMain)
                 }
             }
+            
             Button {
+                focus = nil
                 loginAction()
-                
             } label: {
                 Text("Already have an account?\n Log in")
                     .underline()
                     .multilineTextAlignment(.center)
                     .foregroundColor(.fontSecondary)
             }
+            
             Spacer()
         }
     }

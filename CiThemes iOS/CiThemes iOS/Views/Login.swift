@@ -8,25 +8,49 @@
 import SwiftUI
 
 struct Login: View {
+    enum Field: Hashable {
+        case email
+        case password
+    }
+    
     @Binding var email: String
+    @State var emailValid: Bool = true
+    
     @Binding var password: String
+    
+    @FocusState private var focusedField: Field?
+    
     let action: ()->()
     let signUpAction: ()->()
+    
     var body: some View {
         VStack {
-            Spacer()
-            UsernameField(username: $email)
+            UsernameField(username: $email, valid: $emailValid)
                 .padding([.trailing, .leading], 42)
+                .submitLabel(.next)
+                .onSubmit {
+                    focusedField = .password
+                }
+                .focused($focusedField, equals: .email)
                 
             Spacer()
                 .frame(height: 48)
-            PasswordField(password: $password, placeholder: "Password")
+            
+            PasswordField(password: $password, valid: .constant(true), placeholder: "Password")
                 .padding([.trailing, .leading], 42)
+                .focused($focusedField, equals: .password)
+                .submitLabel(.done)
+            
             Spacer()
-                .frame(height: 74)
+                .frame(height: 90)
+            
             Button {
-                print("email:\(email),\(password)")
-                action()
+                focusedField = nil
+                emailValid = Validator.standard.validate(email, regex: Validator.emailRegex)
+                if emailValid {
+                    action()
+                }
+                
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
@@ -38,6 +62,7 @@ struct Login: View {
             }
             
             Button {
+                focusedField = nil
                 signUpAction()
             } label: {
                 Text("Don't have an account?\n Sign up")
@@ -45,6 +70,7 @@ struct Login: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.fontSecondary)
             }
+            
             Spacer()
         }
     }
@@ -52,6 +78,8 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login(email: .constant(""), password: .constant(""), action: {}, signUpAction: {})
+        Group {
+            Login(email: .constant(""), password: .constant(""), action: {}, signUpAction: {})
+        }
     }
 }

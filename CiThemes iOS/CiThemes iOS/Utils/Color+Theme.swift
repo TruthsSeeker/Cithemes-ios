@@ -15,4 +15,5 @@ extension Color {
     static let fontMain = Color("FontMain")
     static let fontSecondary = Color("FontSecondary")
     static let attentionGrabbing = Color("Attention Grabbing")
+    static let error = Color("Error")
 }

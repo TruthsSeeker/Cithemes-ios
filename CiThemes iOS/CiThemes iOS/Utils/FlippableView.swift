@@ -8,30 +8,35 @@
 import SwiftUI
 
 struct FlippableView<Front: View, Back: View>: View {
-    //MARK: Variables
     @State var backDegree = 90.0
     @State var frontDegree = 0.0
     @Binding var isFaceUp: Bool
     
-    let durationAndDelay : CGFloat = 0.3
+    var duration : CGFloat
     
     let frontView: Front
     let backView: Back
     
-    //MARK: Flip Card Function
-    func flipCard () {
+    init(duration: CGFloat = 0.6, isFaceUp: Binding<Bool>, @ViewBuilder frontView: () -> Front, @ViewBuilder backView: () -> Back) {
+        self._isFaceUp = isFaceUp
+        self.duration = duration
+        self.frontView = frontView()
+        self.backView = backView()
+    }
+    
+    func flip () {
         if isFaceUp {
-            withAnimation(.linear(duration: durationAndDelay)) {
+            withAnimation(.linear(duration: duration/2)) {
                 backDegree = 90
             }
-            withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)){
+            withAnimation(.linear(duration: duration/2).delay(duration/2)){
                 frontDegree = 0
             }
         } else {
-            withAnimation(.linear(duration: durationAndDelay)) {
+            withAnimation(.linear(duration: duration/2)) {
                 frontDegree = -90
             }
-            withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)){
+            withAnimation(.linear(duration: duration/2).delay(duration/2)){
                 backDegree = 0
             }
         }
@@ -42,18 +47,24 @@ struct FlippableView<Front: View, Back: View>: View {
             frontView
                 .rotation3DEffect(Angle(degrees: frontDegree), axis: (x: 0, y: 1, z: 0))
                 .disabled(!isFaceUp)
+                .allowsHitTesting(isFaceUp)
             backView
                 .rotation3DEffect(Angle(degrees: backDegree), axis: (x: 0, y: 1, z: 0))
                 .disabled(isFaceUp)
+                .allowsHitTesting(!isFaceUp)
         }.onChange(of: isFaceUp) { newValue in
-            print("Changed")
-            flipCard()
+            flip()
         }
     }
 }
 
 struct FlippableView_Previews: PreviewProvider {
     static var previews: some View {
-        FlippableView(isFaceUp: .constant(true), frontView: Text("Front"), backView: Text("Back"))
+        FlippableView(isFaceUp: .constant(true)) {
+            Text("Front")
+        } backView: {
+            Text("Back")
+        }
+
     }
 }

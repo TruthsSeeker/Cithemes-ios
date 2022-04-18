@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PasswordField: View {
     @Binding var password: String
+    @Binding var valid: Bool
     let placeholder: String
     var body: some View {
         ZStack {
@@ -16,7 +17,7 @@ struct PasswordField: View {
                .foregroundColor(Color.accent)
                .cornerRadius(8)
                .overlay(RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.relief, lineWidth: 1))
+                            .stroke(valid ? Color.relief: Color.error, lineWidth: 1))
             VStack{
                 ZStack(alignment: .leading) {
                     if password.isEmpty {
@@ -28,7 +29,7 @@ struct PasswordField: View {
                         .foregroundColor(.fontMain)
                 }
                 Rectangle()
-                    .foregroundColor(Color.relief)
+                    .foregroundColor(valid ? Color.relief: Color.error)
                     .frame(height: 2)
             }
             .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
@@ -39,6 +40,6 @@ struct PasswordField: View {
 
 struct PasswordField_Previews: PreviewProvider {
     static var previews: some View {
-        PasswordField(password: .constant(""), placeholder: "Password")
+        PasswordField(password: .constant(""), valid: .constant(true), placeholder: "Password")
     }
 }

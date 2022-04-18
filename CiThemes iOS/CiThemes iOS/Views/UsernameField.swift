@@ -9,13 +9,14 @@ import SwiftUI
 
 struct UsernameField: View {
     @Binding var username: String
+    @Binding var valid: Bool
     var body: some View {
         ZStack {
             Rectangle()
                .foregroundColor(Color.accent)
                .cornerRadius(8)
                .overlay(RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.relief, lineWidth: 1))
+                .stroke(valid ? Color.relief: Color.error, lineWidth: 1))
             VStack{
                 ZStack(alignment: .leading) {
                     if username.isEmpty {
@@ -32,7 +33,7 @@ struct UsernameField: View {
                         
                 }
                 Rectangle()
-                    .foregroundColor(Color.relief)
+                    .foregroundColor(valid ? Color.relief : Color.error)
                     .frame(height: 2)
             }
             .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
@@ -43,6 +44,6 @@ struct UsernameField: View {
 
 struct UsernameField_Previews: PreviewProvider {
     static var previews: some View {
-        UsernameField(username: .constant(""))
+        UsernameField(username: .constant(""), valid: .constant(false))
     }
 }
