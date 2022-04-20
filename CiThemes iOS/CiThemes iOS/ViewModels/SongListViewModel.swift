@@ -13,6 +13,11 @@ final class SongListViewModel: ObservableObject {
         case Up = 1
         case Down = -1
     }
+    lazy var decoder:JSONDecoder = {
+        var dcdr = JSONDecoder()
+        dcdr.keyDecodingStrategy = .convertFromSnakeCase
+        return dcdr
+    }()
     
     @Published var cityId: Int
     var songsDict: [PlaylistEntry] {
@@ -31,30 +36,43 @@ final class SongListViewModel: ObservableObject {
     
     private var playlistSubscription: AnyCancellable?
     
-    private func playlistPublisher() -> AnyPublisher<[PlaylistEntry], Never> {
-        guard let url = getUrl(for: "/cities/\(cityId)/playlist") else { return Just([]).eraseToAnyPublisher() }
+    private func playlistPublisher() -> AnyPublisher<[PlaylistEntry], Error> {
+        guard let url = getUrl(for: "/cities/\(cityId)/playlist") else {
+            return Fail(error: APIError.invalidURL)
+                .eraseToAnyPublisher()
+        }
             
         return URLSession.shared.dataTaskPublisher(for: url)
-            .map { data, response in
-                do {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    let results = try decoder.decode(RootResponse<[PlaylistEntry]>.self, from: data)
-                    return results.result
-                } catch {
-                    print(error)
+            .tryMap { data, response in
+                guard let response = response as? HTTPURLResponse else {
+                    throw APIError.other
                 }
-                return []
+                guard response.statusCode == 200 else {
+                    throw APIError.httpError(response.statusCode)
+                }
+                
+                return data
             }
-            .replaceError(with: [])
+            .decode(type: RootResponse<[PlaylistEntry]>.self, decoder: decoder)
+            .map { decoded in
+                return decoded.result
+            }
             .eraseToAnyPublisher()
     }
     
-    func fetch() {
+    func fetch(onComplete complete: @escaping () -> Void = {}) {
         playlistSubscription = playlistPublisher()
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { results in
-                self.songsDict = results
+            .sink(receiveCompletion: { completion in
+                complete()
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }, receiveValue: { [self] entries in
+                songsDict = entries
             })
     }
     

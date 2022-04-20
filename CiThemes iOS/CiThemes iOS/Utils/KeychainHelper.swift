@@ -12,11 +12,11 @@ final class KeychainHelper {
     static let standard = KeychainHelper()
     private init() {}
     
-    func save(_ data: Data, service: String, account: String) {
+    func save(_ data: Data, service: KeychainHelper.Service, account: String = KeychainHelper.account) {
 
         let query = [
             kSecValueData: data,
-            kSecAttrService: service,
+            kSecAttrService: service.rawValue,
             kSecAttrAccount: account,
             kSecClass: kSecClassGenericPassword
         ] as CFDictionary
@@ -27,7 +27,7 @@ final class KeychainHelper {
         if status == errSecDuplicateItem {
             // Item already exist, thus update it.
             let query = [
-                kSecAttrService: service,
+                kSecAttrService: service.rawValue,
                 kSecAttrAccount: account,
                 kSecClass: kSecClassGenericPassword,
             ] as CFDictionary
@@ -39,10 +39,10 @@ final class KeychainHelper {
         }
     }
     
-    func read(service: String, account: String) -> Data? {
+    func read(service: KeychainHelper.Service, account: String = KeychainHelper.account) -> Data? {
         
         let query = [
-            kSecAttrService: service,
+            kSecAttrService: service.rawValue,
             kSecAttrAccount: account,
             kSecClass: kSecClassGenericPassword,
             kSecReturnData: true
@@ -54,10 +54,10 @@ final class KeychainHelper {
         return (result as? Data)
     }
     
-    func delete(service: String, account: String) {
+    func delete(service: KeychainHelper.Service, account: String = KeychainHelper.account) {
         
         let query = [
-            kSecAttrService: service,
+            kSecAttrService: service.rawValue,
             kSecAttrAccount: account,
             kSecClass: kSecClassGenericPassword,
             ] as CFDictionary
@@ -69,7 +69,7 @@ final class KeychainHelper {
 
 extension KeychainHelper {
     
-    func save<T>(_ item: T, service: String, account: String) where T : Codable {
+    func save<T>(_ item: T, service: KeychainHelper.Service, account: String = KeychainHelper.account) where T : Codable {
         
         do {
             // Encode as JSON data and save in keychain
@@ -81,7 +81,7 @@ extension KeychainHelper {
         }
     }
     
-    func read<T>(service: String, account: String, type: T.Type) -> T? where T : Codable {
+    func read<T>(service: KeychainHelper.Service, account: String = KeychainHelper.account, type: T.Type) -> T? where T : Codable {
         
         // Read item data from keychain
         guard let data = read(service: service, account: account) else {
@@ -101,6 +101,11 @@ extension KeychainHelper {
 }
 
 extension KeychainHelper {
-    static var service = "user"
     static var account = "app.cithemes"
+    
+    enum Service: String {
+        case tokens
+        case email
+        case userId
+    }
 }

@@ -44,25 +44,39 @@ extension SongDetailViewModel {
 
 //MARK: Vote Request
 extension SongDetailViewModel {
-    private func votePublisher() -> AnyPublisher<Void, URLError> {
+    private func votePublisher() -> AnyPublisher<Void, Error> {
         guard let url = getUrl(for: "/songs/vote") else {
-            return Result.failure(URLError(.badURL)).publisher.eraseToAnyPublisher()
+            return Fail(error:APIError.invalidURL)
+                .eraseToAnyPublisher()
         }
-        guard let user = KeychainHelper.standard.read(service: KeychainHelper.service, account: KeychainHelper.account, type: User.self), let tokens = user.tokens else {
-            return Result.failure(URLError(.badURL)).publisher.eraseToAnyPublisher()
+        
+        guard let tokens = KeychainHelper.standard.read(service: .tokens, type: UserToken.self),
+              let id = KeychainHelper.standard.read(service: .userId, type: Int.self)
+        else {
+            return Fail(error:APIError.invalidAuth)
+                .eraseToAnyPublisher()
         }
+        
         var request = URLRequest(url: url)
-        let encoded = try? JSONEncoder().encode(VoteRequest(city_id: cityID ?? 1, song_id: Int(details?.id ?? "", format: .number, lenient: true), user_id: user.id))
+        let encoded = try? JSONEncoder().encode(VoteRequest(city_id: cityID ?? 1, song_id: Int(details?.id ?? "", format: .number, lenient: true), user_id: id))
+        
         request.httpBody = encoded
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("Bearer \(tokens.accessToken)", forHTTPHeaderField: "Authorization")
+        
         return URLSession.shared.dataTaskPublisher(for: request)
-            .map{ data, response in
-                print(response)
-                return ()
-            }
+            .tryMap({ data, response in
+                guard let response = response as? HTTPURLResponse else {
+                    throw APIError.other
+                }
+                guard response.statusCode == 200 else {
+                    throw APIError.httpError(response.statusCode)
+                }
+                
+                return
+            })
             .eraseToAnyPublisher()
     }
     func vote() {

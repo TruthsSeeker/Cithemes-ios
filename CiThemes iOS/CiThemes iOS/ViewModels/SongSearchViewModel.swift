@@ -12,11 +12,19 @@ final class SongSearchViewModel: ObservableObject {
     @Published var searchTerms: String = ""
     @Published var results: [SongInfo] = []
     @Published var loading: Bool = false
-
+    lazy var decoder:JSONDecoder = {
+        var dcdr = JSONDecoder()
+        dcdr.keyDecodingStrategy = .convertFromSnakeCase
+        return dcdr
+    }()
     private var searchResultsSubscription: AnyCancellable?
     
-    private func searchPublisher() -> AnyPublisher<[SongInfo], Never> {
-        guard let url = getUrl(for: "/songs/search") else { return Just([]).eraseToAnyPublisher() }
+    private func searchPublisher() -> AnyPublisher<[SongInfo], Error> {
+        guard let url = getUrl(for: "/songs/search") else { return
+            Fail(error:APIError.invalidURL)
+            .eraseToAnyPublisher()
+        }
+        
         var request = URLRequest(url: url)
         let encoded = try? JSONEncoder().encode(["query": self.searchTerms])
         request.httpBody = encoded
@@ -24,13 +32,16 @@ final class SongSearchViewModel: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         return URLSession.shared.dataTaskPublisher(for: request)
-            .map { data, response in
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                guard let results = try? decoder.decode(RootResponse<[SongInfo]>.self, from: data) else { return [] }
-                return results.result
+            .tryMap { data, response in
+                guard let response = response as? HTTPURLResponse else { throw APIError.other }
+                guard response.statusCode == 200 else {
+                    throw APIError.httpError(response.statusCode)
+                }
+                
+                return data
             }
-            .replaceError(with: [])
+            .decode(type: RootResponse<[SongInfo]>.self, decoder: decoder)
+            .map {$0.result}
             .eraseToAnyPublisher()
     }
     
@@ -38,10 +49,17 @@ final class SongSearchViewModel: ObservableObject {
         loading = true
         searchResultsSubscription = searchPublisher()
             .receive(on: DispatchQueue.main)
-            .sink { results in
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }, receiveValue: { [self] infos in
                 self.results = results
                 self.loading = false
-            }
+            })
     }
     
 }

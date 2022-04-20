@@ -24,7 +24,11 @@ struct CityPlaylist: View {
                         .frame(height: 204, alignment: .top)
                     ZStack {
                         Color.background
-                        ScrollView {
+                        RefreshableScrollView(onRefresh: { done in
+                            playlistVM.fetch {
+                                done()
+                            }
+                        }) {
                             LazyVStack {
                                 
                                 ForEach(Array(playlistVM.songsDict.enumerated()), id: \.1) { index, entry in
@@ -41,6 +45,10 @@ struct CityPlaylist: View {
                             
                         }
                         .environmentObject(playlistVM)
+                        .refreshable {
+                            print("Refresh")
+                            playlistVM.fetch()
+                        }
                     
                     }
                 }

@@ -79,7 +79,7 @@ struct SongDetails: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Button("Vote") {
-                        guard let user = KeychainHelper.standard.read(service: KeychainHelper.service, account: KeychainHelper.account, type: User.self) else {
+                        guard KeychainHelper.standard.read(service: .tokens, account: KeychainHelper.account, type: UserToken.self) != nil else {
                             showLogin.toggle()
                             return
                         }

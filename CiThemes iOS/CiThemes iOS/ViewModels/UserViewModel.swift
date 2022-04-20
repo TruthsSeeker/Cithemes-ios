@@ -13,17 +13,24 @@ final class UserViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     
+    lazy var decoder:JSONDecoder = {
+        var dcdr = JSONDecoder()
+        dcdr.keyDecodingStrategy = .convertFromSnakeCase
+        return dcdr
+    }()
+    
+    
     private var signUpSubscription: AnyCancellable?
     private var loginSubscription: AnyCancellable?
 }
 
 extension UserViewModel {
-    private func signUpSubscriber() -> AnyPublisher<User, URLError> {
+    private func signUpSubscriber() -> AnyPublisher<User, Error> {
         guard let url = getUrl(for: "/auth/signup") else {
-            return Result.failure(URLError(.badURL)).publisher.eraseToAnyPublisher()
+            return Result.failure(APIError.invalidURL).publisher.eraseToAnyPublisher()
         }
         guard !email.isEmpty && !password.isEmpty else {
-            return Result.failure(URLError(.userAuthenticationRequired)).publisher.eraseToAnyPublisher()
+            return Result.failure(APIError.other).publisher.eraseToAnyPublisher()
         }
         var request = URLRequest(url: url)
         let encoded = try? JSONEncoder().encode(UserRequest(email: email, password: password))
@@ -31,14 +38,20 @@ extension UserViewModel {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
         return URLSession.shared.dataTaskPublisher(for: request)
-            .map{ data, response in
-                guard let decoded = try? JSONDecoder().decode(RootResponse<User>.self, from: data) else {
-                    return User(id: -1, email: "")
+            .tryMap({ data, response in
+                guard let response = response as? HTTPURLResponse else {
+                    throw APIError.other
                 }
-                        
-                return decoded.result
-            }
+                guard response.statusCode == 200 else {
+                    throw APIError.httpError(response.statusCode)
+                }
+                
+                return data
+            })
+            .decode(type: RootResponse<User>.self, decoder: decoder)
+            .map {$0.result}
             .eraseToAnyPublisher()
     }
     
@@ -49,33 +62,42 @@ extension UserViewModel {
                 print(error)
             }, receiveValue: { token in
                 print(token)
-                KeychainHelper.standard.save(token, service: KeychainHelper.service, account: KeychainHelper.account)
+                KeychainHelper.standard.save(token, service: .tokens, account: KeychainHelper.account)
                 success()
             })
     }
 }
 
 extension UserViewModel {
-    private func loginSubscriber() -> AnyPublisher<User, URLError> {
+    private func loginSubscriber() -> AnyPublisher<User, Error> {
         guard let url = getUrl(for: "/auth/login") else {
-            return Result.failure(URLError(.badURL)).publisher.eraseToAnyPublisher()
+            return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
         }
         guard !email.isEmpty && !password.isEmpty else {
-            return Result.failure(URLError(.userAuthenticationRequired)).publisher.eraseToAnyPublisher()
+            
+            return Fail(error:APIError.other).eraseToAnyPublisher()
         }
         let encoded = try? JSONEncoder().encode(UserRequest(email: email, password: password))
+        
         var request = URLRequest(url: url)
         request.httpBody = encoded
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
         return URLSession.shared.dataTaskPublisher(for: request)
-            .map { data, response in
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                guard let decoded = try? decoder.decode(RootResponse<User>.self, from: data) else { return User(id: -1, email: "")}
-                return decoded.result
-            }
+            .tryMap({ data, response in
+                guard let response = response as? HTTPURLResponse else {
+                    throw APIError.other
+                }
+                guard response.statusCode == 200 else {
+                    throw APIError.httpError(response.statusCode)
+                }
+                
+                return data
+            })
+            .decode(type: RootResponse<User>.self, decoder: decoder)
+            .map {$0.result}
             .eraseToAnyPublisher()
     }
     
@@ -87,7 +109,9 @@ extension UserViewModel {
                 
             }, receiveValue: { user in
                 print(user)
-                KeychainHelper.standard.save(user, service: KeychainHelper.service, account: KeychainHelper.account)
+                KeychainHelper.standard.save(user.email, service: .email, account: KeychainHelper.account)
+                KeychainHelper.standard.save(user.id, service: .userId)
+                KeychainHelper.standard.save(user.tokens, service: .tokens)
                 success()
             })
     }
