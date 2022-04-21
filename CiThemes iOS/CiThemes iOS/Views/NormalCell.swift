@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct NormalCell: View {
-    var entry: PlaylistEntry
     var rank: Int
+    var entry: PlaylistEntry
+    @State var detailVM: SongDetailViewModel = SongDetailViewModel()
     
-    @EnvironmentObject var context: SongListViewModel
+    @EnvironmentObject var context: PlaylistViewModel
+    
+    init(entry: PlaylistEntry, rank: Int) {
+        self.rank = rank
+        self.entry = entry
+    }
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -26,11 +32,11 @@ struct NormalCell: View {
                     .foregroundColor(Color.accent)
                 
                 VStack(alignment: .leading) {
-                    Text(entry.songInfo?.title ?? "Unknown Title")
+                    Text(detailVM.details.title ?? "Unknown Title")
                         .font(Font.customFont(.openSans, size: 14))
                         .foregroundColor(Color.fontMain)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
-                    Text(entry.songInfo?.artist ?? "Unknown Artist")
+                    Text(detailVM.details.artist ?? "Unknown Artist")
                         .font(Font.customFont(.openSans, size: 10))
                         .foregroundColor(Color.fontSecondary)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -38,11 +44,24 @@ struct NormalCell: View {
                 Text(String(entry.votes))
                     .font(Font.customFont(.ralewayRegular, size: 17))
                     .foregroundColor(Color.relief)
+                
+                Button {
+                    detailVM.vote()
+                    context.update(id: entry.id, vote: .Up)
+                } label: {
+                    Image("Thumb Up")
+                        .tint(.attentionGrabbing)
+                }
+
             }
             .padding(16)
             
         }
         .background(.clear)
+        .onAppear {
+            detailVM.details = entry.songInfo
+            detailVM.cityID = entry.cityId
+        }
     }
 }
 

@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SongDetails: View {
     @StateObject private var detailsViewModel: SongDetailViewModel = SongDetailViewModel()
-    @EnvironmentObject var playlistContext: SongListViewModel
+    @EnvironmentObject var playlistContext: PlaylistViewModel
     @State var showLogin: Bool = false
-    let details: SongInfo
+    var details: SongInfo
     
     var body: some View {
         ZStack {
@@ -19,12 +19,12 @@ struct SongDetails: View {
             GeometryReader { geo in
                 VStack {
                     HStack(alignment: .top, spacing: 8) {
-                        RemoteImage(detailsViewModel.details?.cover, placeholder: Image("rhcp", bundle: nil))
+                        RemoteImage(detailsViewModel.details.cover, placeholder: Image("rhcp", bundle: nil))
                             .frame(width: 90, height: 90, alignment: .center)
                             .cornerRadius(8)
                             .clipped()
                         VStack(alignment: .leading, spacing: 2){
-                            Text(detailsViewModel.details?.title ?? "")
+                            Text(detailsViewModel.details.title ?? "")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .font(Font.customFont(.ralewayRegular, size: 18))
                                 .foregroundColor(Color.fontMain)
@@ -32,7 +32,7 @@ struct SongDetails: View {
                                 Text("Artist:")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
-                                Text(detailsViewModel.details?.artist ?? "")
+                                Text(detailsViewModel.details.artist ?? "")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -42,7 +42,7 @@ struct SongDetails: View {
                                 Text("Album:")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
-                                Text(detailsViewModel.details?.album ?? "")
+                                Text(detailsViewModel.details.album ?? "")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -53,7 +53,7 @@ struct SongDetails: View {
                                 Text("Released:")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
-                                Text(detailsViewModel.details?.release ?? "")
+                                Text(detailsViewModel.details.release ?? "")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -64,7 +64,7 @@ struct SongDetails: View {
                                 Text("Duration:")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
-                                Text(TimeInterval(detailsViewModel.details?.duration ?? 0).minuteSecond)
+                                Text(TimeInterval(detailsViewModel.details.duration ?? 0).minuteSecond)
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -99,15 +99,16 @@ struct SongDetails: View {
                 .alignmentGuide(VerticalAlignment.center, computeValue: { $0[.bottom] })
                 .position(x: geo.size.width / 2, y: geo.size.height / 2)
             }
-        }.onAppear {
-            detailsViewModel.details = self.details
-            detailsViewModel.cityID = self.playlistContext.cityId
+        }
+        .onAppear {
+            detailsViewModel.details = details
+            detailsViewModel.cityID = playlistContext.cityId
         }
     }
 }
 
 struct SongDetails_Previews: PreviewProvider {
     static var previews: some View {
-        SongDetails(details: SongInfo.example).environmentObject(SongListViewModel(list: [], cityId: 1))
+        SongDetails(details: SongInfo.example).environmentObject(PlaylistViewModel(list: [], cityId: 1))
     }
 }

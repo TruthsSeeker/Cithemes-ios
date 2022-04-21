@@ -14,8 +14,14 @@ struct PodiumCell: View {
     
     var position: Rank
     var entry: PlaylistEntry
+    @State var detailVM: SongDetailViewModel = SongDetailViewModel()
     
-    @EnvironmentObject var context: SongListViewModel
+    @EnvironmentObject var context: PlaylistViewModel
+    
+    init(position: Rank, entry: PlaylistEntry) {
+        self.position = position
+        self.entry = entry
+    }
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -30,11 +36,11 @@ struct PodiumCell: View {
                     .foregroundColor(Color.accent)
                 
                 VStack(alignment: .leading) {
-                    Text(entry.songInfo?.title ?? "Unknown Title")
+                    Text(entry.songInfo.title ?? "Unknown Title")
                         .font(Font.customFont(.openSans, size: 16))
                         .foregroundColor(Color.fontMain)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
-                    Text(entry.songInfo?.artist ?? "Unknown Artist")
+                    Text(entry.songInfo.artist ?? "Unknown Artist")
                         .font(Font.customFont(.openSans, size: 14))
                         .foregroundColor(Color.fontSecondary)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -42,11 +48,23 @@ struct PodiumCell: View {
                 Text(String(entry.votes))
                     .font(Font.customFont(.ralewayRegular, size: 17))
                     .foregroundColor(Color.relief)
+                
+                Button {
+                    detailVM.vote()
+                    context.update(id: entry.id, vote: .Up)
+                } label: {
+                    Image("Thumb Up")
+                        .tint(.attentionGrabbing)
+                }
             }
             .padding(16)
             
         }
         .background(.clear)
+        .onAppear {
+            detailVM.details = entry.songInfo
+            detailVM.cityID = entry.cityId
+        }
     }
 }
 

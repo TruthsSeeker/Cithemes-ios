@@ -9,9 +9,9 @@ import Foundation
 
 struct PlaylistEntry: Codable, Identifiable {
     var id: Int
-    var songInfo: SongInfo? = nil
+    var songInfo: SongInfo
     var votes: Int = 0
-    var cityId: Int? = nil
+    var cityId: Int
 }
 
 extension PlaylistEntry: Hashable {

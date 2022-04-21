@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct FirstRankCell: View {
-    @EnvironmentObject var context: SongListViewModel
+    @EnvironmentObject var context: PlaylistViewModel
 
     var entry: PlaylistEntry
+    @State var detailVM: SongDetailViewModel = SongDetailViewModel()
     
-
+    init(entry: PlaylistEntry){
+        self.entry = entry
+        detailVM.details = entry.songInfo
+        detailVM.cityID = entry.cityId
+    }
+    
+    
     var body: some View {
         ZStack(alignment: .leading) {
             Rectangle()
@@ -35,11 +42,11 @@ struct FirstRankCell: View {
                 .padding(8)
                 
                 VStack(alignment: .leading, spacing:16) {
-                    Text(entry.songInfo?.title ?? "Title")
+                    Text(entry.songInfo.title ?? "Title")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(Font.customFont(.openSans, size: 16))
                         .foregroundColor(Color.fontMain)
-                    Text(entry.songInfo?.artist ?? "Artist")
+                    Text(entry.songInfo.artist ?? "Artist")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(Font.customFont(.ralewayRegular, size: 14))
                         .foregroundColor(Color.fontSecondary)
@@ -47,11 +54,25 @@ struct FirstRankCell: View {
                 .padding([.trailing], 8)
                 
                 Text(String(entry.votes))
-                    .padding([.trailing], 8)
+                    .font(.customFont(.ralewayRegular, size: 18).bold())
+                    .foregroundColor(.background)
+                
+                Button {
+                    detailVM.vote()
+                    context.update(id: entry.id, vote: .Up)
+                } label: {
+                    Image("Thumb Up")
+                        .tint(.attentionGrabbing)
+                }
+                .padding([.trailing], 8)
             }
         }
         .padding(8)
         .background(.clear)
+        .onAppear {
+            detailVM.details = entry.songInfo
+            detailVM.cityID = entry.cityId
+        }
 
     }
 }

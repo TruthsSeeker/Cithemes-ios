@@ -30,6 +30,6 @@ struct PlaylistCell: View {
 
 struct PlaylistCell_Previews: PreviewProvider {
     static var previews: some View {
-        PlaylistCell(song: PlaylistEntry(id: 0), rank: 1)
+        PlaylistCell(song: PlaylistEntry(id: -1, songInfo: SongInfo.example, cityId: -1), rank: 1)
     }
 }

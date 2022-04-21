@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CityPlaylist: View {
-    @StateObject var playlistVM: SongListViewModel = SongListViewModel(list: [], cityId: 1)
+    @StateObject var playlistVM: PlaylistViewModel = PlaylistViewModel(list: [], cityId: 1)
     
     @State var searchShown: Bool = false
     @State var detailedSong: SongInfo?
@@ -30,9 +30,7 @@ struct CityPlaylist: View {
                             }
                         }) {
                             LazyVStack {
-                                
                                 ForEach(Array(playlistVM.songsDict.enumerated()), id: \.1) { index, entry in
-                                    
                                     PlaylistCell(song: entry , rank: index)
                                         .onTapGesture {
                                             withAnimation(Animation.easeIn(duration: 0.2)) {
@@ -42,7 +40,6 @@ struct CityPlaylist: View {
                                         .transition(.opacity)
                                 }
                             }
-                            
                         }
                         .environmentObject(playlistVM)
                         .refreshable {
@@ -73,13 +70,13 @@ struct CityPlaylist: View {
                             }
                         }
                         .transition(.opacity)
+                        .environmentObject(playlistVM)
                 }
-
             }
-            .environmentObject(playlistVM)
         }.onAppear {
             playlistVM.fetch()
         }
+        .environmentObject(playlistVM)
     }
 }
 

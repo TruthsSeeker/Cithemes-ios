@@ -9,25 +9,19 @@ import Foundation
 import Combine
 
 final class SongDetailViewModel: ObservableObject {
-    @Published var details: SongInfo?
+    @Published var details: SongInfo = SongInfo.example
     @Published var loading: Bool = false
-    @Published var cityID: Int?
+    @Published var cityID: Int = -1
     
     private var voteSubscription: AnyCancellable?
     private var fetchSubscription: AnyCancellable?
-    
-    convenience init(details: SongInfo, cityId: Int) {
-        self.init()
-        self.details = details
-        self.cityID = cityId
-    }
     
     func fetch() {
         loading = true
         #if DEBUG
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) { [weak self] in
             self?.loading = false
-            self?.details = SongInfo(id: self?.details?.id ?? "", title: self?.details?.title, artist: self?.details?.artist, album: "Blood Sugar Sex Magik", release: "1991", duration: 283000, preview: nil, originalSuggestion: nil, spotifyUri: nil, cover: nil)
+            self?.details = SongInfo(id: self?.details.id ?? "", title: self?.details.title, artist: self?.details.artist, album: "Blood Sugar Sex Magik", release: "1991", duration: 283000, preview: nil, originalSuggestion: nil, spotifyUri: nil, cover: nil)
         }
         #else
         #endif
@@ -58,7 +52,7 @@ extension SongDetailViewModel {
         }
         
         var request = URLRequest(url: url)
-        let encoded = try? JSONEncoder().encode(VoteRequest(city_id: cityID ?? 1, song_id: Int(details?.id ?? "", format: .number, lenient: true), user_id: id))
+        let encoded = try? JSONEncoder().encode(VoteRequest(city_id: cityID ?? 1, song_id: Int(details.id ?? "", format: .number, lenient: true), user_id: id))
         
         request.httpBody = encoded
         request.httpMethod = "POST"
