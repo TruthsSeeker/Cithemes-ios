@@ -53,7 +53,7 @@ struct FirstRankCell: View {
                 }
                 .padding([.trailing], 8)
                 
-                Text(String(entry.votes))
+                Text(String(entry.votes.formatForDisplay()))
                     .font(.customFont(.ralewayRegular, size: 18).bold())
                     .foregroundColor(.background)
                 

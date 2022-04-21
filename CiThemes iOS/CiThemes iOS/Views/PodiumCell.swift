@@ -45,7 +45,7 @@ struct PodiumCell: View {
                         .foregroundColor(Color.fontSecondary)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
-                Text(String(entry.votes))
+                Text(String(entry.votes.formatForDisplay()))
                     .font(Font.customFont(.ralewayRegular, size: 17))
                     .foregroundColor(Color.relief)
                 
