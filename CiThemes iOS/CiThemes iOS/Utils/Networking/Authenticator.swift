@@ -10,30 +10,30 @@ import Combine
 
 class Authenticator {
     private let session: URLSession
-    @JWT private var accessToken: AccessToken?
+    private var userTokens: UserToken?
     private let queue = DispatchQueue(label: "Authenticator.\(UUID().uuidString)")
     
-    private var refreshPublisher: AnyPublisher<AccessToken, Error>?
+    private var refreshPublisher: AnyPublisher<UserToken, Error>?
     
     init(_ session: URLSession = URLSession.shared) {
         self.session = session
         if let data = KeychainHelper.standard.read(service: .tokens, type: String.self)?.data(using: .utf8),
-           let token = try? JSONDecoder().decode(AccessToken.self, from: data){
-            accessToken = token
+           let token = try? JSONDecoder().decode(UserToken.self, from: data) {
+            userTokens = token
         }
     }
     
-    func validToken() -> AnyPublisher<AccessToken, Error> {
+    func validToken() -> AnyPublisher<UserToken, Error> {
         return queue.sync { [weak self] in
             if let publisher = self?.refreshPublisher {
                 return publisher
             }
             
-            guard let token = accessToken else {
-                return Fail(error: AuthenticationError.loginRequired).eraseToAnyPublisher()
+            guard let token = userTokens else {
+                return Fail(error: APIError.loginRequired).eraseToAnyPublisher()
             }
             
-            if token.isValid() {
+            if token.accessToken.isValid() {
                 return Just(token)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
@@ -43,7 +43,7 @@ class Authenticator {
                 return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
             }
             var request = URLRequest(url: url)
-            request.setValue("Bearer \($accessToken)", forHTTPHeaderField: "Authorization")
+            request.setValue("Bearer \(token.$refreshToken)", forHTTPHeaderField: "Authorization")
             
             return session.dataTaskPublisher(for: request)
                 .tryMap { data, response in
@@ -60,7 +60,6 @@ class Authenticator {
                 }, receiveCompletion: { completion in
                     self?.refreshPublisher = nil
                 })
-                .map(\.accessToken)
                 .eraseToAnyPublisher()
             
             
@@ -83,9 +82,4 @@ class Authenticator {
         } catch { return nil }
         return nil
     }
-}
-
-
-enum AuthenticationError: Error {
-    case loginRequired
 }

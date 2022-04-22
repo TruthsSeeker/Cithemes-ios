@@ -11,5 +11,6 @@ enum APIError: LocalizedError {
     case httpError(Int)
     case invalidURL
     case invalidAuth
+    case loginRequired
     case other
 }

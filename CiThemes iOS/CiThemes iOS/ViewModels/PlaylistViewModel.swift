@@ -60,6 +60,25 @@ final class PlaylistViewModel: ObservableObject {
             .eraseToAnyPublisher()
     }
     
+    func fetch() {
+        guard let url = getUrl(for: "/cities/\(cityId)/playlist") else {
+            return
+        }
+        let request = URLRequest(url: url)
+        playlistSubscription = NetworkManager.shared.requestPublisher(for: request)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }, receiveValue: { [self] entries in
+                songsDict = entries
+            })
+    }
+    
     func fetch(onComplete complete: @escaping () -> Void = {}) {
         playlistSubscription = playlistPublisher()
             .receive(on: DispatchQueue.main)
