@@ -33,7 +33,7 @@ struct PodiumCell: View {
                 Text(String(position.rawValue))
                     .frame(width: 50, height: 50, alignment: .center)
                     .font(Font.customFont(.ralewayRegular, size: 24).weight(.semibold))
-                    .foregroundColor(Color.accent)
+                    .foregroundColor(position == .second ? .silver : .bronze)
                 
                 VStack(alignment: .leading) {
                     Text(entry.songInfo.title ?? "Unknown Title")

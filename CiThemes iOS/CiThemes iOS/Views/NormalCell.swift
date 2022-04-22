@@ -29,7 +29,7 @@ struct NormalCell: View {
                 Text(String(rank))
                     .frame(width: 50, height: 40, alignment: .center)
                     .font(Font.customFont(.ralewayRegular, size: 24).weight(.semibold))
-                    .foregroundColor(Color.accent)
+                    .foregroundColor(Color.relief)
                 
                 VStack(alignment: .leading) {
                     Text(detailVM.details.title ?? "Unknown Title")
