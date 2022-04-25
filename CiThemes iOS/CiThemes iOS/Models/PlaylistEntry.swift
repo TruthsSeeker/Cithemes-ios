@@ -12,6 +12,12 @@ struct PlaylistEntry: Codable, Identifiable {
     var songInfo: SongInfo
     var votes: Int = 0
     var cityId: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case songInfo = "song_info"
+        case cityId = "city_id"
+        case id, votes
+    }
 }
 
 extension PlaylistEntry: Hashable {

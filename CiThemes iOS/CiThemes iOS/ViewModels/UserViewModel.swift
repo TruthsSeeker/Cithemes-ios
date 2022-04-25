@@ -69,7 +69,7 @@ extension UserViewModel {
 }
 
 extension UserViewModel {
-    private func loginSubscriber() -> AnyPublisher<User, Error> {
+    private func loginSubscriber() -> AnyPublisher<UserToken, Error> {
         guard let url = getUrl(for: "/auth/login") else {
             return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
         }
@@ -96,7 +96,7 @@ extension UserViewModel {
                 
                 return data
             })
-            .decode(type: RootResponse<User>.self, decoder: decoder)
+            .decode(type: RootResponse<UserToken>.self, decoder: decoder)
             .map {$0.result}
             .eraseToAnyPublisher()
     }
@@ -107,11 +107,11 @@ extension UserViewModel {
             .sink(receiveCompletion: { error in
                 print(error)
                 
-            }, receiveValue: { user in
-                print(user)
-                KeychainHelper.standard.save(user.email, service: .email, account: KeychainHelper.account)
-                KeychainHelper.standard.save(user.id, service: .userId)
-                KeychainHelper.standard.save(user.tokens, service: .tokens)
+            }, receiveValue: { [self] tokens in
+                print(tokens)
+                KeychainHelper.standard.save(email, service: .email, account: KeychainHelper.account)
+                KeychainHelper.standard.save(tokens.refreshToken.userId, service: .userId)
+                KeychainHelper.standard.save(tokens, service: .tokens)
                 success()
             })
     }

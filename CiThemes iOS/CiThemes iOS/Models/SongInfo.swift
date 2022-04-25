@@ -19,6 +19,13 @@ struct SongInfo: Codable, Identifiable {
     @StringURL var spotifyUri: URL? = nil
     @StringURL var cover: URL? = nil
     var spotifyID: String? = nil
+    
+    enum CodingKeys: String, CodingKey {
+        case spotifyUri = "spotify_uri"
+        case spotifyID = "spotify_id"
+        case originalSuggestion = "original_suggestion"
+        case id, title, artist, album, release, duration, preview, cover
+    }
 }
 
 extension SongInfo {

@@ -12,7 +12,7 @@ struct AccessToken: Codable {
     let exp: Int
     
     func isValid() -> Bool {
-        let now = Date().timeIntervalSince1970.millisecond
+        let now = Int(Date().timeIntervalSince1970)
         return exp > now
     }
 }

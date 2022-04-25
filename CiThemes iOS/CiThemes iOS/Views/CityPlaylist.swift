@@ -74,6 +74,7 @@ struct CityPlaylist: View {
                 }
             }
         }.onAppear {
+            print("Fetching")
             playlistVM.fetch()
         }
         .environmentObject(playlistVM)

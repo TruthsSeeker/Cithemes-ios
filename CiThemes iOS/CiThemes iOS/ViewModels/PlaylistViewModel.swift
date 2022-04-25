@@ -60,27 +60,12 @@ final class PlaylistViewModel: ObservableObject {
             .eraseToAnyPublisher()
     }
     
-    func fetch() {
+    func fetch(onComplete complete: @escaping () -> Void = {}) {
         guard let url = getUrl(for: "/cities/\(cityId)/playlist") else {
             return
         }
         let request = URLRequest(url: url)
-        playlistSubscription = NetworkManager.shared.requestPublisher(for: request)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }, receiveValue: { [self] entries in
-                songsDict = entries
-            })
-    }
-    
-    func fetch(onComplete complete: @escaping () -> Void = {}) {
-        playlistSubscription = playlistPublisher()
+        playlistSubscription = NetworkManager.shared.requestPublisher(for: request, decoding: [PlaylistEntry].self)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 complete()
@@ -94,6 +79,23 @@ final class PlaylistViewModel: ObservableObject {
                 songsDict = entries
             })
     }
+    
+//    func fetch(onComplete complete: @escaping () -> Void = {}) {
+//        playlistSubscription = playlistPublisher()
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveCompletion: { completion in
+//                complete()
+//                switch completion {
+//                case .finished:
+//                    break
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }, receiveValue: { [self] entries in
+//                print("Fetched VM")
+//                songsDict = entries
+//            })
+//    }
     
     
     func update(id: Int, vote: VoteType) {

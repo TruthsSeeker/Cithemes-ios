@@ -11,6 +11,7 @@ struct NormalCell: View {
     var rank: Int
     var entry: PlaylistEntry
     @State var detailVM: SongDetailViewModel = SongDetailViewModel()
+    @State var showLogin: Bool = false
     
     @EnvironmentObject var context: PlaylistViewModel
     
@@ -46,7 +47,9 @@ struct NormalCell: View {
                     .foregroundColor(Color.relief)
                 
                 Button {
-                    detailVM.vote()
+                    detailVM.vote {
+                        showLogin.toggle()
+                    }
                     context.update(id: entry.id, vote: .Up)
                 } label: {
                     Image("Thumb Up")
@@ -58,6 +61,11 @@ struct NormalCell: View {
             
         }
         .background(.clear)
+        .sheet(isPresented: $showLogin, content: {
+            LoginSignUp {
+                showLogin.toggle()
+            }
+        })
         .onAppear {
             detailVM.details = entry.songInfo
             detailVM.cityID = entry.cityId

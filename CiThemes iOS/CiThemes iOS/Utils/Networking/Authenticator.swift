@@ -17,27 +17,32 @@ class Authenticator {
     
     init(_ session: URLSession = URLSession.shared) {
         self.session = session
-        if let data = KeychainHelper.standard.read(service: .tokens, type: String.self)?.data(using: .utf8),
-           let token = try? JSONDecoder().decode(UserToken.self, from: data) {
-            userTokens = token
+        if let data = KeychainHelper.standard.read(service: .tokens, type: UserToken.self) {
+            print(data.$accessToken, data.$refreshToken)
+            userTokens = data
         }
     }
     
     func validToken() -> AnyPublisher<UserToken, Error> {
         return queue.sync { [weak self] in
             if let publisher = self?.refreshPublisher {
+                print("Publisher already exists")
                 return publisher
             }
             
             guard let token = userTokens else {
+                print("Login Required")
                 return Fail(error: APIError.loginRequired).eraseToAnyPublisher()
             }
             
             if token.accessToken.isValid() {
+                print("No need to refresh")
                 return Just(token)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
+            
+            print("Refreshing")
             
             guard let url = getURL(path: "/auth/refresh") else {
                 return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
@@ -49,6 +54,9 @@ class Authenticator {
                 .tryMap { data, response in
                     guard let response = response as? HTTPURLResponse else { throw APIError.other }
                     guard response.statusCode == 200 else {
+                        if response.statusCode == 401 {
+                            throw APIError.invalidAuth
+                        }
                         throw APIError.httpError(response.statusCode)
                     }
                     return data
@@ -56,9 +64,15 @@ class Authenticator {
                 .decode(type: RootResponse<UserToken>.self, decoder: JSONDecoder())
                 .map(\.result)
                 .handleEvents(receiveOutput: { tokens in
-                    KeychainHelper.standard.save(tokens.accessToken, service: .tokens)
+                    KeychainHelper.standard.save(tokens, service: .tokens)
                 }, receiveCompletion: { completion in
                     self?.refreshPublisher = nil
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        print(error)
+                    }
                 })
                 .eraseToAnyPublisher()
             
