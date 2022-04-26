@@ -43,7 +43,6 @@ struct CityPlaylist: View {
                         }
                         .environmentObject(playlistVM)
                         .refreshable {
-                            print("Refresh")
                             playlistVM.fetch()
                         }
                     
@@ -74,7 +73,6 @@ struct CityPlaylist: View {
                 }
             }
         }.onAppear {
-            print("Fetching")
             playlistVM.fetch()
         }
         .environmentObject(playlistVM)

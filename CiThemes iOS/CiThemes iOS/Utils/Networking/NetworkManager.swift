@@ -25,8 +25,7 @@ class NetworkManager {
                 
                 return data
             }
-            .decode(type: RootResponse<T>.self, decoder: decoder)
-            .map { $0.result }
+            .decode(type: T.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
     

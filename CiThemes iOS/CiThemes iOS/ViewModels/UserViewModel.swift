@@ -59,9 +59,7 @@ extension UserViewModel {
         signUpSubscription = signUpSubscriber()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { error in
-                print(error)
             }, receiveValue: { token in
-                print(token)
                 KeychainHelper.standard.save(token, service: .tokens, account: KeychainHelper.account)
                 success()
             })
@@ -102,13 +100,30 @@ extension UserViewModel {
     }
     
     func login(success: @escaping ()->() = {}) {
-        loginSubscription = loginSubscriber()
+        guard let url = getUrl(for: "/auth/login") else {
+            return
+        }
+        guard !email.isEmpty && !password.isEmpty else {
+            return
+        }
+        let encoded = try? JSONEncoder().encode(UserRequest(email: email, password: password))
+        
+        var request = URLRequest(url: url)
+        request.httpBody = encoded
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        loginSubscription = NetworkManager.shared.requestPublisher(for: request, decoding: UserToken.self)
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { error in
-                print(error)
-                
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error)
+                }
             }, receiveValue: { [self] tokens in
-                print(tokens)
                 KeychainHelper.standard.save(email, service: .email, account: KeychainHelper.account)
                 KeychainHelper.standard.save(tokens.refreshToken.userId, service: .userId)
                 KeychainHelper.standard.save(tokens, service: .tokens)

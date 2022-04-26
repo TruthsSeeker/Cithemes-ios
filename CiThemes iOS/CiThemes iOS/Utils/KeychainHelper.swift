@@ -71,14 +71,11 @@ extension KeychainHelper {
     
     func save<T>(_ item: T, service: KeychainHelper.Service, account: String = KeychainHelper.account) where T : Codable {
         
-        do {
             // Encode as JSON data and save in keychain
-            let data = try JSONEncoder().encode(item)
+        if let data = try? JSONEncoder().encode(item) {
             save(data, service: service, account: account)
-            
-        } catch {
-            assertionFailure("Fail to encode item for keychain: \(error)")
         }
+            
     }
     
     func read<T>(service: KeychainHelper.Service, account: String = KeychainHelper.account, type: T.Type) -> T? where T : Codable {
@@ -89,13 +86,10 @@ extension KeychainHelper {
         }
         
         // Decode JSON data to object
-        do {
-            let item = try JSONDecoder().decode(type, from: data)
+        if let item = try? JSONDecoder().decode(type, from: data) {
             return item
-        } catch {
-            assertionFailure("Fail to decode item for keychain: \(error)")
-            return nil
         }
+        return nil
     }
     
 }

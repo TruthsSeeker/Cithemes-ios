@@ -11,12 +11,11 @@ struct FirstRankCell: View {
     @EnvironmentObject var context: PlaylistViewModel
 
     var entry: PlaylistEntry
-    @State var detailVM: SongDetailViewModel = SongDetailViewModel()
+    @StateObject var detailVM: SongDetailViewModel = SongDetailViewModel()
+    @State var showLogin: Bool = false
     
     init(entry: PlaylistEntry){
         self.entry = entry
-        detailVM.details = entry.songInfo
-        detailVM.cityID = entry.cityId
     }
     
     
@@ -42,11 +41,11 @@ struct FirstRankCell: View {
                 .padding(8)
                 
                 VStack(alignment: .leading, spacing:16) {
-                    Text(entry.songInfo.title ?? "Title")
+                    Text(detailVM.details.title ?? "Title")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(Font.customFont(.openSans, size: 16))
                         .foregroundColor(Color.fontMain)
-                    Text(entry.songInfo.artist ?? "Artist")
+                    Text(detailVM.details.artist ?? "Artist")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(Font.customFont(.ralewayRegular, size: 14))
                         .foregroundColor(Color.fontSecondary)
@@ -58,8 +57,11 @@ struct FirstRankCell: View {
                     .foregroundColor(.background)
                 
                 Button {
-                    detailVM.vote()
-                    context.update(id: entry.id, vote: .Up)
+                    detailVM.vote {
+                        showLogin.toggle()
+                    } onSuccess: {
+                        context.fetch()
+                    }
                 } label: {
                     Image("Thumb Up")
                         .tint(.attentionGrabbing)
@@ -69,6 +71,12 @@ struct FirstRankCell: View {
         }
         .padding(8)
         .background(.clear)
+        .sheet(isPresented: $showLogin, content: {
+            LoginSignUp {
+                print("Success")
+                showLogin.toggle()
+            }
+        })
         .onAppear {
             detailVM.details = entry.songInfo
             detailVM.cityID = entry.cityId

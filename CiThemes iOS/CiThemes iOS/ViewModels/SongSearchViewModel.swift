@@ -54,7 +54,7 @@ final class SongSearchViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    break
                 }
             }, receiveValue: { [self] infos in
                 self.results = results

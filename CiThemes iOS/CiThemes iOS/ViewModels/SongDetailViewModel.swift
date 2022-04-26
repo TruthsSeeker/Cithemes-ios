@@ -17,17 +17,17 @@ final class SongDetailViewModel: ObservableObject {
     private var voteSubscription: AnyCancellable?
     private var fetchSubscription: AnyCancellable?
     
-    func fetch() {
-        loading = true
-        #if DEBUG
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) { [weak self] in
-            self?.loading = false
-            self?.details = SongInfo(id: self?.details.id ?? "", title: self?.details.title, artist: self?.details.artist, album: "Blood Sugar Sex Magik", release: "1991", duration: 283000, preview: nil, originalSuggestion: nil, spotifyUri: nil, cover: nil)
-        }
-        #else
-        #endif
-    }
-    
+//    func fetch() {
+//        loading = true
+//        #if DEBUG
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) { [weak self] in
+//            self?.loading = false
+//            self?.details = SongInfo(id: self?.details.id ?? "", title: self?.details.title, artist: self?.details.artist, album: "Blood Sugar Sex Magik", release: "1991", duration: 283000, preview: nil, originalSuggestion: nil, spotifyUri: nil, cover: nil)
+//        }
+//        #else
+//        #endif
+//    }
+//    
 }
 
 extension SongDetailViewModel {
@@ -76,7 +76,7 @@ extension SongDetailViewModel {
 //    }
     
     
-    func vote(onAuthFail authClosure: @escaping ()->Void = {}) {
+    func vote(onAuthFail authClosure: @escaping ()->Void = {}, onSuccess successClosure: @escaping () -> Void = {}) {
         loading = true
         guard let url = getUrl(for: "/songs/vote") else {
             return
@@ -101,6 +101,7 @@ extension SongDetailViewModel {
                 loading = false
                 switch completion {
                 case .finished:
+                    successClosure()
                     break
                 case .failure(let error):
                     if let apiError = error as? APIError {
@@ -114,7 +115,6 @@ extension SongDetailViewModel {
                 }
             }, receiveValue: { [self] id in
                 voted = id != -1
-                print("success")
             })
         
 //        voteSubscription = votePublisher()

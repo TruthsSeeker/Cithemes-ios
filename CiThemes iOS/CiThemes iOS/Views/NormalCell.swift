@@ -10,7 +10,7 @@ import SwiftUI
 struct NormalCell: View {
     var rank: Int
     var entry: PlaylistEntry
-    @State var detailVM: SongDetailViewModel = SongDetailViewModel()
+    @StateObject var detailVM: SongDetailViewModel = SongDetailViewModel()
     @State var showLogin: Bool = false
     
     @EnvironmentObject var context: PlaylistViewModel
@@ -49,8 +49,9 @@ struct NormalCell: View {
                 Button {
                     detailVM.vote {
                         showLogin.toggle()
+                    } onSuccess: {
+                        context.fetch()
                     }
-                    context.update(id: entry.id, vote: .Up)
                 } label: {
                     Image("Thumb Up")
                         .tint(.attentionGrabbing)
@@ -63,6 +64,7 @@ struct NormalCell: View {
         .background(.clear)
         .sheet(isPresented: $showLogin, content: {
             LoginSignUp {
+                print("Success")
                 showLogin.toggle()
             }
         })

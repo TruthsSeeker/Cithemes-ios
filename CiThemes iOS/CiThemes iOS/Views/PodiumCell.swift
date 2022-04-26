@@ -14,7 +14,8 @@ struct PodiumCell: View {
     
     var position: Rank
     var entry: PlaylistEntry
-    @State var detailVM: SongDetailViewModel = SongDetailViewModel()
+    @StateObject var detailVM: SongDetailViewModel = SongDetailViewModel()
+    @State var showLogin: Bool = false
     
     @EnvironmentObject var context: PlaylistViewModel
     
@@ -50,8 +51,11 @@ struct PodiumCell: View {
                     .foregroundColor(Color.relief)
                 
                 Button {
-                    detailVM.vote()
-                    context.update(id: entry.id, vote: .Up)
+                    detailVM.vote {
+                        showLogin.toggle()
+                    } onSuccess: {
+                        context.fetch()
+                    }
                 } label: {
                     Image("Thumb Up")
                         .tint(.attentionGrabbing)
@@ -61,6 +65,12 @@ struct PodiumCell: View {
             
         }
         .background(.clear)
+        .sheet(isPresented: $showLogin, content: {
+            LoginSignUp {
+                print("Success")
+                showLogin.toggle()
+            }
+        })
         .onAppear {
             detailVM.details = entry.songInfo
             detailVM.cityID = entry.cityId
