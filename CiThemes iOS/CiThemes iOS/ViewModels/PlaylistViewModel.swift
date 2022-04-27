@@ -36,29 +36,6 @@ final class PlaylistViewModel: ObservableObject {
     
     private var playlistSubscription: AnyCancellable?
     
-//    private func playlistPublisher() -> AnyPublisher<[PlaylistEntry], Error> {
-//        guard let url = getUrl(for: "/cities/\(cityId)/playlist") else {
-//            return Fail(error: APIError.invalidURL)
-//                .eraseToAnyPublisher()
-//        }
-//
-//        return URLSession.shared.dataTaskPublisher(for: url)
-//            .tryMap { data, response in
-//                guard let response = response as? HTTPURLResponse else {
-//                    throw APIError.other
-//                }
-//                guard response.statusCode == 200 else {
-//                    throw APIError.httpError(response.statusCode)
-//                }
-//
-//                return data
-//            }
-//            .decode(type: RootResponse<[PlaylistEntry]>.self, decoder: decoder)
-//            .map { decoded in
-//                return decoded.result
-//            }
-//            .eraseToAnyPublisher()
-//    }
     
     func fetch(onComplete complete: @escaping () -> Void = {}) {
         guard let url = getUrl(for: "/cities/\(cityId)/playlist") else {
@@ -79,23 +56,7 @@ final class PlaylistViewModel: ObservableObject {
                 songsDict = entries
             })
     }
-    
-//    func fetch(onComplete complete: @escaping () -> Void = {}) {
-//        playlistSubscription = playlistPublisher()
-//            .receive(on: DispatchQueue.main)
-//            .sink(receiveCompletion: { completion in
-//                complete()
-//                switch completion {
-//                case .finished:
-//                    break
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }, receiveValue: { [self] entries in
-//                print("Fetched VM")
-//                songsDict = entries
-//            })
-//    }
+
     
     
     func update(id: Int, vote: VoteType) {

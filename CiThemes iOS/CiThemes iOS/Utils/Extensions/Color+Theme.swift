@@ -18,4 +18,5 @@ extension Color {
     static let error = Color("Error")
     static let silver = Color("Silver")
     static let bronze = Color("Bronze")
+    static let fontAlwaysLight = Color("FontAlwaysLight")
 }

@@ -22,16 +22,13 @@ final class UserViewModel: ObservableObject {
     
     private var signUpSubscription: AnyCancellable?
     private var loginSubscription: AnyCancellable?
-}
 
-extension UserViewModel {
-    private func signUpSubscriber() -> AnyPublisher<User, Error> {
-        guard let url = getUrl(for: "/auth/signup") else {
-            return Result.failure(APIError.invalidURL).publisher.eraseToAnyPublisher()
-        }
-        guard !email.isEmpty && !password.isEmpty else {
-            return Result.failure(APIError.other).publisher.eraseToAnyPublisher()
-        }
+    //MARK: Signup request
+    func signup(success: @escaping ()->() = {}) {
+        //TODO: Alert Error
+        guard let url = getUrl(for: "/auth/signup") else { return }
+        guard !email.isEmpty && !password.isEmpty else { return }
+        
         var request = URLRequest(url: url)
         let encoded = try? JSONEncoder().encode(UserRequest(email: email, password: password))
         request.httpBody = encoded
@@ -39,24 +36,8 @@ extension UserViewModel {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap({ data, response in
-                guard let response = response as? HTTPURLResponse else {
-                    throw APIError.other
-                }
-                guard response.statusCode == 200 else {
-                    throw APIError.httpError(response.statusCode)
-                }
-                
-                return data
-            })
-            .decode(type: RootResponse<User>.self, decoder: decoder)
-            .map {$0.result}
-            .eraseToAnyPublisher()
-    }
-    
-    func signup(success: @escaping ()->() = {}) {
-        signUpSubscription = signUpSubscriber()
+        signUpSubscription = NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<UserToken>.self)
+            .map(\.result)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { error in
             }, receiveValue: { token in
@@ -64,42 +45,10 @@ extension UserViewModel {
                 success()
             })
     }
-}
 
-extension UserViewModel {
-    private func loginSubscriber() -> AnyPublisher<UserToken, Error> {
-        guard let url = getUrl(for: "/auth/login") else {
-            return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
-        }
-        guard !email.isEmpty && !password.isEmpty else {
-            
-            return Fail(error:APIError.other).eraseToAnyPublisher()
-        }
-        let encoded = try? JSONEncoder().encode(UserRequest(email: email, password: password))
-        
-        var request = URLRequest(url: url)
-        request.httpBody = encoded
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap({ data, response in
-                guard let response = response as? HTTPURLResponse else {
-                    throw APIError.other
-                }
-                guard response.statusCode == 200 else {
-                    throw APIError.httpError(response.statusCode)
-                }
-                
-                return data
-            })
-            .decode(type: RootResponse<UserToken>.self, decoder: decoder)
-            .map {$0.result}
-            .eraseToAnyPublisher()
-    }
-    
+    //MARK: Login request
     func login(success: @escaping ()->() = {}) {
+        //TODO: Alert Error
         guard let url = getUrl(for: "/auth/login") else {
             return
         }

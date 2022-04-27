@@ -18,12 +18,11 @@ final class SongSearchViewModel: ObservableObject {
         return dcdr
     }()
     private var searchResultsSubscription: AnyCancellable?
-    
-    private func searchPublisher() -> AnyPublisher<[SongInfo], Error> {
-        guard let url = getUrl(for: "/songs/search") else { return
-            Fail(error:APIError.invalidURL)
-            .eraseToAnyPublisher()
-        }
+
+    func search() {
+        loading = true
+        //TODO: Alert Error
+        guard let url = getUrl(for: "/songs/search") else { return }
         
         var request = URLRequest(url: url)
         let encoded = try? JSONEncoder().encode(["query": self.searchTerms])
@@ -31,23 +30,9 @@ final class SongSearchViewModel: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap { data, response in
-                guard let response = response as? HTTPURLResponse else { throw APIError.other }
-                guard response.statusCode == 200 else {
-                    throw APIError.httpError(response.statusCode)
-                }
-                
-                return data
-            }
-            .decode(type: RootResponse<[SongInfo]>.self, decoder: decoder)
-            .map {$0.result}
-            .eraseToAnyPublisher()
-    }
-    
-    func search() {
-        loading = true
-        searchResultsSubscription = searchPublisher()
+        
+        searchResultsSubscription = NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<[SongInfo]>.self)
+            .map(\.result)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {

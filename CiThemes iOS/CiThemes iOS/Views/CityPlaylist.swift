@@ -19,9 +19,22 @@ struct CityPlaylist: View {
                 Color.background
                 
                 VStack {
-                    Image("LosAngeles", bundle: nil)
-                        .resizable()
-                        .frame(height: 204, alignment: .top)
+                    ZStack(alignment: .bottomLeading) {
+                        Image("LosAngeles", bundle: nil)
+                            .resizable()
+                        ZStack {
+                            Text("Los Angeles")
+                                .font(.customFont(.ralewayRegular, size: 35))
+                                .foregroundColor(.black)
+                                .blur(radius: 1)
+                            Text("Los Angeles")
+                                .font(.customFont(.ralewayRegular, size: 35))
+                                .foregroundColor(.fontAlwaysLight)
+                        }.padding(8)
+                        
+                            
+                    }
+                    .frame(height: 204, alignment: .top)
                     ZStack {
                         Color.background
                         RefreshableScrollView(onRefresh: { done in
