@@ -38,9 +38,18 @@ final class PlaylistViewModel: ObservableObject {
     
     
     func fetch(onComplete complete: @escaping () -> Void = {}) {
-        guard let url = getUrl(for: "/cities/\(cityId)/playlist") else {
+        guard var url = getUrl(for: "/cities/\(cityId)/playlist") else {
             return
         }
+        
+        if let userId = KeychainHelper.standard.read(service: .userId, type: String.self) {
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+            components?.queryItems = [
+                URLQueryItem(name: "user_id", value: userId)
+            ]
+            if let queryUrl = components?.url { url = queryUrl }
+        }
+        
         let request = URLRequest(url: url)
         playlistSubscription = NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<[PlaylistEntry]>.self)
             .map(\.result)

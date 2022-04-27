@@ -26,23 +26,19 @@ class Authenticator {
     func validToken() -> AnyPublisher<UserToken, Error> {
         return queue.sync { [weak self] in
             if let publisher = self?.refreshPublisher {
-                print("Publisher already exists")
                 return publisher
             }
             
             guard let token = userTokens else {
-                print("Login Required")
                 return Fail(error: APIError.loginRequired).eraseToAnyPublisher()
             }
             
             if token.accessToken.isValid() {
-                print("No need to refresh")
                 return Just(token)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
             
-            print("Refreshing")
             
             guard let url = getURL(path: "/auth/refresh") else {
                 return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
@@ -71,7 +67,7 @@ class Authenticator {
                     case .finished:
                         break
                     case .failure(let error):
-                        print(error)
+                        break
                     }
                 })
                 .eraseToAnyPublisher()

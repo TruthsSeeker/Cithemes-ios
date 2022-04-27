@@ -40,8 +40,8 @@ final class UserViewModel: ObservableObject {
             .map(\.result)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { error in
-            }, receiveValue: { token in
-                KeychainHelper.standard.save(token, service: .tokens, account: KeychainHelper.account)
+            }, receiveValue: { [self] tokens in
+                saveUserData(from: tokens)
                 success()
             })
     }
@@ -70,14 +70,23 @@ final class UserViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
-                    print(error)
+                    break
                 }
             }, receiveValue: { [self] tokens in
-                KeychainHelper.standard.save(email, service: .email, account: KeychainHelper.account)
-                KeychainHelper.standard.save(tokens.refreshToken.userId, service: .userId)
-                KeychainHelper.standard.save(tokens, service: .tokens)
+                
+                saveUserData(from: tokens)
+                
                 success()
             })
+    }
+    
+    private func saveUserData(from tokens: UserToken) {
+        KeychainHelper.standard.save(email, service: .email, account: KeychainHelper.account)
+        
+        let userId = String(tokens.refreshToken.userId)
+        KeychainHelper.standard.save(userId, service: .userId)
+        
+        KeychainHelper.standard.save(tokens, service: .tokens)
     }
 }
 

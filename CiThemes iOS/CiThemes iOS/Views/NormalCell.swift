@@ -64,7 +64,6 @@ struct NormalCell: View {
         .background(.clear)
         .sheet(isPresented: $showLogin, content: {
             LoginSignUp {
-                print("Success")
                 showLogin.toggle()
             }
         })
