@@ -96,7 +96,7 @@
 		6224B8E82806DD3F0004AEEA /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		6224B8EA280700FD0004AEEA /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
 		6224B8EC28072FD00004AEEA /* FlippableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlippableView.swift; sourceTree = "<group>"; };
-		622EC83A26A6EEC900786192 /* CiThemes iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CiThemes iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		622EC83A26A6EEC900786192 /* CiThemes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CiThemes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		622EC83F26A6EEC900786192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		622EC84626A6EECA00786192 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		622EC84B26A6EECA00786192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 		622EC83B26A6EEC900786192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				622EC83A26A6EEC900786192 /* CiThemes iOS.app */,
+				622EC83A26A6EEC900786192 /* CiThemes.app */,
 				622EC85026A6EECA00786192 /* CiThemes iOSTests.xctest */,
 				622EC85B26A6EECA00786192 /* CiThemes iOSUITests.xctest */,
 			);
@@ -381,9 +381,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		622EC83926A6EEC900786192 /* CiThemes iOS */ = {
+		622EC83926A6EEC900786192 /* CiThemes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 622EC86426A6EECA00786192 /* Build configuration list for PBXNativeTarget "CiThemes iOS" */;
+			buildConfigurationList = 622EC86426A6EECA00786192 /* Build configuration list for PBXNativeTarget "CiThemes" */;
 			buildPhases = (
 				622EC83626A6EEC900786192 /* Sources */,
 				622EC83726A6EEC900786192 /* Frameworks */,
@@ -393,9 +393,9 @@
 			);
 			dependencies = (
 			);
-			name = "CiThemes iOS";
+			name = CiThemes;
 			productName = "CiThemes iOS";
-			productReference = 622EC83A26A6EEC900786192 /* CiThemes iOS.app */;
+			productReference = 622EC83A26A6EEC900786192 /* CiThemes.app */;
 			productType = "com.apple.product-type.application";
 		};
 		622EC84F26A6EECA00786192 /* CiThemes iOSTests */ = {
@@ -469,7 +469,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				622EC83926A6EEC900786192 /* CiThemes iOS */,
+				622EC83926A6EEC900786192 /* CiThemes */,
 				622EC84F26A6EECA00786192 /* CiThemes iOSTests */,
 				622EC85A26A6EECA00786192 /* CiThemes iOSUITests */,
 			);
@@ -589,12 +589,12 @@
 /* Begin PBXTargetDependency section */
 		622EC85226A6EECA00786192 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 622EC83926A6EEC900786192 /* CiThemes iOS */;
+			target = 622EC83926A6EEC900786192 /* CiThemes */;
 			targetProxy = 622EC85126A6EECA00786192 /* PBXContainerItemProxy */;
 		};
 		622EC85D26A6EECA00786192 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 622EC83926A6EEC900786192 /* CiThemes iOS */;
+			target = 622EC83926A6EEC900786192 /* CiThemes */;
 			targetProxy = 622EC85C26A6EECA00786192 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -733,12 +733,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = GNZ5A99724;
 				INFOPLIST_FILE = "CiThemes iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = loicheinrich.dev.CiThemes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -752,12 +754,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = GNZ5A99724;
 				INFOPLIST_FILE = "CiThemes iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = loicheinrich.dev.CiThemes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -861,7 +865,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		622EC86426A6EECA00786192 /* Build configuration list for PBXNativeTarget "CiThemes iOS" */ = {
+		622EC86426A6EECA00786192 /* Build configuration list for PBXNativeTarget "CiThemes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				622EC86526A6EECA00786192 /* Debug */,

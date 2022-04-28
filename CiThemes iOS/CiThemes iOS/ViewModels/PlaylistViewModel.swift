@@ -55,9 +55,10 @@ final class PlaylistViewModel: ObservableObject {
             .map(\.result)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
+                complete()
                 switch completion {
                 case .finished:
-                    complete()
+                    break
                 case .failure(let error):
                     break
                 }

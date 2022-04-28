@@ -42,7 +42,7 @@ final class SongSearchViewModel: ObservableObject {
                     break
                 }
             }, receiveValue: { [self] infos in
-                self.results = results
+                self.results = infos
                 self.loading = false
             })
     }

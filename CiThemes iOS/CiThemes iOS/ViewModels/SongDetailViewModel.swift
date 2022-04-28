@@ -24,8 +24,8 @@ final class SongDetailViewModel: ObservableObject {
             return
         }
         
-        guard let id = KeychainHelper.standard.read(service: .userId, type: Int.self),
-            let encoded = try? JSONEncoder().encode(VoteRequest(city_id: cityID, song_id: Int(details.id ?? "", format: .number, lenient: true), user_id: id, remove: voted)) else {
+        guard let id = KeychainHelper.standard.read(service: .userId, type: String.self),
+              let encoded = try? JSONEncoder().encode(VoteRequest(city_id: cityID, song_id: Int(details.id ?? "", format: .number, lenient: true), user_id: Int(id) ?? 0, remove: voted)) else {
             authClosure()
             return
         }

@@ -63,7 +63,8 @@ final class UserViewModel: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        loginSubscription = NetworkManager.shared.requestPublisher(for: request, decoding: UserToken.self)
+        loginSubscription = NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<UserToken>.self)
+            .map(\.result)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {

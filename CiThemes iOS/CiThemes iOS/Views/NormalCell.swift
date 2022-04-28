@@ -12,7 +12,6 @@ struct NormalCell: View {
     var entry: PlaylistEntry
     @StateObject var detailVM: SongDetailViewModel = SongDetailViewModel()
     @State var showLogin: Bool = false
-    @State var voted: Bool = false
     
     @EnvironmentObject var context: PlaylistViewModel
     
@@ -55,7 +54,7 @@ struct NormalCell: View {
                         context.fetch()
                     }
                 } label: {
-                    Image(voted ? "Thumb Up Filled" : "Thumb Up")
+                    Image(detailVM.voted ? "Thumb Up Filled" : "Thumb Up")
                         .tint(.attentionGrabbing)
                 }
 
@@ -72,7 +71,7 @@ struct NormalCell: View {
         .onAppear {
             detailVM.details = entry.songInfo
             detailVM.cityID = entry.cityId
-            voted = entry.voted ?? false
+            detailVM.voted = entry.voted ?? false
         }
     }
 }
