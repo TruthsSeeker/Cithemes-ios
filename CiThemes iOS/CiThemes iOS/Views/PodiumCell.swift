@@ -16,6 +16,7 @@ struct PodiumCell: View {
     var entry: PlaylistEntry
     @StateObject var detailVM: SongDetailViewModel = SongDetailViewModel()
     @State var showLogin: Bool = false
+    @State var voted: Bool = false
     
     @EnvironmentObject var context: PlaylistViewModel
     
@@ -57,7 +58,7 @@ struct PodiumCell: View {
                         context.fetch()
                     }
                 } label: {
-                    Image("Thumb Up")
+                    Image(voted ? "Thumb Up Filled" : "Thumb Up")
                         .tint(.attentionGrabbing)
                 }
             }
@@ -73,6 +74,7 @@ struct PodiumCell: View {
         .onAppear {
             detailVM.details = entry.songInfo
             detailVM.cityID = entry.cityId
+            voted = entry.voted ?? false
         }
     }
 }

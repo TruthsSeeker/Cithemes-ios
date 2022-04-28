@@ -12,6 +12,7 @@ struct PlaylistEntry: Codable, Identifiable {
     var songInfo: SongInfo
     var votes: Int = 0
     var cityId: Int
+    var voted: Bool?
     
     enum CodingKeys: String, CodingKey {
         case songInfo = "song_info"
