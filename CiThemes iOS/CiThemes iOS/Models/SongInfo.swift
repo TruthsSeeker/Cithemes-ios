@@ -21,7 +21,7 @@ struct SongInfo: Codable, Identifiable {
     var spotifyID: String? = nil
     
     enum CodingKeys: String, CodingKey {
-        case spotifyUri = "spotify_URI"
+        case spotifyUri = "spotify_uri"
         case spotifyID = "spotify_id"
         case originalSuggestion = "original_suggestion"
         case id, title, artist, album, release, duration, preview, cover
