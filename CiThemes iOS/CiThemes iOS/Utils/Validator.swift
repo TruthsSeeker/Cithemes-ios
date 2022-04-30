@@ -11,7 +11,7 @@ class Validator {
     
     
     static let emailRegex = #"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,64}"#
-    static let passwordRegex = #"/.{8,}/"#
+    static let passwordRegex = #".{8,}"#
     
     static let standard: Validator = Validator()
     
