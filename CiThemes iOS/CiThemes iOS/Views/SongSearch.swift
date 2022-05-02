@@ -60,6 +60,7 @@ struct SongSearch: View {
                     .transition(.opacity)
             }
         }
+        .background(Color.background)
         
     }
 }
