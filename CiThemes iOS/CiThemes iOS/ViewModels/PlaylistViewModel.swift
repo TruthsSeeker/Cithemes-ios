@@ -60,6 +60,9 @@ final class PlaylistViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
+                    #if DEBUG
+                    print(error)
+                    #endif
                     break
                 }
             }, receiveValue: { [self] entries in

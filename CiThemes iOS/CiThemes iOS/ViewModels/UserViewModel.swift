@@ -71,6 +71,9 @@ final class UserViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
+                    #if DEBUG
+                    print(error)
+                    #endif
                     break
                 }
             }, receiveValue: { [self] tokens in

@@ -67,6 +67,9 @@ class Authenticator {
                     case .finished:
                         break
                     case .failure(let error):
+                        #if DEBUG
+                        print(error)
+                        #endif
                         break
                     }
                 })
