@@ -59,6 +59,7 @@
 		62AB2C912810532F00A57371 /* RefreshableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB2C902810532F00A57371 /* RefreshableScrollView.swift */; };
 		62AB2C9A2811C7CC00A57371 /* Int+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB2C992811C7CC00A57371 /* Int+Formatting.swift */; };
 		62AB2C9D2812A2C100A57371 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB2C9C2812A2C100A57371 /* NetworkManager.swift */; };
+		62AC3A66282266B900202285 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC3A65282266B900202285 /* SettingsView.swift */; };
 		62B7238328216D1800D43C84 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B7238228216D1800D43C84 /* TabBarController.swift */; };
 		62BEA20927FF19410002FFA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEA20527FF19400002FFA9 /* LaunchScreen.storyboard */; };
 		62BEA20C27FF1A790002FFA9 /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */; };
@@ -149,6 +150,7 @@
 		62AB2C902810532F00A57371 /* RefreshableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollView.swift; sourceTree = "<group>"; };
 		62AB2C992811C7CC00A57371 /* Int+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Formatting.swift"; sourceTree = "<group>"; };
 		62AB2C9C2812A2C100A57371 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		62AC3A65282266B900202285 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		62B7238228216D1800D43C84 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		62BEA20627FF19400002FFA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCell.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				6234399C278EE0E20016093C /* SearchButton.swift */,
 				62858BE027995E3C005C0D34 /* SearchBar.swift */,
 				6207D28A279EDBEE00969803 /* SongSearchResult.swift */,
+				62AC3A65282266B900202285 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				62AB2C8A280FF67A00A57371 /* RefreshToken.swift in Sources */,
 				628FFA722784AF1300343216 /* SongDetailViewModel.swift in Sources */,
 				629D18B62805833B0014F2E1 /* PasswordField.swift in Sources */,
+				62AC3A66282266B900202285 /* SettingsView.swift in Sources */,
 				624D0F7027E9017B003CC730 /* PlaylistEntry.swift in Sources */,
 				6265818427FEDF8C0037D6A8 /* PodiumCell.swift in Sources */,
 				62D7F6DE281FDD2200DF1DAB /* TabHost.swift in Sources */,
