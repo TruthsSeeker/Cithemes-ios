@@ -22,18 +22,37 @@ struct SettingsView: View {
                             }
 
                         } label: {
+                                HStack {
+                                    Image(systemName: "person.circle")
+                                        .resizable()
+                                        .foregroundColor(.fontMain)
+                                        .frame(width: 24, height: 24)
+                                        .padding(.leading, -4)
+                                    Text("Account")
+                                        .foregroundColor(.fontMain)
+                                        .padding(.leading, 8)
+                                }
+                        }
+                        .listRowBackground(Color.background)
+                        .listItemTint(.clear)
+                        
+                        NavigationLink {
+                            Text("Homepage")
+                        } label: {
                             HStack {
-                                Image(systemName: "person.circle")
+                                Image(systemName: "building.2.crop.circle")
                                     .resizable()
-                                    .foregroundColor(.fontAlwaysLight)
+                                    .foregroundColor(.fontMain)
                                     .frame(width: 24, height: 24)
                                     .padding(.leading, -4)
-                                Text("Account")
-                                    .foregroundColor(.fontAlwaysLight)
+                                Text("Hometown")
+                                    .foregroundColor(.fontMain)
                                     .padding(.leading, 8)
+                                
                             }
                         }
-                        .listRowBackground(Color.accent)
+                        .listRowBackground(Color.background)
+                        .listItemTint(.clear)
                         
                     }
                     .padding(.top, 16)
@@ -45,7 +64,8 @@ struct SettingsView: View {
             .onAppear {
                 UINavigationBar.appearance().tintColor = UIColor.relief
                 UINavigationBar.appearance().isTranslucent = true
-                UINavigationBar.appearance().backgroundColor = .background
+                UINavigationBar.appearance().backgroundColor = .clear
+                UITableView.appearance().backgroundColor = .clear
         }
     
     }
