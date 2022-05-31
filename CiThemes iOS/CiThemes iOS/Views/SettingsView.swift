@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct SettingsView: View {
     var body: some View {
@@ -66,7 +67,7 @@ struct SettingsView: View {
                 UINavigationBar.appearance().isTranslucent = true
                 UINavigationBar.appearance().backgroundColor = .clear
                 UITableView.appearance().backgroundColor = .clear
-        }
+            }
     
     }
 }

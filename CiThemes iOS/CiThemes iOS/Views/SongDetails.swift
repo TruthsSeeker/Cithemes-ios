@@ -15,7 +15,7 @@ struct SongDetails: View {
     
     var body: some View {
         ZStack {
-            Color.white.opacity(0.25)
+            Color.dimming
             GeometryReader { geo in
                 VStack {
                     HStack(alignment: .top, spacing: 8) {

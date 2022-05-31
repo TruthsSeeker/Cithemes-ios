@@ -19,7 +19,7 @@ class Authenticator {
         self.session = session
         if let data = KeychainHelper.standard.read(service: .tokens, type: UserToken.self) {
             print(data.$accessToken, data.$refreshToken)
-            userTokens = data
+            userTokens = data 
         }
     }
     
