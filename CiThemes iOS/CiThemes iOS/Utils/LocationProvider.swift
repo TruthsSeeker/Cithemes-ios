@@ -12,26 +12,20 @@ import Combine
 class LocationProvider: NSObject, ObservableObject {
     let manager = CLLocationManager()
     
-    let locationWillChange = PassthroughSubject<CLLocation, Never>()
-    
     @Published
-    var location: CLLocation? {
-        willSet {
-            locationWillChange.send(newValue ?? CLLocation())
-        }
-    }
+    var location: CLLocation?
     
     override init() {
         super.init()
         manager.delegate = self
     }
     
-    func requestAuth() {
-        self.manager.requestWhenInUseAuthorization()
-    }
-    
     func requestLocation() {
-        self.manager.requestLocation()
+        if manager.authorizationStatus == .authorizedWhenInUse {
+            self.manager.requestLocation()
+        } else {
+            self.manager.requestWhenInUseAuthorization()
+        }
     }
 }
 
@@ -41,5 +35,13 @@ extension LocationProvider: CLLocationManagerDelegate {
         self.location = location
     }
     
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if manager.authorizationStatus == .authorizedWhenInUse {
+            self.manager.requestLocation()
+        }
+    }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        return
+    }
 }

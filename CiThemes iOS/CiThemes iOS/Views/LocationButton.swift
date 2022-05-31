@@ -12,12 +12,12 @@ import Combine
 struct LocationButton: View {
     let action: (CLLocation) -> ()
     
-    private let locationProvider = LocationProvider()
+    @StateObject
+    private var locationProvider = LocationProvider()
     
     var body: some View {
         Button {
             print("pressed")
-            locationProvider.requestAuth()
             locationProvider.requestLocation()
         } label: {
             ZStack {

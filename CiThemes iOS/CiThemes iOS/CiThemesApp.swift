@@ -11,7 +11,9 @@ import SwiftUI
 struct CiThemesApp: App {
     var body: some Scene {
         WindowGroup {
-                SettingsView()
+            LocationButton { location in
+                print(location)
+            }
         }
     }
 }
