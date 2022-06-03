@@ -29,7 +29,7 @@ struct TabBar: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> TabBarController {
         let controller = TabBarController()
         controller.delegate = context.coordinator
-        let playlist = UIHostingController(rootView: CityPlaylist())
+        let playlist = UIHostingController(rootView: CityPlaylist(playlistVM: PlaylistViewModel(list: [])))
         playlist.tabBarItem = UITabBarItem(title: "Hometown", image: UIImage(named: "Home Tab"), tag: 0)
         controller.viewControllers = [playlist]
         

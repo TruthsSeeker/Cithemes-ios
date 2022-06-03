@@ -19,13 +19,10 @@ final class UserViewModel: ObservableObject {
         return dcdr
     }()
     
+    private var subscriptions: [AnyCancellable] = []
     
-    private var signUpSubscription: AnyCancellable?
-    private var loginSubscription: AnyCancellable?
-
     //MARK: Signup request
     func signup(success: @escaping ()->() = {}) {
-        //TODO: Alert Error
         guard let url = getUrl(for: "/auth/signup") else { return }
         guard !email.isEmpty && !password.isEmpty else { return }
         
@@ -36,7 +33,7 @@ final class UserViewModel: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        signUpSubscription = NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<UserToken>.self)
+        let publisher = NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<UserToken>.self)
             .map(\.result)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { error in
@@ -44,11 +41,11 @@ final class UserViewModel: ObservableObject {
                 saveUserData(from: tokens)
                 success()
             })
+        subscriptions.append(publisher)
     }
 
     //MARK: Login request
     func login(success: @escaping ()->() = {}) {
-        //TODO: Alert Error
         guard let url = getUrl(for: "/auth/login") else {
             return
         }
@@ -63,7 +60,7 @@ final class UserViewModel: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        loginSubscription = NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<UserToken>.self)
+        let publisher = NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<UserToken>.self)
             .map(\.result)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -82,6 +79,43 @@ final class UserViewModel: ObservableObject {
                 
                 success()
             })
+        subscriptions.append(publisher)
+    }
+    
+    func logout() {
+        guard let url = getUrl(for: "/auth/logout") else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let publisher = NetworkManager.shared.authenticatedRequestPublisher(for: request, decoding: RootResponse<String>.self)
+            .map(\.result)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    #if DEBUG
+                    print(error)
+                    #endif
+                    break
+                }
+            } receiveValue: { message in
+                if message == "OK" {
+                    KeychainHelper.standard.logout()
+                }
+            }
+        subscriptions.append(publisher)
+    }
+    
+    //TODO: these
+    func update() {
+    }
+    
+    func setHometown() {
     }
     
     private func saveUserData(from tokens: UserToken) {

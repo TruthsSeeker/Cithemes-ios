@@ -21,7 +21,6 @@ final class SongSearchViewModel: ObservableObject {
 
     func search() {
         loading = true
-        //TODO: Alert Error
         guard let url = getUrl(for: "/songs/search") else { return }
         
         var request = URLRequest(url: url)

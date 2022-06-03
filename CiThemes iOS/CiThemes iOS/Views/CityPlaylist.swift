@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CityPlaylist: View {
-    @StateObject var playlistVM: PlaylistViewModel = PlaylistViewModel(list: [], cityId: 1)
+    @StateObject var playlistVM: PlaylistViewModel
     
     @State var searchShown: Bool = false
     @State var detailedSong: SongInfo?
@@ -20,21 +20,21 @@ struct CityPlaylist: View {
                 
                 VStack {
                     ZStack(alignment: .bottomLeading) {
-                        Image("LosAngeles", bundle: nil)
-                            .resizable()
+                        RemoteImage(playlistVM.city?.image, placeholder: Image("LosAngeles"))
+                            .frame(height: 200)
+
                         ZStack {
-                            Text("Los Angeles")
+                            Text(playlistVM.city?.name ?? "")
                                 .font(.customFont(.ralewayRegular, size: 35))
                                 .foregroundColor(.black)
                                 .blur(radius: 1)
-                            Text("Los Angeles")
+                            Text(playlistVM.city?.name ?? "")
                                 .font(.customFont(.ralewayRegular, size: 35))
                                 .foregroundColor(.fontAlwaysLight)
-                        }.padding(8)
-                        
-                            
+                        }
+                        .padding(8)
                     }
-                    .frame(height: 204, alignment: .top)
+                    .frame(height: 200, alignment: .top)
                     ZStack {
                         Color.background
                         RefreshableScrollView(onRefresh: { done in
@@ -109,6 +109,6 @@ struct CityPlaylist: View {
 
 struct CityPlaylist_Previews: PreviewProvider {
     static var previews: some View {
-        CityPlaylist()
+        CityPlaylist(playlistVM: PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
     }
 }

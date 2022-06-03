@@ -8,59 +8,62 @@
 import SwiftUI
 
 struct CitySearch: View {
-    @StateObject var searchVM: SongSearchViewModel = SongSearchViewModel()
+    @StateObject var searchVM: CitySearchViewModel = CitySearchViewModel()
     @State private var detailsShown = false
-    @State private var shownItem: SongInfo?
     
     var body: some View {
-        ZStack(alignment: .top){
-            Color.background
-            GeometryReader { geo in
-                ZStack {
-                    VStack{
-                        SearchBar(search: $searchVM.searchTerms, height: 45, buttonAction: {searchVM.search()})
-                        if searchVM.results.isEmpty {
-                            Image("search-arrow", bundle: nil)
-                                .resizable()
-                                .frame(maxHeight: geo.size.height/2)
-                                .foregroundColor(Color.relief)
-                            Text("Search for a city")
-                                .font(.custom("RalewayDots-Regular", size: 48))
-                                .foregroundColor(Color.relief)
-                        } else {
-                            List(searchVM.results) { result in
-                                SongSearchResult(song: result)
-                                    .listRowBackground(Color.background)
-                                    .listRowInsets(EdgeInsets())
-                                    .onTapGesture {
-                                        withAnimation(Animation.easeIn(duration: 0.2)) {
-                                            shownItem = result
-                                        }
+        NavigationView {
+            ZStack(alignment: .top){
+                Color.background
+                GeometryReader { geo in
+                    ZStack {
+                        VStack{
+                            SearchBar(search: $searchVM.searchTerms, height: 45, buttonAction: {searchVM.searchByName()})
+                            ZStack {
+                                if searchVM.results.isEmpty {
+                                    VStack {
+                                        Image("search-arrow", bundle: nil)
+                                            .resizable()
+                                            .frame(maxHeight: geo.size.height/2)
+                                        .foregroundColor(Color.relief)
+                                        Text("Search for a city")
+                                            .font(.custom("RalewayDots-Regular", size: 48))
+                                            .foregroundColor(Color.relief)
                                     }
-                                    .transition(.opacity)
-                            }
-                                .listStyle(PlainListStyle())
-                                .onAppear {
-                                    UITableView.appearance().separatorColor = .clear
+                                } else {
+                                    List(searchVM.results) { result in
+                                        NavigationLink(destination: {
+                                            CityPlaylist(playlistVM: PlaylistViewModel(list: [], city: result))
+                                        }, label: {
+                                            CitySearchResult(city: result)
+                                        })
+                                        .listRowBackground(Color.background)
+                                        .listRowInsets(EdgeInsets())
+                                            
+                                    }
+                                        .listStyle(PlainListStyle())
+                                        .onAppear {
+                                            UITableView.appearance().separatorColor = .clear
+                                        }
                                 }
+                                
+                                LocationButton { location in
+                                    searchVM.findNearest(withLocation: location)
+                                }
+                                .position(x: geo.size.width - 37, y: 30)
+                            }
                         }
-                        
+                        .padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
                     }
-                    .padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
                 }
             }
-            if let item = shownItem {
-                SongDetails(details: item)
-                    .edgesIgnoringSafeArea(.bottom)
-                    .onTapGesture {
-                        withAnimation(Animation.easeIn(duration: 0.2)) {
-                            shownItem = nil
-                        }
-                    }
-                    .transition(.opacity)
-            }
+            .background(Color.background)
+            .navigationBarHidden(true)
+            .navigationBarTitle("")
         }
-        .background(Color.background)
+        .onAppear{
+            UINavigationBar.appearance().tintColor = UIColor.fontAlwaysLight
+        }
         
     }
 }

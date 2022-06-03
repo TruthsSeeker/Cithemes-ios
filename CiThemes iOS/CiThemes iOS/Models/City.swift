@@ -8,10 +8,10 @@
 import Foundation
 
 struct City: Identifiable, Codable {
-    @StringID var id: String?
+    var id: Int?
     var country: String
-    var countryISO: String
+    var iso2: String
     var name: String
     @StringURL var image: URL?
-    //TODO: Bounds
+    var population: Int
 }

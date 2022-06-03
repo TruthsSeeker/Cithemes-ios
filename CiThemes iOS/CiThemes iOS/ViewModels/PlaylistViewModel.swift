@@ -19,7 +19,8 @@ final class PlaylistViewModel: ObservableObject {
         return dcdr
     }()
     
-    @Published var cityId: Int
+//    @Published var cityId: Int
+    @Published var city: City?
     var songsDict: [PlaylistEntry] {
         didSet {
             songsDict.sort { lhs, rhs in
@@ -29,16 +30,16 @@ final class PlaylistViewModel: ObservableObject {
         }
     }
     
-    init(list: [PlaylistEntry], cityId: Int) {
+    init(list: [PlaylistEntry], city: City? = nil) {
         self.songsDict = list
-        self.cityId = cityId
+        self.city = city
     }
     
     private var playlistSubscription: AnyCancellable?
     
     
     func fetch(onComplete complete: @escaping () -> Void = {}) {
-        guard var url = getUrl(for: "/cities/\(cityId)/playlist") else {
+        guard var url = getUrl(for: "/cities/\(city?.id ?? 0)/playlist") else {
             return
         }
         
@@ -82,5 +83,5 @@ final class PlaylistViewModel: ObservableObject {
     
     static var placeholder = PlaylistViewModel(list: Array(repeating: 0, count: 50).map({ _ in
         return PlaylistEntry(id: UUID().hashValue, songInfo: SongInfo(id: UUID().uuidString, title: String(Int.random(in: 1...100000)), artist: String(Int.random(in: 1...100000))), votes: Int.random(in: 0...1000), cityId: -1)
-    }), cityId: 1)
+    }), city: City(country: "France", iso2: "FR", name: "Strasbour", population: 123456))
 }
