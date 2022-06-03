@@ -65,6 +65,12 @@ final class KeychainHelper {
         // Delete item from keychain
         SecItemDelete(query)
     }
+    
+    func logout() {
+        self.delete(service: .email)
+        self.delete(service: .tokens)
+        self.delete(service: .userId)
+    }
 }
 
 extension KeychainHelper {

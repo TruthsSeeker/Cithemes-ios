@@ -19,4 +19,19 @@ extension Color {
     static let silver = Color("Silver")
     static let bronze = Color("Bronze")
     static let fontAlwaysLight = Color("FontAlwaysLight")
+    static let dimming = Color("Dimming")
+}
+
+extension UIColor {
+    static let background = UIColor(named: "Background")
+    static let relief = UIColor(named: "Relief")
+    static let accent = UIColor(named: "Accent")
+    static let fontMain = UIColor(named: "FontMain")
+    static let fontSecondary = UIColor(named: "FontSecondary")
+    static let attentionGrabbing = UIColor(named: "Attention Grabbing")
+    static let error = UIColor(named: "Error")
+    static let silver = UIColor(named: "Silver")
+    static let bronze = UIColor(named: "Bronze")
+    static let fontAlwaysLight = UIColor(named: "FontAlwaysLight")
+    static let dimming = UIColor(named: "Dimming")
 }

@@ -21,7 +21,6 @@ final class SongSearchViewModel: ObservableObject {
 
     func search() {
         loading = true
-        //TODO: Alert Error
         guard let url = getUrl(for: "/songs/search") else { return }
         
         var request = URLRequest(url: url)
@@ -39,6 +38,9 @@ final class SongSearchViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
+                    #if DEBUG
+                    print(error)
+                    #endif
                     break
                 }
             }, receiveValue: { [self] infos in

@@ -15,7 +15,7 @@ struct SongDetails: View {
     
     var body: some View {
         ZStack {
-            Color.white.opacity(0.25)
+            Color.dimming
             GeometryReader { geo in
                 VStack {
                     HStack(alignment: .top, spacing: 8) {
@@ -102,13 +102,13 @@ struct SongDetails: View {
         }
         .onAppear {
             detailsViewModel.details = details
-            detailsViewModel.cityID = playlistContext.cityId
+            detailsViewModel.cityID = playlistContext.city?.id ?? 0
         }
     }
 }
 
 struct SongDetails_Previews: PreviewProvider {
     static var previews: some View {
-        SongDetails(details: SongInfo.example).environmentObject(PlaylistViewModel(list: [], cityId: 1))
+        SongDetails(details: SongInfo.example).environmentObject(PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
     }
 }

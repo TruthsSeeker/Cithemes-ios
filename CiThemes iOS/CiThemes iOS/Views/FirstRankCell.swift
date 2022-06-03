@@ -79,7 +79,7 @@ struct FirstRankCell: View {
         .onAppear {
             detailVM.details = entry.songInfo
             detailVM.cityID = entry.cityId
-            detailVM.voted = entry.voted ?? false
+            detailVM.voted = entry.voted
         }
 
     }
