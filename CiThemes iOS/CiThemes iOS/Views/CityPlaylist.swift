@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CityPlaylist: View {
     @StateObject var playlistVM: PlaylistViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
     @State var searchShown: Bool = false
     @State var detailedSong: SongInfo?
@@ -104,6 +105,27 @@ struct CityPlaylist: View {
             playlistVM.fetch()
         }
         .environmentObject(playlistVM)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if let hometownId = userVM.user?.hometownId, hometownId == playlistVM.city?.id ?? -1 {
+                    EmptyView()
+                } else {
+                    Button {
+                        print("Hi")
+                    } label: {
+                        ZStack {
+                            Circle()
+                                .foregroundColor(.accent)
+                                .frame(width: 30, height: 30)
+                                .shadow(color: .black, radius: 1, x: 1, y: 1)
+                            Image("AddHometown")
+                                .foregroundColor(.fontAlwaysLight)
+                        }
+                    }
+                }
+
+            }
+        }
     }
 }
 
