@@ -11,7 +11,8 @@ import SwiftUI
 struct CiThemesApp: App {
     var body: some Scene {
         WindowGroup {
-            CitySearch()
+            TabNavigationView()
+                .environmentObject(UserViewModel())
         }
     }
 }

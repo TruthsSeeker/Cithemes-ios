@@ -30,7 +30,7 @@ final class PlaylistViewModel: ObservableObject {
         }
     }
     
-    init(list: [PlaylistEntry], city: City? = nil) {
+    init(list: [PlaylistEntry] = [], city: City? = nil) {
         self.songsDict = list
         self.city = city
     }

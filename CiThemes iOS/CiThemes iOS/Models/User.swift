@@ -10,5 +10,5 @@ import Foundation
 struct User: Codable, Identifiable {
     var id: Int
     var email: String
-    var tokens: UserToken?
+    var hometownId: Int?
 }
