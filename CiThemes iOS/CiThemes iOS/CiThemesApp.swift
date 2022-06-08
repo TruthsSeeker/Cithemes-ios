@@ -11,10 +11,8 @@ import SwiftUI
 struct CiThemesApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                CityPlaylist(playlistVM: PlaylistViewModel(list: []))
-            }
-            .environmentObject(UserViewModel())
+            TabNavigationView()
+                .environmentObject(UserViewModel())
         }
     }
 }

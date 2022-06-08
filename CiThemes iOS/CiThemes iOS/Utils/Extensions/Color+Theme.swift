@@ -20,6 +20,7 @@ extension Color {
     static let bronze = Color("Bronze")
     static let fontAlwaysLight = Color("FontAlwaysLight")
     static let dimming = Color("Dimming")
+    static let tabSelected = Color("TabSelected")
 }
 
 extension UIColor {
@@ -34,4 +35,5 @@ extension UIColor {
     static let bronze = UIColor(named: "Bronze")
     static let fontAlwaysLight = UIColor(named: "FontAlwaysLight")
     static let dimming = UIColor(named: "Dimming")
+    static let tabSelected = UIColor(named: "TabSelected")
 }
