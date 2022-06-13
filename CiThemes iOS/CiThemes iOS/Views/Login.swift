@@ -13,19 +13,17 @@ struct Login: View {
         case password
     }
     
-    @Binding var email: String
+    @EnvironmentObject var userVM: UserViewModel
     @State var emailValid: Bool = true
     
-    @Binding var password: String
     
     @FocusState private var focusedField: Field?
     
-    let action: ()->()
     let signUpAction: ()->()
     
     var body: some View {
         VStack {
-            UsernameField(username: $email, valid: $emailValid)
+            UsernameField(username: $userVM.email, valid: $emailValid)
                 .padding([.trailing, .leading], 42)
                 .submitLabel(.next)
                 .onSubmit {
@@ -36,7 +34,7 @@ struct Login: View {
             Spacer()
                 .frame(height: 48)
             
-            PasswordField(password: $password, valid: .constant(true), placeholder: "Password")
+            PasswordField(password: $userVM.password, valid: .constant(true), placeholder: "Password")
                 .padding([.trailing, .leading], 42)
                 .focused($focusedField, equals: .password)
                 .submitLabel(.done)
@@ -46,9 +44,9 @@ struct Login: View {
             
             Button {
                 focusedField = nil
-                emailValid = Validator.standard.validate(email, regex: Validator.emailRegex)
+                emailValid = Validator.standard.validate(userVM.email, regex: Validator.emailRegex)
                 if emailValid {
-                    action()
+                    userVM.login()
                 }
                 
             } label: {
@@ -79,7 +77,8 @@ struct Login: View {
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            Login(email: .constant(""), password: .constant(""), action: {}, signUpAction: {})
+            Login(signUpAction: {})
+                .environmentObject(UserViewModel(coordinator: TabCoordinator()))
         }
     }
 }

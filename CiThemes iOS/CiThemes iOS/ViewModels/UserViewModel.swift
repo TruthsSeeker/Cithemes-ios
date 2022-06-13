@@ -14,10 +14,13 @@ final class UserViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var oldPassword: String = ""
     
-    init() {
+    private let coordinator: UserViewCoordinator
+    
+    init(coordinator: UserViewCoordinator) {
         if let existingTokens = KeychainHelper.standard.read(service: .tokens, type: UserToken.self), let existingEmail = KeychainHelper.standard.read(service: .email, type: String.self) {
             self.user = User(id: existingTokens.refreshToken.userId, email: existingEmail, hometownId: existingTokens.refreshToken.hometownId)
         }
+        self.coordinator = coordinator
     }
     
     lazy var decoder:JSONDecoder = {
@@ -29,7 +32,7 @@ final class UserViewModel: ObservableObject {
     private var subscriptions: [AnyCancellable] = []
     
     //MARK: Signup request
-    func signup(success: @escaping ()->() = {}) {
+    func signup() {
         guard let url = getUrl(for: "/auth/signup") else { return }
         guard !email.isEmpty && !password.isEmpty else { return }
         
@@ -47,13 +50,13 @@ final class UserViewModel: ObservableObject {
             }, receiveValue: { [self] tokens in
                 saveUserData(from: tokens)
                 self.user = User(id: tokens.refreshToken.userId, email: email, hometownId: tokens.refreshToken.hometownId)
-                success()
+                coordinator.toggleLogin()
             })
         subscriptions.append(publisher)
     }
 
     //MARK: Login request
-    func login(success: @escaping ()->() = {}) {
+    func login() {
         guard let url = getUrl(for: "/auth/login") else {
             return
         }
@@ -85,7 +88,7 @@ final class UserViewModel: ObservableObject {
                 
                 saveUserData(from: tokens)
                 self.user = User(id: tokens.refreshToken.userId, email: email, hometownId: tokens.refreshToken.hometownId)
-                success()
+                coordinator.toggleLogin()
             })
         subscriptions.append(publisher)
     }

@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct LoginSignUp: View {
+    //TODO LoginSignupCoordinator
     @State var loginIsShown: Bool = true
-    @StateObject var userVM: UserViewModel = UserViewModel()
-    
-    var success: () -> () = {}
     
     var body: some View {
         ZStack{
@@ -25,16 +23,12 @@ struct LoginSignUp: View {
                 Spacer()
                     .frame(height: 96)
                 FlippableView(isFaceUp: $loginIsShown) {
-                    Login(email: $userVM.email, password: $userVM.password) {
-                        userVM.login() { success() }
-                    } signUpAction: {
+                    Login() {
                         loginIsShown.toggle()
                     }
 
                 } backView: {
-                    SignUp(email: $userVM.email, password: $userVM.password) {
-                        userVM.signup() { success() }
-                    } loginAction: {
+                    SignUp() {
                         loginIsShown.toggle()
                     }
 

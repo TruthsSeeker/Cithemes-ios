@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AccountView: View {
-    @StateObject var userVM: UserViewModel = UserViewModel()
+    @EnvironmentObject var userVM: UserViewModel
     @State var editable: Bool = false
     var body: some View {
         List {

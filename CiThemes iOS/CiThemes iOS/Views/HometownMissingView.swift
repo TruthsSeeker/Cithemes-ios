@@ -8,39 +8,37 @@
 import SwiftUI
 
 struct HometownMissingView: View {
-    @EnvironmentObject var userVM: UserViewModel
-    var moveToCitySearchAction: ()->()
+    @EnvironmentObject var coordinator: TabCoordinator
     var body: some View {
         ZStack{
             Color.background
                 .ignoresSafeArea()
             
-            if let user = userVM.user {
+            if coordinator.userViewModel.user != nil {
                 VStack {
                     Text("You haven't set a hometown")
                     Text("Do you want to set one now?")
-                    Button {
-                        moveToCitySearchAction()
-                    } label: {
-                        Text("Find your city")
+                    StyledButton(title: "Find your hometown") {
+                        coordinator.tab = .search
                     }
 
                 }
             } else {
-                Text("Only logged in users can see their hometown")
+                VStack {
+                    Text("Only logged in users can see their hometown")
+                    StyledButton(title: "Login/Sign Up") {
+                        coordinator.showSignUp.toggle()
+                    }
+                }
+
             }
         }
     }
 }
 
 struct HometownMissingView_Previews: PreviewProvider {
-    static var userVM: UserViewModel = {
-        var vm = UserViewModel()
-        vm.user = User(id: 1, email: "lyraartemish@gmail.com")
-        return vm
-    }()
     static var previews: some View {
-        HometownMissingView(moveToCitySearchAction: {})
-            .environmentObject(HometownMissingView_Previews.userVM)
+        HometownMissingView()
+            .environmentObject(TabCoordinator())
     }
 }

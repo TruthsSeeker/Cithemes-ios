@@ -87,9 +87,7 @@ struct SongDetails: View {
                         
                     }
                     .sheet(isPresented: $showLogin) {
-                        LoginSignUp(loginIsShown: true, userVM: UserViewModel()) {
-                            showLogin.toggle()
-                        }
+                        LoginSignUp()
                     }
                 }
                 .padding(EdgeInsets(top: 12, leading: 8, bottom: 12, trailing: 8))

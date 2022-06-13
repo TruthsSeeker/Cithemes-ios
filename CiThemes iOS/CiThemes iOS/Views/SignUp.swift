@@ -14,18 +14,18 @@ struct SignUp: View {
         case confirm
     }
     
-    @Binding var email: String
+    @EnvironmentObject var userVM: UserViewModel
+    
     @State var emailValid: Bool = true
-    @Binding var password: String
     @State var passwordValid: Bool = true
     @State var confirmPassword: String = ""
     @State var confirmValid: Bool = true
     @FocusState var focus: Field?
-    let action: ()->()
+    
     let loginAction: ()->()
     var body: some View {
         VStack {
-            UsernameField(username: $email, valid: $emailValid)
+            UsernameField(username: $userVM.email, valid: $emailValid)
                 .padding([.trailing, .leading], 42)
                 .focused($focus, equals: .email)
                 .submitLabel(.next)
@@ -36,7 +36,7 @@ struct SignUp: View {
             Spacer()
                 .frame(height: 48)
             
-            PasswordField(password: $password, valid: $passwordValid, placeholder: "Password")
+            PasswordField(password: $userVM.password, valid: $passwordValid, placeholder: "Password")
                 .padding([.trailing, .leading], 42)
                 .focused($focus, equals: .password)
                 .submitLabel(.next)
@@ -57,11 +57,11 @@ struct SignUp: View {
             
             Button {
                 focus = nil
-                emailValid = Validator.standard.validate(email, regex: Validator.emailRegex)
-                passwordValid = Validator.standard.validate(password, regex: Validator.passwordRegex)
-                confirmValid = password == confirmPassword
+                emailValid = Validator.standard.validate(userVM.email, regex: Validator.emailRegex)
+                passwordValid = Validator.standard.validate(userVM.password, regex: Validator.passwordRegex)
+                confirmValid = userVM.password == confirmPassword
                 if emailValid && passwordValid && confirmValid {
-                    action()
+                    userVM.signup()
                 }
             } label: {
                 ZStack {
@@ -90,6 +90,7 @@ struct SignUp: View {
 
 struct SignUp_Previews: PreviewProvider {
     static var previews: some View {
-        SignUp(email: .constant(""), password: .constant(""), action: {}, loginAction: {})
+        SignUp(loginAction: {})
+            .environmentObject(UserViewModel(coordinator: TabCoordinator()))
     }
 }
