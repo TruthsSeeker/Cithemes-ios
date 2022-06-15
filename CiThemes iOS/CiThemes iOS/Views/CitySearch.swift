@@ -13,6 +13,7 @@ struct CitySearch: View {
     @StateObject var searchVM: CitySearchViewModel = CitySearchViewModel()
     @State private var detailsShown = false
     @State private var nav: UINavigationController?
+    @FocusState var searchFieldFocused: Bool
     
     var body: some View {
         NavigationView {
@@ -21,7 +22,10 @@ struct CitySearch: View {
                 GeometryReader { geo in
                     ZStack {
                         VStack{
-                            SearchBar(search: $searchVM.searchTerms, height: 45, buttonAction: {searchVM.searchByName()})
+                            SearchBar(search: $searchVM.searchTerms, focus: _searchFieldFocused, height: 45, buttonAction: {
+                                searchVM.searchByName()
+                                searchFieldFocused = false
+                            })
                             ZStack {
                                 if searchVM.results.isEmpty {
                                     VStack {
@@ -47,6 +51,7 @@ struct CitySearch: View {
                                     .listStyle(PlainListStyle())
                                     .onAppear {
                                         UITableView.appearance().separatorColor = .clear
+                                        UITableView.appearance().keyboardDismissMode = .onDrag
                                     }
                                 }
                                 
@@ -67,6 +72,11 @@ struct CitySearch: View {
         .introspectNavigationController { nav in
             self.nav = nav
             setNavigationBarAppearance()
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                searchFieldFocused = true
+            }
         }
         
     }
