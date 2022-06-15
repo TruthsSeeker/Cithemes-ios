@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct CitySearch: View {
     @EnvironmentObject var coordinator: TabCoordinator
     @StateObject var searchVM: CitySearchViewModel = CitySearchViewModel()
     @State private var detailsShown = false
+    @State private var nav: UINavigationController?
     
     var body: some View {
         NavigationView {
@@ -62,15 +64,16 @@ struct CitySearch: View {
             .navigationBarHidden(true)
             .navigationBarTitle("")
         }
-        .onReceive(coordinator.$tab, perform: { tab in
-            if tab == .search {
-                UIBarButtonItem.appearance().tintColor = .fontAlwaysLight
-            }
-        })
-//        .onAppear{
-//            UINavigationBar.appearance().tintColor = UIColor.fontAlwaysLight
-//        }
+        .introspectNavigationController { nav in
+            self.nav = nav
+            setNavigationBarAppearance()
+        }
         
+    }
+    
+    func setNavigationBarAppearance() {
+        guard let nav = nav, coordinator.tab == .search else { return }
+        nav.navigationBar.tintColor = UIColor.fontAlwaysLight
     }
 }
 

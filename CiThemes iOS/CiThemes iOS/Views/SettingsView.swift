@@ -7,9 +7,13 @@
 
 import SwiftUI
 import CoreLocation
+import Introspect
 
 struct SettingsView: View {
     @EnvironmentObject var coordinator: TabCoordinator
+    
+    @State private var nav: UINavigationController?
+    
     var body: some View {
             NavigationView {
                 ZStack {
@@ -63,22 +67,20 @@ struct SettingsView: View {
                 
             }
             .background(.background)
-//            .onAppear {
-//                UINavigationBar.appearance().tintColor = UIColor.relief
-//                UINavigationBar.appearance().isTranslucent = true
-//                UINavigationBar.appearance().backgroundColor = .clear
-//                UITableView.appearance().backgroundColor = .clear
-//            }
-            .onReceive(coordinator.$tab) { tab in
-                if tab == .setting {
-                    UINavigationBar.appearance().tintColor = UIColor.relief
-                    UINavigationBar.appearance().isTranslucent = true
-                    UINavigationBar.appearance().backgroundColor = .clear
-                    UITableView.appearance().backgroundColor = .clear
-                    UIBarButtonItem.appearance().tintColor = .relief
-                }
-            }
+            .introspectNavigationController(customize: { nav in
+                self.nav = nav
+                self.setNavigationBarAppearance()
+                
+            })
+    }
     
+    private func setNavigationBarAppearance() {
+        guard let nav = self.nav, coordinator.tab == .setting else { return }
+        nav.navigationBar.tintColor = UIColor.relief
+        nav.navigationBar.isTranslucent = true
+        nav.navigationBar.backgroundColor = .clear
+        
+        UITableView.appearance().backgroundColor = .clear
     }
 }
 
