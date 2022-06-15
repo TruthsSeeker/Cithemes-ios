@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -73,6 +73,7 @@
 		62B7238328216D1800D43C84 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B7238228216D1800D43C84 /* TabBarController.swift */; };
 		62B75F632857276D0062A888 /* PreviewPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B75F622857276D0062A888 /* PreviewPlayer.swift */; };
 		62B75F65285777EB0062A888 /* PreviewPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B75F64285777EB0062A888 /* PreviewPlayerViewModel.swift */; };
+		62B75F682859E12F0062A888 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 62B75F672859E12F0062A888 /* Introspect */; };
 		62BEA20927FF19410002FFA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEA20527FF19400002FFA9 /* LaunchScreen.storyboard */; };
 		62BEA20C27FF1A790002FFA9 /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */; };
 		62BEA20E27FF20F40002FFA9 /* CityPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20D27FF20F40002FFA9 /* CityPlaylist.swift */; };
@@ -203,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62CACE7E282BD05300792CB3 /* MapKit.framework in Frameworks */,
+				62B75F682859E12F0062A888 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +510,9 @@
 			dependencies = (
 			);
 			name = CiThemes;
+			packageProductDependencies = (
+				62B75F672859E12F0062A888 /* Introspect */,
+			);
 			productName = "CiThemes iOS";
 			productReference = 622EC83A26A6EEC900786192 /* CiThemes.app */;
 			productType = "com.apple.product-type.application";
@@ -579,6 +584,9 @@
 				Base,
 			);
 			mainGroup = 622EC83126A6EEC900786192;
+			packageReferences = (
+				62B75F662859E12F0062A888 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = 622EC83B26A6EEC900786192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1025,6 +1033,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		62B75F662859E12F0062A888 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		62B75F672859E12F0062A888 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62B75F662859E12F0062A888 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 622EC83226A6EEC900786192 /* Project object */;
 }

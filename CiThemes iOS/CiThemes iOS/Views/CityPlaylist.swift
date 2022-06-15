@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CityPlaylist: View {
     @StateObject var playlistVM: PlaylistViewModel
-    @EnvironmentObject var userVM: UserViewModel
-    
+    @EnvironmentObject var coordinator: TabCoordinator
+
     @State var searchShown: Bool = false
     @State var detailedSong: SongInfo?
     
@@ -107,7 +107,7 @@ struct CityPlaylist: View {
         .environmentObject(playlistVM)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                if let hometownId = userVM.user?.hometownId, hometownId == playlistVM.city?.id ?? -1 {
+                if let hometownId = coordinator.userViewModel.user?.hometownId, hometownId == playlistVM.city?.id ?? -1 {
                     EmptyView()
                 } else {
                     Button {

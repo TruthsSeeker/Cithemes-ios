@@ -9,6 +9,7 @@ import SwiftUI
 import CoreLocation
 
 struct SettingsView: View {
+    @EnvironmentObject var coordinator: TabCoordinator
     var body: some View {
             NavigationView {
                 ZStack {
@@ -62,11 +63,20 @@ struct SettingsView: View {
                 
             }
             .background(.background)
-            .onAppear {
-                UINavigationBar.appearance().tintColor = UIColor.relief
-                UINavigationBar.appearance().isTranslucent = true
-                UINavigationBar.appearance().backgroundColor = .clear
-                UITableView.appearance().backgroundColor = .clear
+//            .onAppear {
+//                UINavigationBar.appearance().tintColor = UIColor.relief
+//                UINavigationBar.appearance().isTranslucent = true
+//                UINavigationBar.appearance().backgroundColor = .clear
+//                UITableView.appearance().backgroundColor = .clear
+//            }
+            .onReceive(coordinator.$tab) { tab in
+                if tab == .setting {
+                    UINavigationBar.appearance().tintColor = UIColor.relief
+                    UINavigationBar.appearance().isTranslucent = true
+                    UINavigationBar.appearance().backgroundColor = .clear
+                    UITableView.appearance().backgroundColor = .clear
+                    UIBarButtonItem.appearance().tintColor = .relief
+                }
             }
     
     }

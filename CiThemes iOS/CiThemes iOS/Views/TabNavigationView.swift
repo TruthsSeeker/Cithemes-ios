@@ -28,6 +28,12 @@ struct TabNavigationView: View {
                     Text("Search")
                 }
                 .tag(Tab.search)
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gearshape.fill")
+                    Text("Settings")
+                }
+                .tag(Tab.setting)
         }
         .transition(.slide)
         .animation(.easeInOut, value: coordinator.tab)
@@ -40,7 +46,7 @@ struct TabNavigationView: View {
         .accentColor(.tabSelected)
         .sheet(isPresented: $coordinator.showSignUp) {
             LoginSignUp()
-                .environmentObject(coordinator.userViewModel)
+                .environmentObject(coordinator)
         }
         .environmentObject(coordinator)
     }

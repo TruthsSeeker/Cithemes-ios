@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CitySearch: View {
+    @EnvironmentObject var coordinator: TabCoordinator
     @StateObject var searchVM: CitySearchViewModel = CitySearchViewModel()
     @State private var detailsShown = false
     
@@ -41,10 +42,10 @@ struct CitySearch: View {
                                         .listRowInsets(EdgeInsets())
                                             
                                     }
-                                        .listStyle(PlainListStyle())
-                                        .onAppear {
-                                            UITableView.appearance().separatorColor = .clear
-                                        }
+                                    .listStyle(PlainListStyle())
+                                    .onAppear {
+                                        UITableView.appearance().separatorColor = .clear
+                                    }
                                 }
                                 
                                 LocationButton { location in
@@ -61,9 +62,14 @@ struct CitySearch: View {
             .navigationBarHidden(true)
             .navigationBarTitle("")
         }
-        .onAppear{
-            UINavigationBar.appearance().tintColor = UIColor.fontAlwaysLight
-        }
+        .onReceive(coordinator.$tab, perform: { tab in
+            if tab == .search {
+                UIBarButtonItem.appearance().tintColor = .fontAlwaysLight
+            }
+        })
+//        .onAppear{
+//            UINavigationBar.appearance().tintColor = UIColor.fontAlwaysLight
+//        }
         
     }
 }

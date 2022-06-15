@@ -14,7 +14,7 @@ struct SignUp: View {
         case confirm
     }
     
-    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var coordinator: TabCoordinator
     
     @State var emailValid: Bool = true
     @State var passwordValid: Bool = true
@@ -25,7 +25,7 @@ struct SignUp: View {
     let loginAction: ()->()
     var body: some View {
         VStack {
-            UsernameField(username: $userVM.email, valid: $emailValid)
+            UsernameField(username: $coordinator.userViewModel.email, valid: $emailValid)
                 .padding([.trailing, .leading], 42)
                 .focused($focus, equals: .email)
                 .submitLabel(.next)
@@ -36,7 +36,7 @@ struct SignUp: View {
             Spacer()
                 .frame(height: 48)
             
-            PasswordField(password: $userVM.password, valid: $passwordValid, placeholder: "Password")
+            PasswordField(password: $coordinator.userViewModel.password, valid: $passwordValid, placeholder: "Password")
                 .padding([.trailing, .leading], 42)
                 .focused($focus, equals: .password)
                 .submitLabel(.next)
@@ -57,11 +57,11 @@ struct SignUp: View {
             
             Button {
                 focus = nil
-                emailValid = Validator.standard.validate(userVM.email, regex: Validator.emailRegex)
-                passwordValid = Validator.standard.validate(userVM.password, regex: Validator.passwordRegex)
-                confirmValid = userVM.password == confirmPassword
+                emailValid = Validator.standard.validate(coordinator.userViewModel.email, regex: Validator.emailRegex)
+                passwordValid = Validator.standard.validate(coordinator.userViewModel.password, regex: Validator.passwordRegex)
+                confirmValid = coordinator.userViewModel.password == confirmPassword
                 if emailValid && passwordValid && confirmValid {
-                    userVM.signup()
+                    coordinator.userViewModel.signup()
                 }
             } label: {
                 ZStack {

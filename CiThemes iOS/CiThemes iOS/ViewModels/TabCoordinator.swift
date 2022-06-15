@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 enum Tab {
     case home
@@ -18,9 +19,9 @@ class TabCoordinator: ObservableObject, UserViewCoordinator {
     @Published var userViewModel: UserViewModel!
     @Published var showSignUp: Bool = false
     
-    
     init() {
         self.userViewModel = UserViewModel(coordinator: self)
+        
     }
     
     func toggleLogin() {
