@@ -63,21 +63,6 @@ struct CityPlaylist: View {
                     }
                 }
                 .edgesIgnoringSafeArea([.top, .bottom])
-                
-                Button {
-                    KeychainHelper.standard.delete(service: .userId)
-                    KeychainHelper.standard.delete(service: .tokens)
-                    KeychainHelper.standard.delete(service: .email)
-                } label: {
-                    ZStack {
-                        Circle()
-                            .foregroundColor(.red)
-                        Text("X")
-                            .foregroundColor(.fontAlwaysLight)
-                    }
-                    .frame(width: 45, height: 45, alignment: .bottomLeading)
-                }
-                .position(x: 45, y: geo.size.height - 45)
 
                 SearchButton(width: 45, height: 45) {
                     self.searchShown = true
