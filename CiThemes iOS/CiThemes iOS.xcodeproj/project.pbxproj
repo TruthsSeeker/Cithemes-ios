@@ -308,13 +308,12 @@
 		622EC86F26A6F0BF00786192 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				62B0D738285B0A1800766336 /* Settings */,
 				62B75F612857274B0062A888 /* Song Details */,
 				62C56E38282A6F34002BB4F8 /* Search */,
 				62D7F6DC281FDD0000DF1DAB /* Tab Bar */,
 				62AB2C9328115D4400A57371 /* Playlist */,
 				629D18B228056D410014F2E1 /* Login Sign Up */,
-				62AC3A65282266B900202285 /* SettingsView.swift */,
-				623F39CA284A458400930201 /* AccountView.swift */,
 				62161603284F49F2003817C8 /* HometownMissingView.swift */,
 				6218CC742852268D008B5303 /* HometownView.swift */,
 			);
@@ -422,6 +421,15 @@
 				62AB2C9C2812A2C100A57371 /* NetworkManager.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		62B0D738285B0A1800766336 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				62AC3A65282266B900202285 /* SettingsView.swift */,
+				623F39CA284A458400930201 /* AccountView.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		62B75F612857274B0062A888 /* Song Details */ = {

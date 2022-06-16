@@ -51,6 +51,8 @@ final class UserViewModel: ObservableObject {
                 saveUserData(from: tokens)
                 self.user = User(id: tokens.refreshToken.userId, email: email, hometownId: tokens.refreshToken.hometownId)
                 coordinator.toggleLogin()
+                self.email = ""
+                self.password = ""
             })
         subscriptions.append(publisher)
     }
@@ -89,6 +91,8 @@ final class UserViewModel: ObservableObject {
                 saveUserData(from: tokens)
                 self.user = User(id: tokens.refreshToken.userId, email: email, hometownId: tokens.refreshToken.hometownId)
                 coordinator.toggleLogin()
+                self.email = ""
+                self.password = ""
             })
         subscriptions.append(publisher)
     }
@@ -101,7 +105,13 @@ final class UserViewModel: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        let publisher = NetworkManager.shared.authenticatedRequestPublisher(for: request, decoding: RootResponse<String>.self)
+        guard let tokens = KeychainHelper.standard.read(service: .tokens, type: UserToken.self),
+              let encoded = try? JSONEncoder().encode(LogoutRequest(token: tokens.refreshToken)) else { return }
+        request.httpBody = encoded
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let publisher = NetworkManager.shared.authenticatedRequestPublisher(for: request, decoding: RootResponse<Bool>.self)
             .map(\.result)
             .receive(on: DispatchQueue.main)
             .sink { completion in
@@ -114,9 +124,10 @@ final class UserViewModel: ObservableObject {
                     #endif
                     break
                 }
-            } receiveValue: { message in
-                if message == "OK" {
+            } receiveValue: { [weak self] success in
+                if success {
                     KeychainHelper.standard.logout()
+                    self?.user = nil
                 }
             }
         subscriptions.append(publisher)
@@ -202,4 +213,8 @@ final class UserViewModel: ObservableObject {
 fileprivate struct UserRequest: Encodable {
     var email: String
     var password: String
+}
+
+fileprivate struct LogoutRequest: Encodable {
+    var token: RefreshToken
 }

@@ -11,6 +11,7 @@ struct SongSearch: View {
     @StateObject var searchVM: SongSearchViewModel = SongSearchViewModel()
     @State private var detailsShown = false
     @State private var shownItem: SongInfo?
+    @FocusState var isSearchFocused: Bool
     
     var body: some View {
         ZStack(alignment: .top){
@@ -18,7 +19,10 @@ struct SongSearch: View {
             GeometryReader { geo in
                 ZStack {
                     VStack{
-                        SearchBar(search: $searchVM.searchTerms, height: 45, buttonAction: {searchVM.search()})
+                        SearchBar(search: $searchVM.searchTerms, focus: _isSearchFocused, height: 45, buttonAction: {
+                            searchVM.search()
+                            isSearchFocused = false
+                        })
                         if searchVM.results.isEmpty {
                             Image("search-arrow", bundle: nil)
                                 .resizable()
@@ -42,6 +46,7 @@ struct SongSearch: View {
                                 .listStyle(PlainListStyle())
                                 .onAppear {
                                     UITableView.appearance().separatorColor = .clear
+                                    UITableView.appearance().keyboardDismissMode = .onDrag
                                 }
                         }
                         

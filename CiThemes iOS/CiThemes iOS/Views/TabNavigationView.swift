@@ -34,6 +34,7 @@ struct TabNavigationView: View {
                     Text("Settings")
                 }
                 .tag(Tab.setting)
+                .tint(.tabSelected)
         }
         .transition(.slide)
         .animation(.easeInOut, value: coordinator.tab)
@@ -42,8 +43,6 @@ struct TabNavigationView: View {
             UITabBar.appearance().barTintColor = .relief
             
         }
-        .tint(.tabSelected)
-        .accentColor(.tabSelected)
         .sheet(isPresented: $coordinator.showSignUp) {
             LoginSignUp()
                 .environmentObject(coordinator)
@@ -65,6 +64,8 @@ struct TabNavigationView: View {
         let tabitemAppearance = UITabBarItemAppearance()
         tabitemAppearance.normal.iconColor = .relief
         tabitemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.relief as Any]
+        tabitemAppearance.selected.iconColor = .tabSelected
+        tabitemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.tabSelected as Any]
         appearance.stackedLayoutAppearance = tabitemAppearance
         UITabBar.appearance().standardAppearance = appearance
     }

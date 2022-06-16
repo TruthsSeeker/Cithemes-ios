@@ -6,26 +6,75 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct AccountView: View {
     @EnvironmentObject var coordinator: TabCoordinator
     @State var editable: Bool = false
+    @State var username: String = ""
+    @State var email: String = ""
+    @State var password: String = ""
+    @State var newPassword: String = ""
+    @State var confirmNewPassword: String = ""
+    @State var list: UITableView?
     var body: some View {
-        List {
-            Button {
+        ZStack {
+            if coordinator.userViewModel.user != nil {
+                List {
+                    TextField("Username", text: $username)
+                        .disabled(!editable)
+                        .tint(.red)
+                    TextField("Email", text: $email)
+                        .disabled(!editable)
+                    
+                    NavigationLink("Change your password") {
+                        //TODO: Change password view
+                        Text("Change Password Placeholder")
+                    }
+                    .foregroundColor(.fontMain)
+                    Button {
+                        coordinator.userViewModel.logout()
+                    } label: {
+                        Text("Logout")
+                            .foregroundColor(.fontMain)
+                    }
                 
-                KeychainHelper.standard.logout()
-            } label: {
-                Text("Logout")
+                }
+            } else {
+                VStack {
+                    Text("You don't seem to be logged in")
+                    Text("Do you want to log in or sign up?")
+                    Button {
+                        coordinator.toggleLogin()
+                    } label: {
+                        Text("Log in/Sign up")
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                if let user = coordinator.userViewModel.user {
+                    self.username = user.username ?? ""
+                    self.email = user.email
+                }                
             }
         }
         .navigationTitle("Account")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    editable.toggle()
-                } label: {
-                    Text("Cancel")
+                if editable {
+                    Button {
+                        editable.toggle()
+                    } label: {
+                        Text("Cancel")
+                    }
+                .foregroundColor(.relief)
+                } else {
+                    EmptyView()
                 }
             }
             
@@ -42,6 +91,7 @@ struct AccountView: View {
                         Image(systemName: "square.and.pencil")
                     }
                 }
+                .foregroundColor(.relief)
 
             }
         }
@@ -51,5 +101,6 @@ struct AccountView: View {
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
         AccountView()
+            .environmentObject(TabCoordinator())
     }
 }

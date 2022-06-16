@@ -21,12 +21,7 @@ struct SettingsView: View {
                         .ignoresSafeArea()
                     List {
                         NavigationLink {
-                            Button {
-                                KeychainHelper.standard.logout()
-                            } label: {
-                                Text("Logout")
-                            }
-
+                            AccountView()
                         } label: {
                                 HStack {
                                     Image(systemName: "person.circle")
@@ -40,7 +35,7 @@ struct SettingsView: View {
                                 }
                         }
                         .listRowBackground(Color.background)
-                        .listItemTint(.clear)
+//                        .listItemTint(.clear)
                         
                         NavigationLink {
                             Text("Homepage")
@@ -58,7 +53,7 @@ struct SettingsView: View {
                             }
                         }
                         .listRowBackground(Color.background)
-                        .listItemTint(.clear)
+//                        .listItemTint(.clear)
                         
                     }
                     .padding(.top, 16)
