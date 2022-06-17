@@ -11,7 +11,7 @@ import Introspect
 
 struct SettingsView: View {
     @EnvironmentObject var coordinator: TabCoordinator
-    
+    @State var showAccountView: Bool = false
     @State private var nav: UINavigationController?
     
     var body: some View {
@@ -20,7 +20,7 @@ struct SettingsView: View {
                     Color.background
                         .ignoresSafeArea()
                     List {
-                        NavigationLink {
+                        NavigationLink(isActive: $showAccountView) {
                             AccountView()
                         } label: {
                                 HStack {

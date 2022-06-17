@@ -9,6 +9,7 @@ import SwiftUI
 import Introspect
 
 struct AccountView: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var coordinator: TabCoordinator
     @State var editable: Bool = false
     @State var username: String = ""
@@ -34,6 +35,8 @@ struct AccountView: View {
                     .foregroundColor(.fontMain)
                     Button {
                         coordinator.userViewModel.logout()
+                        //TODO NavigationBar Coordinator
+                        self.presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Logout")
                             .foregroundColor(.fontMain)
@@ -54,7 +57,6 @@ struct AccountView: View {
             }
             
         }
-        
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 if let user = coordinator.userViewModel.user {
@@ -82,6 +84,9 @@ struct AccountView: View {
                 Button {
                     if editable {
                         //TODO: Send changes
+                        coordinator.userViewModel.user?.email = email
+                        coordinator.userViewModel.user?.username = username
+                        coordinator.userViewModel.update()
                     }
                     editable.toggle()
                 } label: {
