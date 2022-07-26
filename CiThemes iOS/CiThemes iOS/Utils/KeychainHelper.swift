@@ -107,5 +107,6 @@ extension KeychainHelper {
         case tokens
         case email
         case userId
+        case hometownId
     }
 }

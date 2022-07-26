@@ -18,7 +18,7 @@ final class UserViewModel: ObservableObject {
     
     init(coordinator: UserViewCoordinator) {
         if let existingTokens = KeychainHelper.standard.read(service: .tokens, type: UserToken.self), let existingEmail = KeychainHelper.standard.read(service: .email, type: String.self) {
-            self.user = User(id: existingTokens.refreshToken.userId, email: existingEmail, hometownId: existingTokens.refreshToken.hometownId)
+            self.user = User(id: existingTokens.refreshToken.userId, email: existingEmail, hometownId: existingTokens.refreshToken.hometownId ?? KeychainHelper.standard.read(service: .hometownId, type: Int.self))
         }
         self.coordinator = coordinator
     }
@@ -141,6 +141,8 @@ final class UserViewModel: ObservableObject {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         guard let data = try? JSONEncoder().encode(user) else { return }
         request.httpBody = data
         
@@ -169,16 +171,18 @@ final class UserViewModel: ObservableObject {
         }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         let params:[String: Int] = ["city_id":id]
         guard let data = try? JSONEncoder().encode(params) else {
             return
         }
         request.httpBody = data
     
-        let publisher = NetworkManager.shared.authenticatedRequestPublisher(for: request, decoding: RootResponse<String>.self)
+        let publisher = NetworkManager.shared.authenticatedRequestPublisher(for: request, decoding: RootResponse<[String:Int]>.self)
             .receive(on: DispatchQueue.main)
             .map(\.result)
-            .sink { completion in
+            .sink { [weak self] completion in
                 switch completion {
                 case .finished:
                     break
@@ -186,15 +190,26 @@ final class UserViewModel: ObservableObject {
                     #if DEBUG
                     print(error)
                     #endif
+                    if let apiError = error as? APIError {
+                        switch apiError {
+                        case .httpError(let int):
+                            #if DEBUG
+                            print(int)
+                            #endif
+                        case .invalidURL, .other:
+                            #if DEBUG
+                            print(error)
+                            #endif
+                        case .invalidAuth, .loginRequired:
+                            self?.coordinator.toggleLogin()
+                        
+                        }
+                    }
                     break
                 }
-            } receiveValue: {[weak self] message in
-                if message == "OK" {
-                    if var existingTokens = KeychainHelper.standard.read(service: .tokens, type: UserToken.self) {
-                        existingTokens.refreshToken.hometownId = id
-                        self?.saveUserData(from: existingTokens)
-                    }
-                    self?.user?.id = id
+            } receiveValue: { response in
+                if let hometownId = response["hometown"] {
+                    KeychainHelper.standard.save(hometownId, service: .hometownId)
                 }
             }
         subscriptions.append(publisher)

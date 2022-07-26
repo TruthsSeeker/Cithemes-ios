@@ -96,7 +96,8 @@ struct CityPlaylist: View {
                     EmptyView()
                 } else {
                     Button {
-                        print("Hi")
+                        guard let id = playlistVM.city?.id else { return }
+                        coordinator.userViewModel.setHometown(id: id)
                     } label: {
                         ZStack {
                             Circle()

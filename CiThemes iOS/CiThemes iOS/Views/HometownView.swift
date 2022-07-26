@@ -10,7 +10,7 @@ import SwiftUI
 struct HometownView: View {
     @EnvironmentObject var coordinator: TabCoordinator
     var body: some View {
-        if coordinator.userViewModel.user != nil {
+        if coordinator.userViewModel.user?.hometownId != nil {
             CityPlaylist(playlistVM: PlaylistViewModel())
         } else {
             HometownMissingView()
