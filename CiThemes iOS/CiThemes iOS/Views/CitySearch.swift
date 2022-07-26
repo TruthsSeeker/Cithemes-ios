@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct CitySearch: View {
+    @EnvironmentObject var coordinator: TabCoordinator
     @StateObject var searchVM: CitySearchViewModel = CitySearchViewModel()
     @State private var detailsShown = false
+    @State private var nav: UINavigationController?
+    @FocusState var searchFieldFocused: Bool
     
     var body: some View {
         NavigationView {
@@ -18,7 +22,10 @@ struct CitySearch: View {
                 GeometryReader { geo in
                     ZStack {
                         VStack{
-                            SearchBar(search: $searchVM.searchTerms, height: 45, buttonAction: {searchVM.searchByName()})
+                            SearchBar(search: $searchVM.searchTerms, focus: _searchFieldFocused, height: 45, buttonAction: {
+                                searchVM.searchByName()
+                                searchFieldFocused = false
+                            })
                             ZStack {
                                 if searchVM.results.isEmpty {
                                     VStack {
@@ -41,10 +48,11 @@ struct CitySearch: View {
                                         .listRowInsets(EdgeInsets())
                                             
                                     }
-                                        .listStyle(PlainListStyle())
-                                        .onAppear {
-                                            UITableView.appearance().separatorColor = .clear
-                                        }
+                                    .listStyle(PlainListStyle())
+                                    .onAppear {
+                                        UITableView.appearance().separatorColor = .clear
+                                        UITableView.appearance().keyboardDismissMode = .onDrag
+                                    }
                                 }
                                 
                                 LocationButton { location in
@@ -61,10 +69,21 @@ struct CitySearch: View {
             .navigationBarHidden(true)
             .navigationBarTitle("")
         }
-        .onAppear{
-            UINavigationBar.appearance().tintColor = UIColor.fontAlwaysLight
+        .introspectNavigationController { nav in
+            self.nav = nav
+            setNavigationBarAppearance()
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                searchFieldFocused = true
+            }
         }
         
+    }
+    
+    func setNavigationBarAppearance() {
+        guard let nav = nav, coordinator.tab == .search else { return }
+        nav.navigationBar.tintColor = UIColor.fontAlwaysLight
     }
 }
 

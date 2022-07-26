@@ -72,9 +72,7 @@ struct FirstRankCell: View {
         .padding(8)
         .background(.clear)
         .sheet(isPresented: $showLogin, content: {
-            LoginSignUp {
-                showLogin.toggle()
-            }
+            LoginSignUp()
         })
         .onAppear {
             detailVM.details = entry.songInfo

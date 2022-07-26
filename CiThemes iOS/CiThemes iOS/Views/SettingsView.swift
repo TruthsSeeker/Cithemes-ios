@@ -7,21 +7,21 @@
 
 import SwiftUI
 import CoreLocation
+import Introspect
 
 struct SettingsView: View {
+    @EnvironmentObject var coordinator: TabCoordinator
+    @State var showAccountView: Bool = false
+    @State private var nav: UINavigationController?
+    
     var body: some View {
             NavigationView {
                 ZStack {
                     Color.background
                         .ignoresSafeArea()
                     List {
-                        NavigationLink {
-                            Button {
-                                KeychainHelper.standard.logout()
-                            } label: {
-                                Text("Logout")
-                            }
-
+                        NavigationLink(isActive: $showAccountView) {
+                            AccountView()
                         } label: {
                                 HStack {
                                     Image(systemName: "person.circle")
@@ -35,7 +35,7 @@ struct SettingsView: View {
                                 }
                         }
                         .listRowBackground(Color.background)
-                        .listItemTint(.clear)
+//                        .listItemTint(.clear)
                         
                         NavigationLink {
                             Text("Homepage")
@@ -53,7 +53,7 @@ struct SettingsView: View {
                             }
                         }
                         .listRowBackground(Color.background)
-                        .listItemTint(.clear)
+//                        .listItemTint(.clear)
                         
                     }
                     .padding(.top, 16)
@@ -62,13 +62,20 @@ struct SettingsView: View {
                 
             }
             .background(.background)
-            .onAppear {
-                UINavigationBar.appearance().tintColor = UIColor.relief
-                UINavigationBar.appearance().isTranslucent = true
-                UINavigationBar.appearance().backgroundColor = .clear
-                UITableView.appearance().backgroundColor = .clear
-            }
+            .introspectNavigationController(customize: { nav in
+                self.nav = nav
+                self.setNavigationBarAppearance()
+                
+            })
+    }
     
+    private func setNavigationBarAppearance() {
+        guard let nav = self.nav, coordinator.tab == .setting else { return }
+        nav.navigationBar.tintColor = UIColor.relief
+        nav.navigationBar.isTranslucent = true
+        nav.navigationBar.backgroundColor = .clear
+        
+        UITableView.appearance().backgroundColor = .clear
     }
 }
 

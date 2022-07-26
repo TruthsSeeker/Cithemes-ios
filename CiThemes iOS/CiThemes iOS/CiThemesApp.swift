@@ -12,7 +12,7 @@ struct CiThemesApp: App {
     var body: some Scene {
         WindowGroup {
             TabNavigationView()
-                .environmentObject(UserViewModel())
+                
         }
     }
 }

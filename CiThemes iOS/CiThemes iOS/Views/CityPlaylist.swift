@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CityPlaylist: View {
     @StateObject var playlistVM: PlaylistViewModel
-    @EnvironmentObject var userVM: UserViewModel
-    
+    @EnvironmentObject var coordinator: TabCoordinator
+
     @State var searchShown: Bool = false
     @State var detailedSong: SongInfo?
     
@@ -63,21 +63,6 @@ struct CityPlaylist: View {
                     }
                 }
                 .edgesIgnoringSafeArea([.top, .bottom])
-                
-                Button {
-                    KeychainHelper.standard.delete(service: .userId)
-                    KeychainHelper.standard.delete(service: .tokens)
-                    KeychainHelper.standard.delete(service: .email)
-                } label: {
-                    ZStack {
-                        Circle()
-                            .foregroundColor(.red)
-                        Text("X")
-                            .foregroundColor(.fontAlwaysLight)
-                    }
-                    .frame(width: 45, height: 45, alignment: .bottomLeading)
-                }
-                .position(x: 45, y: geo.size.height - 45)
 
                 SearchButton(width: 45, height: 45) {
                     self.searchShown = true
@@ -107,11 +92,12 @@ struct CityPlaylist: View {
         .environmentObject(playlistVM)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                if let hometownId = userVM.user?.hometownId, hometownId == playlistVM.city?.id ?? -1 {
+                if let hometownId = coordinator.userViewModel.user?.hometownId, hometownId == playlistVM.city?.id ?? -1 {
                     EmptyView()
                 } else {
                     Button {
-                        print("Hi")
+                        guard let id = playlistVM.city?.id else { return }
+                        coordinator.userViewModel.setHometown(id: id)
                     } label: {
                         ZStack {
                             Circle()

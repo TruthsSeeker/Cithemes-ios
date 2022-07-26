@@ -10,6 +10,7 @@ import SwiftUI
 struct SongDetails: View {
     @StateObject private var detailsViewModel: SongDetailViewModel = SongDetailViewModel()
     @EnvironmentObject var playlistContext: PlaylistViewModel
+    @EnvironmentObject var coordinator: TabCoordinator
     @State var showLogin: Bool = false
     var details: SongInfo
     
@@ -80,16 +81,14 @@ struct SongDetails: View {
                     
                     Button("Vote") {
                         guard KeychainHelper.standard.read(service: .tokens, account: KeychainHelper.account, type: UserToken.self) != nil else {
-                            showLogin.toggle()
+                            coordinator.showSignUp.toggle()
                             return
                         }
                         detailsViewModel.vote()
                         
                     }
-                    .sheet(isPresented: $showLogin) {
-                        LoginSignUp(loginIsShown: true, userVM: UserViewModel()) {
-                            showLogin.toggle()
-                        }
+                    .sheet(isPresented: $coordinator.showSignUp) {
+                        LoginSignUp()
                     }
                 }
                 .padding(EdgeInsets(top: 12, leading: 8, bottom: 12, trailing: 8))

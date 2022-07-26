@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,9 @@
 		6207D29027A0565C00969803 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6207D28F27A0565C00969803 /* RemoteImage.swift */; };
 		6207D29427A1655400969803 /* Font+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6207D29327A1655400969803 /* Font+Custom.swift */; };
 		62161604284F49F2003817C8 /* HometownMissingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62161603284F49F2003817C8 /* HometownMissingView.swift */; };
+		6218CC732851E7F2008B5303 /* UserViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218CC722851E7F2008B5303 /* UserViewCoordinator.swift */; };
+		6218CC752852268D008B5303 /* HometownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218CC742852268D008B5303 /* HometownView.swift */; };
+		6218CC7728523914008B5303 /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218CC7628523914008B5303 /* StyledButton.swift */; };
 		6224B8E92806DD3F0004AEEA /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224B8E82806DD3F0004AEEA /* KeychainHelper.swift */; };
 		6224B8EB280700FD0004AEEA /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224B8EA280700FD0004AEEA /* UserToken.swift */; };
 		6224B8ED28072FD00004AEEA /* FlippableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224B8EC28072FD00004AEEA /* FlippableView.swift */; };
@@ -68,6 +71,9 @@
 		62AB2C9D2812A2C100A57371 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB2C9C2812A2C100A57371 /* NetworkManager.swift */; };
 		62AC3A66282266B900202285 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC3A65282266B900202285 /* SettingsView.swift */; };
 		62B7238328216D1800D43C84 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B7238228216D1800D43C84 /* TabBarController.swift */; };
+		62B75F632857276D0062A888 /* PreviewPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B75F622857276D0062A888 /* PreviewPlayer.swift */; };
+		62B75F65285777EB0062A888 /* PreviewPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B75F64285777EB0062A888 /* PreviewPlayerViewModel.swift */; };
+		62B75F682859E12F0062A888 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 62B75F672859E12F0062A888 /* Introspect */; };
 		62BEA20927FF19410002FFA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEA20527FF19400002FFA9 /* LaunchScreen.storyboard */; };
 		62BEA20C27FF1A790002FFA9 /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */; };
 		62BEA20E27FF20F40002FFA9 /* CityPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20D27FF20F40002FFA9 /* CityPlaylist.swift */; };
@@ -77,6 +83,7 @@
 		62CACE7E282BD05300792CB3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CACE7D282BD05300792CB3 /* MapKit.framework */; };
 		62D7F6DE281FDD2200DF1DAB /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7F6DD281FDD2200DF1DAB /* TabNavigationView.swift */; };
 		62DFF4002850E970004B071A /* UIImage+Gradated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DFF3FF2850E970004B071A /* UIImage+Gradated.swift */; };
+		62DFF4022851DADE004B071A /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DFF4012851DADE004B071A /* TabCoordinator.swift */; };
 		62F545A3280D57140028C260 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F545A2280D57140028C260 /* APIError.swift */; };
 		62F545A5280DA6660028C260 /* JWTWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F545A4280DA6660028C260 /* JWTWrapper.swift */; };
 		62FA332E27D6368200B07426 /* env.plist in Resources */ = {isa = PBXBuildFile; fileRef = 62FA332D27D6368100B07426 /* env.plist */; };
@@ -110,6 +117,9 @@
 		6207D28F27A0565C00969803 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		6207D29327A1655400969803 /* Font+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Custom.swift"; sourceTree = "<group>"; };
 		62161603284F49F2003817C8 /* HometownMissingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HometownMissingView.swift; sourceTree = "<group>"; };
+		6218CC722851E7F2008B5303 /* UserViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewCoordinator.swift; sourceTree = "<group>"; };
+		6218CC742852268D008B5303 /* HometownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HometownView.swift; sourceTree = "<group>"; };
+		6218CC7628523914008B5303 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		6224B8E82806DD3F0004AEEA /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		6224B8EA280700FD0004AEEA /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
 		6224B8EC28072FD00004AEEA /* FlippableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlippableView.swift; sourceTree = "<group>"; };
@@ -169,6 +179,8 @@
 		62AB2C9C2812A2C100A57371 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		62AC3A65282266B900202285 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		62B7238228216D1800D43C84 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		62B75F622857276D0062A888 /* PreviewPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPlayer.swift; sourceTree = "<group>"; };
+		62B75F64285777EB0062A888 /* PreviewPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPlayerViewModel.swift; sourceTree = "<group>"; };
 		62BEA20627FF19400002FFA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCell.swift; sourceTree = "<group>"; };
 		62BEA20D27FF20F40002FFA9 /* CityPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPlaylist.swift; sourceTree = "<group>"; };
@@ -178,6 +190,7 @@
 		62CACE7D282BD05300792CB3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		62D7F6DD281FDD2200DF1DAB /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		62DFF3FF2850E970004B071A /* UIImage+Gradated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gradated.swift"; sourceTree = "<group>"; };
+		62DFF4012851DADE004B071A /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		62F545A2280D57140028C260 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		62F545A4280DA6660028C260 /* JWTWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTWrapper.swift; sourceTree = "<group>"; };
 		62FA332D27D6368100B07426 /* env.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = env.plist; sourceTree = "<group>"; };
@@ -191,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62CACE7E282BD05300792CB3 /* MapKit.framework in Frameworks */,
+				62B75F682859E12F0062A888 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +228,7 @@
 		6207D28C279EE61F00969803 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6218CC712851E7DA008B5303 /* Protocols */,
 				62AB2C9B2812A26B00A57371 /* Networking */,
 				62AB2C8F2810529500A57371 /* Wrappers */,
 				62AB2C8E2810527C00A57371 /* Extensions */,
@@ -223,6 +238,14 @@
 				6267425728460F6D0050368E /* LocationProvider.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		6218CC712851E7DA008B5303 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6218CC722851E7F2008B5303 /* UserViewCoordinator.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		622EC83126A6EEC900786192 = {
@@ -285,14 +308,14 @@
 		622EC86F26A6F0BF00786192 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				62B0D738285B0A1800766336 /* Settings */,
+				62B75F612857274B0062A888 /* Song Details */,
 				62C56E38282A6F34002BB4F8 /* Search */,
 				62D7F6DC281FDD0000DF1DAB /* Tab Bar */,
 				62AB2C9328115D4400A57371 /* Playlist */,
 				629D18B228056D410014F2E1 /* Login Sign Up */,
-				62A3549327DB680E00161906 /* SongDetails.swift */,
-				62AC3A65282266B900202285 /* SettingsView.swift */,
-				623F39CA284A458400930201 /* AccountView.swift */,
 				62161603284F49F2003817C8 /* HometownMissingView.swift */,
+				6218CC742852268D008B5303 /* HometownView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -348,6 +371,7 @@
 				6224B8EC28072FD00004AEEA /* FlippableView.swift */,
 				6207D28F27A0565C00969803 /* RemoteImage.swift */,
 				62AB2C902810532F00A57371 /* RefreshableScrollView.swift */,
+				6218CC7628523914008B5303 /* StyledButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -399,14 +423,34 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		62B0D738285B0A1800766336 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				62AC3A65282266B900202285 /* SettingsView.swift */,
+				623F39CA284A458400930201 /* AccountView.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		62B75F612857274B0062A888 /* Song Details */ = {
+			isa = PBXGroup;
+			children = (
+				62A3549327DB680E00161906 /* SongDetails.swift */,
+				62B75F622857276D0062A888 /* PreviewPlayer.swift */,
+			);
+			name = "Song Details";
+			sourceTree = "<group>";
+		};
 		62C41A982780931500B6490E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				62DFF4012851DADE004B071A /* TabCoordinator.swift */,
 				62C41A992780932B00B6490E /* PlaylistViewModel.swift */,
 				628FFA712784AF1300343216 /* SongDetailViewModel.swift */,
 				62858BE427998AA5005C0D34 /* SongSearchViewModel.swift */,
 				629D18B92805A1450014F2E1 /* UserViewModel.swift */,
 				62039536282A746A003E4E9B /* CitySearchViewModel.swift */,
+				62B75F64285777EB0062A888 /* PreviewPlayerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -474,6 +518,9 @@
 			dependencies = (
 			);
 			name = CiThemes;
+			packageProductDependencies = (
+				62B75F672859E12F0062A888 /* Introspect */,
+			);
 			productName = "CiThemes iOS";
 			productReference = 622EC83A26A6EEC900786192 /* CiThemes.app */;
 			productType = "com.apple.product-type.application";
@@ -545,6 +592,9 @@
 				Base,
 			);
 			mainGroup = 622EC83126A6EEC900786192;
+			packageReferences = (
+				62B75F662859E12F0062A888 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = 622EC83B26A6EEC900786192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -605,6 +655,7 @@
 				629D18C02805CDDC0014F2E1 /* Login.swift in Sources */,
 				62039537282A746A003E4E9B /* CitySearchViewModel.swift in Sources */,
 				623F39CB284A458400930201 /* AccountView.swift in Sources */,
+				6218CC7728523914008B5303 /* StyledButton.swift in Sources */,
 				6224B8ED28072FD00004AEEA /* FlippableView.swift in Sources */,
 				62AB2C86280FF52700A57371 /* Authenticator.swift in Sources */,
 				6224B8EB280700FD0004AEEA /* UserToken.swift in Sources */,
@@ -621,6 +672,7 @@
 				6265818227FEDA500037D6A8 /* CiThemesApp.swift in Sources */,
 				627E4A5028081ADB007B4107 /* Validator.swift in Sources */,
 				629D18B82805A0C50014F2E1 /* User.swift in Sources */,
+				6218CC752852268D008B5303 /* HometownView.swift in Sources */,
 				62F545A5280DA6660028C260 /* JWTWrapper.swift in Sources */,
 				62BEA20E27FF20F40002FFA9 /* CityPlaylist.swift in Sources */,
 				62BEA20C27FF1A790002FFA9 /* PlaylistCell.swift in Sources */,
@@ -630,6 +682,7 @@
 				6207D28E279EE63100969803 /* Color+Theme.swift in Sources */,
 				62039535282A73DB003E4E9B /* City.swift in Sources */,
 				62B7238328216D1800D43C84 /* TabBarController.swift in Sources */,
+				62DFF4022851DADE004B071A /* TabCoordinator.swift in Sources */,
 				62858BE7279ADD6E005C0D34 /* SongInfo.swift in Sources */,
 				62DFF4002850E970004B071A /* UIImage+Gradated.swift in Sources */,
 				62FA333427DA4FFD00B07426 /* RootResponse.swift in Sources */,
@@ -651,12 +704,15 @@
 				62858BE127995E3C005C0D34 /* SearchBar.swift in Sources */,
 				6224B8E92806DD3F0004AEEA /* KeychainHelper.swift in Sources */,
 				624D0F7627E9CA9C003CC730 /* StringURLWrapper.swift in Sources */,
+				6218CC732851E7F2008B5303 /* UserViewCoordinator.swift in Sources */,
 				6267425628460B460050368E /* LocationButton.swift in Sources */,
 				62FA333227DA408600B07426 /* TimeInterval+Conversions.swift in Sources */,
+				62B75F632857276D0062A888 /* PreviewPlayer.swift in Sources */,
 				6234399D278EE0E20016093C /* SearchButton.swift in Sources */,
 				62AB2C9A2811C7CC00A57371 /* Int+Formatting.swift in Sources */,
 				62F545A3280D57140028C260 /* APIError.swift in Sources */,
 				62AB2C912810532F00A57371 /* RefreshableScrollView.swift in Sources */,
+				62B75F65285777EB0062A888 /* PreviewPlayerViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -985,6 +1041,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		62B75F662859E12F0062A888 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		62B75F672859E12F0062A888 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62B75F662859E12F0062A888 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 622EC83226A6EEC900786192 /* Project object */;
 }

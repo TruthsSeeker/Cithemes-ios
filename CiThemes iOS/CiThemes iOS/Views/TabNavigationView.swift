@@ -8,9 +8,49 @@
 import SwiftUI
 
 struct TabNavigationView: View {
-    @State var selection: Int = 0
+    @ObservedObject var coordinator: TabCoordinator = TabCoordinator()
     
     init() {
+        configureApperance()
+    }
+    
+    var body: some View {
+        TabView(selection: $coordinator.tab) {
+            HometownView()
+                .tabItem {
+                    Image("Home Tab")
+                    Text("Hometown")
+                }
+                .tag(Tab.home)
+            CitySearch()
+                .tabItem {
+                    Image("magnifying-glass")
+                    Text("Search")
+                }
+                .tag(Tab.search)
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gearshape.fill")
+                    Text("Settings")
+                }
+                .tag(Tab.setting)
+                .tint(.tabSelected)
+        }
+        .transition(.slide)
+        .animation(.easeInOut, value: coordinator.tab)
+        .onAppear {
+            UITabBar.appearance().backgroundColor = .accent
+            UITabBar.appearance().barTintColor = .relief
+            
+        }
+        .sheet(isPresented: $coordinator.showSignUp) {
+            LoginSignUp()
+                .environmentObject(coordinator)
+        }
+        .environmentObject(coordinator)
+    }
+    
+    fileprivate func configureApperance() {
         let appearance = UITabBarAppearance()
         appearance.backgroundColor = .accent
         
@@ -23,32 +63,11 @@ struct TabNavigationView: View {
             ])
         let tabitemAppearance = UITabBarItemAppearance()
         tabitemAppearance.normal.iconColor = .relief
-        tabitemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.relief]
+        tabitemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.relief as Any]
+        tabitemAppearance.selected.iconColor = .tabSelected
+        tabitemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.tabSelected as Any]
         appearance.stackedLayoutAppearance = tabitemAppearance
         UITabBar.appearance().standardAppearance = appearance
-    }
-    
-    var body: some View {
-        TabView(selection: $selection) {
-            CityPlaylist(playlistVM: PlaylistViewModel())
-                .tabItem {
-                    Image("Home Tab")
-                    Text("Hometown")
-                }
-                .tag(0)
-            CitySearch()
-                .tabItem {
-                    Image("magnifying-glass")
-                    Text("Search")
-                }
-        }
-        .onAppear {
-            UITabBar.appearance().backgroundColor = .accent
-            UITabBar.appearance().barTintColor = .relief
-            
-        }
-        .tint(.tabSelected)
-        .accentColor(.tabSelected)
     }
 }
 
