@@ -8,6 +8,8 @@
 import Foundation
 
 class CacheManager {
+    static let shared = CacheManager()
+    
     private lazy var cityDirectory: URL? = {
         if let documentsURL = try? FileManager.default
             .url(
@@ -38,6 +40,8 @@ class CacheManager {
         }
         return nil
     }()
+    
+    private init() {}
     
     func savePicture(withNameAndExtension name: String, forData data: Data) -> String? {
         guard let directory = cityDirectory else { return nil }
