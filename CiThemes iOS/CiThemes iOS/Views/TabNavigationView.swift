@@ -12,6 +12,9 @@ struct TabNavigationView: View {
     
     init() {
         configureApperance()
+        print("Hi")
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        print("Bye")
     }
     
     var body: some View {
