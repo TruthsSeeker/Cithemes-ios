@@ -15,6 +15,7 @@ struct RemoteImage: View {
     init(_ url: URL?, placeholder: Image? = nil) {
         loader = ImageLoader(url)
         self.placeholder = placeholder
+        
     }
     
     @ViewBuilder

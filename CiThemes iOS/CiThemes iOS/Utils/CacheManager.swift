@@ -8,7 +8,7 @@
 import Foundation
 
 class CacheManager {
-    lazy var cityDirectory: URL = {
+    private lazy var cityDirectory: URL? = {
         if let documentsURL = try? FileManager.default
             .url(
                 for: .documentDirectory,
@@ -29,18 +29,28 @@ class CacheManager {
                 do {
                     try FileManager.default.createDirectory(at: cityDirectory, withIntermediateDirectories: false)
                 } catch {
-                    //TODO: Handle error
-                    fatalError("Unable to create Cities directory:\n\(error)")
+                    return nil
                 }
                 return cityDirectory
             } else {
-                return filteredChildren.first!
+                return filteredChildren.first
             }
         }
-        return URL(fileURLWithPath: "")
+        return nil
     }()
     
-    init() {
-        
+    func savePicture(withNameAndExtension name: String, forData data: Data) -> String? {
+        guard let directory = cityDirectory else { return nil }
+        let path = directory.path.appending(name)
+        if FileManager.default.createFile(atPath: path, contents: data) {
+            return path
+        } else {
+            return nil
+        }
+    }
+    
+    func loadPictureData(fromPath path: String) -> Data? {
+        guard let fileHandle = FileHandle(forReadingAtPath: path) else { return nil }
+        return try? fileHandle.readToEnd()
     }
 }
