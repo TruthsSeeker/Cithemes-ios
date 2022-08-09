@@ -49,6 +49,7 @@
 		6267425828460F6D0050368E /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267425728460F6D0050368E /* LocationProvider.swift */; };
 		6267E52928A24FE4005D900F /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267E52828A24FE4005D900F /* ImageCache.swift */; };
 		6267E52B28A25EEC005D900F /* RemoteImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267E52A28A25EEC005D900F /* RemoteImageURL.swift */; };
+		6267E52D28A268C3005D900F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6267E52C28A268C2005D900F /* .gitignore */; };
 		627E4A5028081ADB007B4107 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627E4A4F28081ADB007B4107 /* Validator.swift */; };
 		62858BDB2799563B005C0D34 /* SongSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BDA2799563B005C0D34 /* SongSearch.swift */; };
 		62858BE127995E3C005C0D34 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BE027995E3C005C0D34 /* SearchBar.swift */; };
@@ -161,6 +162,7 @@
 		6267425728460F6D0050368E /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		6267E52828A24FE4005D900F /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		6267E52A28A25EEC005D900F /* RemoteImageURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageURL.swift; sourceTree = "<group>"; };
+		6267E52C28A268C2005D900F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		627E4A4F28081ADB007B4107 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		62858BDA2799563B005C0D34 /* SongSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearch.swift; sourceTree = "<group>"; };
 		62858BE027995E3C005C0D34 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 		622EC83126A6EEC900786192 = {
 			isa = PBXGroup;
 			children = (
+				6267E52C28A268C2005D900F /* .gitignore */,
 				622EC83C26A6EEC900786192 /* CiThemes iOS */,
 				622EC85326A6EECA00786192 /* CiThemes iOSTests */,
 				622EC85E26A6EECA00786192 /* CiThemes iOSUITests */,
@@ -623,6 +626,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6267E52D28A268C3005D900F /* .gitignore in Resources */,
 				622EC89026A704B700786192 /* Raleway-VariableFont_wght.ttf in Resources */,
 				622EC88726A703D400786192 /* OpenSans-SemiBold.ttf in Resources */,
 				62FA332E27D6368200B07426 /* env.plist in Resources */,
