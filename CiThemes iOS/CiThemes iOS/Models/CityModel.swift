@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import CoreData
 
-struct City: Identifiable, Codable {
+struct CityModel: RemoteImageURL {
     var id: Int?
     var country: String
     var iso2: String
     var name: String
     @StringURL var image: URL?
     var population: Int
+    
 }

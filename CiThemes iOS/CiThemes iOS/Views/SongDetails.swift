@@ -108,6 +108,6 @@ struct SongDetails: View {
 
 struct SongDetails_Previews: PreviewProvider {
     static var previews: some View {
-        SongDetails(details: SongInfo.example).environmentObject(PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
+        SongDetails(details: SongInfo.example).environmentObject(PlaylistViewModel(list: [], city: CityModel(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
     }
 }

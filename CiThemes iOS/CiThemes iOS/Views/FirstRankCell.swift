@@ -85,6 +85,6 @@ struct FirstRankCell: View {
 
 struct FirstRankCell_Previews: PreviewProvider {
     static var previews: some View {
-        FirstRankCell(entry: PlaylistEntry(id: 0, songInfo: SongInfo.example, votes: 500, cityId: 1))
+        FirstRankCell(entry: PlaylistEntry(id: "0", songInfo: SongInfo.example, votes: 500, cityId: 1))
     }
 }

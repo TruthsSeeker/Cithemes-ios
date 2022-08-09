@@ -13,9 +13,7 @@ struct CiThemesApp: App {
         WindowGroup {
             TabNavigationView()
                 .environment(\.managedObjectContext, PersistentContainer().container.viewContext)
-                .task {
-                    print(CacheManager().cityDirectory)
-                }
+                
                 
         }
     }

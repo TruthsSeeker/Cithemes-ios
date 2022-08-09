@@ -20,7 +20,7 @@ final class PlaylistViewModel: ObservableObject {
     }()
     
 //    @Published var cityId: Int
-    @Published var city: City?
+    @Published var city: CityModel?
     var songsDict: [PlaylistEntry] {
         didSet {
             songsDict.sort { lhs, rhs in
@@ -30,7 +30,7 @@ final class PlaylistViewModel: ObservableObject {
         }
     }
     
-    init(list: [PlaylistEntry] = [], city: City? = nil) {
+    init(list: [PlaylistEntry] = [], city: CityModel? = nil) {
         self.songsDict = list
         self.city = city
     }
@@ -73,7 +73,7 @@ final class PlaylistViewModel: ObservableObject {
 
     
     
-    func update(id: Int, vote: VoteType) {
+    func update(id: String, vote: VoteType) {
         guard let index = songsDict.firstIndex(where: { entry in
             entry.id == id
         }) else { return }
@@ -82,6 +82,6 @@ final class PlaylistViewModel: ObservableObject {
     }
     
     static var placeholder = PlaylistViewModel(list: Array(repeating: 0, count: 50).map({ _ in
-        return PlaylistEntry(id: UUID().hashValue, songInfo: SongInfo(id: UUID().uuidString, title: String(Int.random(in: 1...100000)), artist: String(Int.random(in: 1...100000))), votes: Int.random(in: 0...1000), cityId: -1)
-    }), city: City(country: "France", iso2: "FR", name: "Strasbour", population: 123456))
+        return PlaylistEntry(id: UUID().uuidString, songInfo: SongInfo(id: UUID().uuidString, title: String(Int.random(in: 1...100000)), artist: String(Int.random(in: 1...100000))), votes: Int.random(in: 0...1000), cityId: -1)
+    }), city: CityModel(country: "France", iso2: "FR", name: "Strasbour", population: 123456))
 }

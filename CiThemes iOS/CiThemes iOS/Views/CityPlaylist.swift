@@ -117,6 +117,6 @@ struct CityPlaylist: View {
 
 struct CityPlaylist_Previews: PreviewProvider {
     static var previews: some View {
-        CityPlaylist(playlistVM: PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
+        CityPlaylist(playlistVM: PlaylistViewModel(list: [], city: CityModel(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
     }
 }

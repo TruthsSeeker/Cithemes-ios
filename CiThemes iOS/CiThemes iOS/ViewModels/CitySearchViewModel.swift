@@ -10,9 +10,9 @@ import Combine
 import CoreLocation
 
 final class CitySearchViewModel: ObservableObject {
-    @Published var city: City = City(country: "United States of America", iso2: "US", name: "Los Angeles", population: 0)
+    @Published var city: CityModel = CityModel(country: "United States of America", iso2: "US", name: "Los Angeles", population: 0)
     @Published var searchTerms: String = ""
-    @Published var results: [City] = []
+    @Published var results: [CityModel] = []
     private var searchPublisher: AnyCancellable?
     
     func searchByName() {
@@ -42,7 +42,7 @@ final class CitySearchViewModel: ObservableObject {
     }
     
     fileprivate func searchPublisher(_ request: URLRequest) -> AnyCancellable {
-        return NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<[City]>.self)
+        return NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<[CityModel]>.self)
             .receive(on: DispatchQueue.main)
             .map(\.result)
             .sink(receiveCompletion: { completion in

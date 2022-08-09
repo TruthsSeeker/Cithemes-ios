@@ -10,7 +10,7 @@ import Foundation
 struct RefreshToken: Codable {
     var iat: Int
     var exp: Int
-    var userId: Int
+    var userId: String
     var jwtId: String
     var hometownId: Int?
     

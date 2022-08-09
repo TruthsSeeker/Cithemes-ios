@@ -27,6 +27,10 @@ struct AccountView: View {
                         .tint(.red)
                     TextField("Email", text: $email)
                         .disabled(!editable)
+                        .keyboardType(.emailAddress)
+                        .textContentType(.emailAddress)
+                        
+                        
                     
                     NavigationLink("Change your password") {
                         //TODO: Change password view
@@ -68,6 +72,7 @@ struct AccountView: View {
         .navigationTitle("Account")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
+                //TODO: Store values to restore on cancel
                 if editable {
                     Button {
                         editable.toggle()

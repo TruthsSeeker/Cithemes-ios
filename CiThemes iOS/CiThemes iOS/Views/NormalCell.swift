@@ -76,7 +76,7 @@ struct NormalCell: View {
 
 struct NormalCell_Previews: PreviewProvider {
     static var previews: some View {
-        NormalCell(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), rank: 10)
+        NormalCell(entry: PlaylistEntry(id: "1", songInfo: SongInfo.example, votes: 345, cityId: 1), rank: 10)
     }
 }
 

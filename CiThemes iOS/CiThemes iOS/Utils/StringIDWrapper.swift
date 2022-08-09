@@ -17,6 +17,10 @@ struct StringID: Codable {
             wrappedValue = String(value)
         } else if let value = try? container.decode(String?.self) {
             wrappedValue = value
+        } else if let value = try? container.decode(String.self) {
+            wrappedValue = value
+        } else if let value = try? container.decode(Int.self) {
+            wrappedValue = String(value)
         } else {
             throw DecodingError.typeMismatch(String.self, DecodingError.Context(codingPath: container.codingPath, debugDescription: "Unable to decode ID", underlyingError: nil))
         }

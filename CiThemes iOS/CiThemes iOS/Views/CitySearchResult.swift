@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CitySearchResult: View {
-    @State var city: City
+    @State var city: CityModel
     var body: some View {
         ZStack(alignment: .leading) {
             Rectangle()
@@ -40,6 +40,6 @@ struct CitySearchResult: View {
 
 struct CitySearchResult_Previews: PreviewProvider {
     static var previews: some View {
-        CitySearchResult(city: City(country: "United States of America", iso2: "US", name: "Los Angeles", population: 0))
+        CitySearchResult(city: CityModel(country: "United States of America", iso2: "US", name: "Los Angeles", population: 0))
     }
 }

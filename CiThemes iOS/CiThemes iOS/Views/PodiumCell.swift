@@ -78,6 +78,6 @@ struct PodiumCell: View {
 
 struct PodiumCell_Previews: PreviewProvider {
     static var previews: some View {
-        PodiumCell(position: .second, entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 234, cityId: 1))
+        PodiumCell(position: .second, entry: PlaylistEntry(id: "1", songInfo: SongInfo.example, votes: 234, cityId: 1))
     }
 }
