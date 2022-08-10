@@ -20,7 +20,7 @@ final class SongDetailViewModel: ObservableObject {
     //MARK: Vote Request
     func vote(onAuthFail authClosure: @escaping ()->Void = {}, onSuccess successClosure: @escaping () -> Void = {}) {
         loading = true
-        guard let url = getUrl(for: "/songs/vote") else {
+        guard let url = URL.getUrl(for: "/songs/vote") else {
             return
         }
         

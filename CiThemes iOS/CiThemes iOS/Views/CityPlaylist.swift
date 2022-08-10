@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CityPlaylist: View {
-    @StateObject var playlistVM: PlaylistViewModel
+    @ObservedObject var playlistVM: PlaylistViewModel
     @EnvironmentObject var coordinator: TabCoordinator
 
     @State var searchShown: Bool = false
@@ -87,7 +87,7 @@ struct CityPlaylist: View {
                 }
             }
         }.onAppear {
-            playlistVM.fetch()
+//            playlistVM.fetch()
         }
         .environmentObject(playlistVM)
         .toolbar {

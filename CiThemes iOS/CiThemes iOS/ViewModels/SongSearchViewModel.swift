@@ -21,7 +21,7 @@ final class SongSearchViewModel: ObservableObject {
 
     func search() {
         loading = true
-        guard let url = getUrl(for: "/songs/search") else { return }
+        guard let url = URL.getUrl(for: "/songs/search") else { return }
         
         var request = URLRequest(url: url)
         let encoded = try? JSONEncoder().encode(["query": self.searchTerms])

@@ -33,7 +33,7 @@ final class UserViewModel: ObservableObject {
     
     //MARK: Signup request
     func signup() {
-        guard let url = getUrl(for: "/auth/signup") else { return }
+        guard let url = URL.getUrl(for: "/auth/signup") else { return }
         guard !email.isEmpty && !password.isEmpty else { return }
         
         var request = URLRequest(url: url)
@@ -59,7 +59,7 @@ final class UserViewModel: ObservableObject {
 
     //MARK: Login request
     func login() {
-        guard let url = getUrl(for: "/auth/login") else {
+        guard let url = URL.getUrl(for: "/auth/login") else {
             return
         }
         guard !email.isEmpty && !password.isEmpty else {
@@ -98,7 +98,7 @@ final class UserViewModel: ObservableObject {
     }
     
     func logout() {
-        guard let url = getUrl(for: "/auth/logout") else {
+        guard let url = URL.getUrl(for: "/auth/logout") else {
             return
         }
         
@@ -135,7 +135,7 @@ final class UserViewModel: ObservableObject {
     
     //TODO: these
     func update() {
-        guard let url = getUrl(for: "/auth/update") else {
+        guard let url = URL.getUrl(for: "/auth/update") else {
             return
         }
         
@@ -166,7 +166,7 @@ final class UserViewModel: ObservableObject {
     }
     
     func setHometown(id: Int) {
-        guard let url = getUrl(for: "/auth/hometown") else {
+        guard let url = URL.getUrl(for: "/auth/hometown") else {
             return
         }
         var request = URLRequest(url: url)

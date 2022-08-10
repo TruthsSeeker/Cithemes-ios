@@ -40,7 +40,7 @@ class Authenticator {
             }
             
             
-            guard let url = getURL(path: "/auth/refresh") else {
+            guard let url = URL.getUrl(for: "/auth/refresh") else {
                 return Fail(error: APIError.invalidURL).eraseToAnyPublisher()
             }
             var request = URLRequest(url: url)
@@ -74,25 +74,6 @@ class Authenticator {
                     }
                 })
                 .eraseToAnyPublisher()
-            
-            
         }
-    }
-    
-    private func getURL(path: String) -> URL? {
-        guard let listPath = Bundle.main.url(forResource: "env", withExtension: "plist") else { return nil }
-        do {
-            let listData = try Data(contentsOf: listPath)
-            if let dict = try PropertyListSerialization.propertyList(from: listData, options: [], format: nil) as? [String:String] {
-                var root: String = ""
-                #if DEBUG
-                root = dict["devUrl"] ?? ""
-                #else
-                root = dict["liveUrl"] ?? ""
-                #endif
-                return URL(string:root + path)
-            }
-        } catch { return nil }
-        return nil
     }
 }

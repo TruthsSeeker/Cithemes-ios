@@ -39,7 +39,7 @@ final class PlaylistViewModel: ObservableObject {
     
     
     func fetch(onComplete complete: @escaping () -> Void = {}) {
-        guard var url = getUrl(for: "/cities/\(city?.id ?? 0)/playlist") else {
+        guard var url = URL.getUrl(for: "/cities/\(city?.id ?? 0)/playlist") else {
             return
         }
         

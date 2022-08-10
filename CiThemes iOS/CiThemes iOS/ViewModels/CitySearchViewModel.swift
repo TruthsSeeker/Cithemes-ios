@@ -16,7 +16,7 @@ final class CitySearchViewModel: ObservableObject {
     private var searchPublisher: AnyCancellable?
     
     func searchByName() {
-        guard let urlPath = getUrl(for: "/cities/find") else {
+        guard let urlPath = URL.getUrl(for: "/cities/find") else {
             return
         }
         var urlParams = URLComponents(url: urlPath, resolvingAgainstBaseURL: true)
@@ -31,7 +31,7 @@ final class CitySearchViewModel: ObservableObject {
     
     func findNearest(withLocation location: CLLocation) {
         guard
-            let url = getUrl(
+            let url = URL.getUrl(
                 for: "/cities/nearest/\(location.coordinate.latitude)/\(location.coordinate.longitude)")
         else { return }
         
