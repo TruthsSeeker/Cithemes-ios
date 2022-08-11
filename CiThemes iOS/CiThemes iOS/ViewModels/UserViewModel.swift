@@ -210,6 +210,7 @@ final class UserViewModel: ObservableObject {
             } receiveValue: { response in
                 if let hometownId = response["hometown"] {
                     KeychainHelper.standard.save(hometownId, service: .hometownId)
+                    self.user?.hometownId = hometownId
                 }
             }
         subscriptions.append(publisher)

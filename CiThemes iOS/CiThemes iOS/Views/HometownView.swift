@@ -11,7 +11,7 @@ struct HometownView: View {
     @EnvironmentObject var coordinator: TabCoordinator
     @StateObject var playlistVM = PlaylistViewModel()
     var body: some View {
-        if let hometownId = coordinator.userViewModel.user?.hometownId {
+        if let hometownId = coordinator.userViewModel.user?.hometownId{
             CityPlaylist(playlistVM: playlistVM)
                 .task {
                     guard playlistVM.city == nil else { return }
