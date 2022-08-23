@@ -16,12 +16,13 @@ struct TabNavigationView: View {
     
     var body: some View {
         TabView(selection: $coordinator.tab) {
-            HometownView()
+            HometownCoordinatorView()
                 .tabItem {
                     Image("Home Tab")
                     Text("Hometown")
                 }
                 .tag(Tab.home)
+                .environmentObject(HometownCoordinator(id: coordinator.userViewModel.user?.hometownId))
             CitySearch()
                 .tabItem {
                     Image("magnifying-glass")
@@ -68,30 +69,6 @@ struct TabNavigationView: View {
         tabitemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.tabSelected as Any]
         appearance.stackedLayoutAppearance = tabitemAppearance
         UITabBar.appearance().standardAppearance = appearance
-    }
-}
-
-struct TabBar: UIViewControllerRepresentable {
-    class Coordinator: NSObject, UITabBarControllerDelegate {
-        
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        
-    }
-    
-    func makeUIViewController(context: Context) -> TabBarController {
-        let controller = TabBarController()
-        controller.delegate = context.coordinator
-        let playlist = UIHostingController(rootView: CityPlaylist(playlistVM: PlaylistViewModel(list: [])))
-        playlist.tabBarItem = UITabBarItem(title: "Hometown", image: UIImage(named: "Home Tab"), tag: 0)
-        controller.viewControllers = [playlist]
-        
-        return controller
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        return Coordinator()
     }
 }
 

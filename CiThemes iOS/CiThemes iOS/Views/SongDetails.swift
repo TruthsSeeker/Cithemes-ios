@@ -79,6 +79,10 @@ struct SongDetails: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
+                    if let url = details.preview {
+                        PreviewPlayer(player: PreviewPlayerViewModel(url: url))
+                    }
+                    
                     Button("Vote") {
                         guard KeychainHelper.standard.read(service: .tokens, account: KeychainHelper.account, type: UserToken.self) != nil else {
                             coordinator.showSignUp.toggle()
@@ -103,11 +107,13 @@ struct SongDetails: View {
             detailsViewModel.details = details
             detailsViewModel.cityID = playlistContext.city?.id ?? 0
         }
+        .onDisappear()
     }
 }
 
 struct SongDetails_Previews: PreviewProvider {
     static var previews: some View {
         SongDetails(details: SongInfo.example).environmentObject(PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
+            .environmentObject(TabCoordinator())
     }
 }

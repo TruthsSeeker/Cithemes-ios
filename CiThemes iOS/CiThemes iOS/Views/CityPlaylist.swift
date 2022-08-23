@@ -87,7 +87,7 @@ struct CityPlaylist: View {
                 }
             }
         }.onAppear {
-//            playlistVM.fetch()
+            playlistVM.fetch()
         }
         .environmentObject(playlistVM)
         .toolbar {
