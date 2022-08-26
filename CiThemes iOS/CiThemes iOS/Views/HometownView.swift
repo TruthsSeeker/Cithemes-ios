@@ -7,20 +7,23 @@
 
 import SwiftUI
 
-struct HometownCoordinatorView: View {
-    @EnvironmentObject var coordinator: HometownCoordinator
+struct HometownView: View {
+    var hometownId: Int?
+//    @EnvironmentObject var coordinator: TabCoordinator
     @StateObject var playlistVM = PlaylistViewModel()
     var body: some View {
         CityPlaylist(playlistVM: playlistVM)
             .task {
-                guard playlistVM.city == nil else { return }
-                guard let hometownId = coordinator.hometownId else { return }
+                print("hiiiii")
+//                guard playlistVM.city == nil else { return }
+                guard playlistVM.city == nil || playlistVM.city?.id != hometownId else { return }
+                guard let hometownId = hometownId else { return }
                 if let city = await City.fetch(id: hometownId) {
                     playlistVM.city = city
                     playlistVM.fetch()
                 }
             }
-            .conditional(coordinator.hometownId != nil) {
+            .conditional(hometownId == nil) {
                 HometownMissingView()
             }
     }
@@ -28,6 +31,6 @@ struct HometownCoordinatorView: View {
 
 struct HometownView_Previews: PreviewProvider {
     static var previews: some View {
-        HometownCoordinatorView()
+        HometownView()
     }
 }

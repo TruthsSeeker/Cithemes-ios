@@ -18,6 +18,7 @@ class TabCoordinator: ObservableObject, UserViewCoordinator {
     @Published var tab = Tab.home
     @Published var userViewModel: UserViewModel!
     @Published var showSignUp: Bool = false
+    @Published var hometownId: Int?
     
     init() {
         self.userViewModel = UserViewModel(coordinator: self)
@@ -26,5 +27,9 @@ class TabCoordinator: ObservableObject, UserViewCoordinator {
     
     func toggleLogin() {
         showSignUp.toggle()
+    }
+    
+    func updateHometown(id: Int?) {
+        self.hometownId = id
     }
 }

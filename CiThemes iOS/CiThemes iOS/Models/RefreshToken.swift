@@ -12,12 +12,10 @@ struct RefreshToken: Codable {
     var exp: Int
     var userId: Int
     var jwtId: String
-    var hometownId: Int?
     
     enum CodingKeys: String, CodingKey {
         case userId = "user_id"
         case jwtId = "jwtid"
-        case hometownId = "hometown_id"
         case iat, exp
     }
 }

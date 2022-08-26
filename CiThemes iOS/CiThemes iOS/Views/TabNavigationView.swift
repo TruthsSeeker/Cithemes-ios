@@ -16,13 +16,12 @@ struct TabNavigationView: View {
     
     var body: some View {
         TabView(selection: $coordinator.tab) {
-            HometownCoordinatorView()
+            HometownView(hometownId: coordinator.hometownId)
                 .tabItem {
                     Image("Home Tab")
                     Text("Hometown")
                 }
                 .tag(Tab.home)
-                .environmentObject(HometownCoordinator(id: coordinator.userViewModel.user?.hometownId))
             CitySearch()
                 .tabItem {
                     Image("magnifying-glass")

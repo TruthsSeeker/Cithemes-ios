@@ -70,6 +70,7 @@ final class KeychainHelper {
         self.delete(service: .email)
         self.delete(service: .tokens)
         self.delete(service: .userId)
+        self.delete(service: .hometownId)
     }
 }
 
