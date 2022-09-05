@@ -12,8 +12,8 @@ struct CityPlaylist: View {
     @EnvironmentObject var coordinator: TabCoordinator
 
     @State var searchShown: Bool = false
-    @State var detailedSong: SongInfo?
-    
+    @State var detailedSong: PlaylistEntry?
+        
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -45,10 +45,10 @@ struct CityPlaylist: View {
                         }) {
                             LazyVStack {
                                 ForEach(Array(playlistVM.songsDict.enumerated()), id: \.1) { index, entry in
-                                    PlaylistCell(song: entry , rank: index)
+                                    PlaylistCellCoordinatorView(song: entry , rank: index, coordinator: PlaylistCellCoordinator(entry: entry, parent: coordinator))
                                         .onTapGesture {
                                             withAnimation(Animation.easeIn(duration: 0.2)) {
-                                                detailedSong = entry.songInfo
+                                                detailedSong = entry
                                             }
                                         }
                                         .transition(.opacity)
@@ -75,7 +75,7 @@ struct CityPlaylist: View {
                 }
                 
                 if let item = detailedSong {
-                    SongDetails(details: item)
+                    SongDetails(detailsViewModel: SongDetailViewModel(entry: item, coordinator: SongDetailCoordinator(entry: item, parent: coordinator)))
                         .edgesIgnoringSafeArea([.top,.bottom])
                         .onTapGesture {
                             withAnimation(Animation.easeIn(duration: 0.2)) {

@@ -21,6 +21,7 @@
 		6224B8E92806DD3F0004AEEA /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224B8E82806DD3F0004AEEA /* KeychainHelper.swift */; };
 		6224B8EB280700FD0004AEEA /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224B8EA280700FD0004AEEA /* UserToken.swift */; };
 		6224B8ED28072FD00004AEEA /* FlippableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224B8EC28072FD00004AEEA /* FlippableView.swift */; };
+		622CB5EF28C5E38600AF9CB8 /* SongDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CB5EE28C5E38600AF9CB8 /* SongDetailCoordinator.swift */; };
 		622EC84026A6EEC900786192 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC83F26A6EEC900786192 /* SceneDelegate.swift */; };
 		622EC84726A6EECA00786192 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 622EC84626A6EECA00786192 /* Assets.xcassets */; };
 		622EC85526A6EECA00786192 /* CiThemes_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622EC85426A6EECA00786192 /* CiThemes_iOSTests.swift */; };
@@ -45,6 +46,7 @@
 		6265814A27FECE130037D6A8 /* FirstRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6265814927FECE130037D6A8 /* FirstRankCell.swift */; };
 		6265818227FEDA500037D6A8 /* CiThemesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6265818127FEDA500037D6A8 /* CiThemesApp.swift */; };
 		6265818427FEDF8C0037D6A8 /* PodiumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6265818327FEDF8C0037D6A8 /* PodiumCell.swift */; };
+		6266DF3D28B8C03B000D3023 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 6266DF3C28B8C03B000D3023 /* AlertToast */; };
 		6267425628460B460050368E /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267425528460B460050368E /* LocationButton.swift */; };
 		6267425828460F6D0050368E /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6267425728460F6D0050368E /* LocationProvider.swift */; };
 		6267E52F28A26ABC005D900F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6267E52E28A26ABC005D900F /* .gitignore */; };
@@ -75,12 +77,13 @@
 		62AB2C9A2811C7CC00A57371 /* Int+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB2C992811C7CC00A57371 /* Int+Formatting.swift */; };
 		62AB2C9D2812A2C100A57371 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AB2C9C2812A2C100A57371 /* NetworkManager.swift */; };
 		62AC3A66282266B900202285 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AC3A65282266B900202285 /* SettingsView.swift */; };
+		62B2029728C2028C009DC0EF /* PlaylistCellCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2029628C2028C009DC0EF /* PlaylistCellCoordinator.swift */; };
 		62B7238328216D1800D43C84 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B7238228216D1800D43C84 /* TabBarController.swift */; };
 		62B75F632857276D0062A888 /* PreviewPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B75F622857276D0062A888 /* PreviewPlayer.swift */; };
 		62B75F65285777EB0062A888 /* PreviewPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B75F64285777EB0062A888 /* PreviewPlayerViewModel.swift */; };
 		62B75F682859E12F0062A888 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 62B75F672859E12F0062A888 /* Introspect */; };
 		62BEA20927FF19410002FFA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62BEA20527FF19400002FFA9 /* LaunchScreen.storyboard */; };
-		62BEA20C27FF1A790002FFA9 /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */; };
+		62BEA20C27FF1A790002FFA9 /* PlaylistCellCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20B27FF1A790002FFA9 /* PlaylistCellCoordinatorView.swift */; };
 		62BEA20E27FF20F40002FFA9 /* CityPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20D27FF20F40002FFA9 /* CityPlaylist.swift */; };
 		62BEA21028002FE30002FFA9 /* NormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BEA20F28002FE30002FFA9 /* NormalCell.swift */; };
 		62C41A9A2780932B00B6490E /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C41A992780932B00B6490E /* PlaylistViewModel.swift */; };
@@ -128,6 +131,7 @@
 		6224B8E82806DD3F0004AEEA /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		6224B8EA280700FD0004AEEA /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
 		6224B8EC28072FD00004AEEA /* FlippableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlippableView.swift; sourceTree = "<group>"; };
+		622CB5EE28C5E38600AF9CB8 /* SongDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailCoordinator.swift; sourceTree = "<group>"; };
 		622EC83A26A6EEC900786192 /* CiThemes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CiThemes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		622EC83F26A6EEC900786192 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		622EC84626A6EECA00786192 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -188,11 +192,12 @@
 		62AB2C992811C7CC00A57371 /* Int+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Formatting.swift"; sourceTree = "<group>"; };
 		62AB2C9C2812A2C100A57371 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		62AC3A65282266B900202285 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		62B2029628C2028C009DC0EF /* PlaylistCellCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellCoordinator.swift; sourceTree = "<group>"; };
 		62B7238228216D1800D43C84 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		62B75F622857276D0062A888 /* PreviewPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPlayer.swift; sourceTree = "<group>"; };
 		62B75F64285777EB0062A888 /* PreviewPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPlayerViewModel.swift; sourceTree = "<group>"; };
 		62BEA20627FF19400002FFA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCell.swift; sourceTree = "<group>"; };
+		62BEA20B27FF1A790002FFA9 /* PlaylistCellCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCellCoordinatorView.swift; sourceTree = "<group>"; };
 		62BEA20D27FF20F40002FFA9 /* CityPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPlaylist.swift; sourceTree = "<group>"; };
 		62BEA20F28002FE30002FFA9 /* NormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCell.swift; sourceTree = "<group>"; };
 		62C41A992780932B00B6490E /* PlaylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
@@ -213,6 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6266DF3D28B8C03B000D3023 /* AlertToast in Frameworks */,
 				62CACE7E282BD05300792CB3 /* MapKit.framework in Frameworks */,
 				62B75F682859E12F0062A888 /* Introspect in Frameworks */,
 			);
@@ -436,9 +442,10 @@
 			children = (
 				62BEA20D27FF20F40002FFA9 /* CityPlaylist.swift */,
 				62BEA20F28002FE30002FFA9 /* NormalCell.swift */,
-				62BEA20B27FF1A790002FFA9 /* PlaylistCell.swift */,
+				62BEA20B27FF1A790002FFA9 /* PlaylistCellCoordinatorView.swift */,
 				6265818327FEDF8C0037D6A8 /* PodiumCell.swift */,
 				6265814927FECE130037D6A8 /* FirstRankCell.swift */,
+				62B2029628C2028C009DC0EF /* PlaylistCellCoordinator.swift */,
 			);
 			name = Playlist;
 			sourceTree = "<group>";
@@ -468,6 +475,7 @@
 			children = (
 				62A3549327DB680E00161906 /* SongDetails.swift */,
 				62B75F622857276D0062A888 /* PreviewPlayer.swift */,
+				622CB5EE28C5E38600AF9CB8 /* SongDetailCoordinator.swift */,
 			);
 			name = "Song Details";
 			sourceTree = "<group>";
@@ -551,6 +559,7 @@
 			name = CiThemes;
 			packageProductDependencies = (
 				62B75F672859E12F0062A888 /* Introspect */,
+				6266DF3C28B8C03B000D3023 /* AlertToast */,
 			);
 			productName = "CiThemes iOS";
 			productReference = 622EC83A26A6EEC900786192 /* CiThemes.app */;
@@ -625,6 +634,7 @@
 			mainGroup = 622EC83126A6EEC900786192;
 			packageReferences = (
 				62B75F662859E12F0062A888 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				6266DF3B28B8C03B000D3023 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 622EC83B26A6EEC900786192 /* Products */;
 			projectDirPath = "";
@@ -707,7 +717,7 @@
 				6218CC752852268D008B5303 /* HometownView.swift in Sources */,
 				62F545A5280DA6660028C260 /* JWTWrapper.swift in Sources */,
 				62BEA20E27FF20F40002FFA9 /* CityPlaylist.swift in Sources */,
-				62BEA20C27FF1A790002FFA9 /* PlaylistCell.swift in Sources */,
+				62BEA20C27FF1A790002FFA9 /* PlaylistCellCoordinatorView.swift in Sources */,
 				6207D28B279EDBEE00969803 /* SongSearchResult.swift in Sources */,
 				629D18C22805CE860014F2E1 /* SignUp.swift in Sources */,
 				624D0F7827EA21D8003CC730 /* URL+getUrl.swift in Sources */,
@@ -738,8 +748,10 @@
 				62AB2C88280FF64D00A57371 /* AccessToken.swift in Sources */,
 				62858BE127995E3C005C0D34 /* SearchBar.swift in Sources */,
 				6224B8E92806DD3F0004AEEA /* KeychainHelper.swift in Sources */,
+				622CB5EF28C5E38600AF9CB8 /* SongDetailCoordinator.swift in Sources */,
 				624D0F7627E9CA9C003CC730 /* StringURLWrapper.swift in Sources */,
 				6218CC732851E7F2008B5303 /* UserViewCoordinator.swift in Sources */,
+				62B2029728C2028C009DC0EF /* PlaylistCellCoordinator.swift in Sources */,
 				6267425628460B460050368E /* LocationButton.swift in Sources */,
 				62FA333227DA408600B07426 /* TimeInterval+Conversions.swift in Sources */,
 				62B75F632857276D0062A888 /* PreviewPlayer.swift in Sources */,
@@ -1079,6 +1091,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6266DF3B28B8C03B000D3023 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		62B75F662859E12F0062A888 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
@@ -1090,6 +1110,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6266DF3C28B8C03B000D3023 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6266DF3B28B8C03B000D3023 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
 		62B75F672859E12F0062A888 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 62B75F662859E12F0062A888 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;

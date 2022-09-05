@@ -55,6 +55,12 @@ struct SettingsView: View {
                         .listRowBackground(Color.background)
 //                        .listItemTint(.clear)
                         
+                        Button {
+                            coordinator.displayError(message: "Test")
+                        } label: {
+                            Text("Errorrrrr")
+                        }
+
                     }
                     .padding(.top, 16)
                 .navigationTitle(Text("Settings"))

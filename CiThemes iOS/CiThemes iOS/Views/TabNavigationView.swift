@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct TabNavigationView: View {
     @ObservedObject var coordinator: TabCoordinator = TabCoordinator()
@@ -48,6 +49,21 @@ struct TabNavigationView: View {
                 .environmentObject(coordinator)
         }
         .environmentObject(coordinator)
+        .toast(isPresenting: $coordinator.showError, duration: 2, tapToDismiss: false) {
+            AlertToast(
+                displayMode: .alert,
+                type: coordinator.errorConfig?.type ?? .regular,
+                title: coordinator.errorConfig?.message,
+                style: .some(.style(
+                        backgroundColor: Color.relief,
+                        titleColor: Color.error,
+                        titleFont: .customFont(.openSans, size: 18))
+                )
+            )
+        } completion: {
+            coordinator.showError = false
+        }
+
     }
     
     fileprivate func configureApperance() {

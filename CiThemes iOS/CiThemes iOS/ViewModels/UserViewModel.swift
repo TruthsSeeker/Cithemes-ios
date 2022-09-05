@@ -83,6 +83,8 @@ final class UserViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
+                    self.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
+                    self.coordinator.showError = true
                     #if DEBUG
                     print(error)
                     #endif
@@ -122,6 +124,8 @@ final class UserViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
+                    self.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
+                    self.coordinator.showError = true
                     #if DEBUG
                     print(error)
                     #endif
@@ -158,6 +162,8 @@ final class UserViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
+                    self.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
+                    self.coordinator.showError = true
                     #if DEBUG
                     print(error)
                     #endif
@@ -197,6 +203,8 @@ final class UserViewModel: ObservableObject {
                     if let apiError = error as? APIError {
                         switch apiError {
                         case .httpError(let int):
+                            self?.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
+                            self?.coordinator.showError = true
                             #if DEBUG
                             print(int)
                             #endif

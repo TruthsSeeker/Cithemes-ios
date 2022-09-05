@@ -13,15 +13,14 @@ struct PodiumCell: View {
     }
     
     var position: Rank
-    var entry: PlaylistEntry
-    @StateObject var detailVM: SongDetailViewModel = SongDetailViewModel()
-    @State var showLogin: Bool = false
+    @ObservedObject var detailVM: SongDetailViewModel
+//    @State var showLogin: Bool = false
     
     @EnvironmentObject var context: PlaylistViewModel
     
-    init(position: Rank, entry: PlaylistEntry) {
+    init(position: Rank, viewModel: SongDetailViewModel) {
         self.position = position
-        self.entry = entry
+        self.detailVM = viewModel
     }
     
     var body: some View {
@@ -37,22 +36,22 @@ struct PodiumCell: View {
                     .foregroundColor(position == .second ? .silver : .bronze)
                 
                 VStack(alignment: .leading) {
-                    Text(entry.songInfo.title ?? "Unknown Title")
+                    Text(detailVM.details.title ?? "Unknown Title")
                         .font(Font.customFont(.openSans, size: 16))
                         .foregroundColor(Color.fontMain)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
-                    Text(entry.songInfo.artist ?? "Unknown Artist")
+                    Text(detailVM.details.artist ?? "Unknown Artist")
                         .font(Font.customFont(.openSans, size: 14))
                         .foregroundColor(Color.fontSecondary)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
-                Text(String(entry.votes.formatForDisplay()))
+                Text(String(detailVM.votes.formatForDisplay()))
                     .font(Font.customFont(.ralewayRegular, size: 17))
                     .foregroundColor(Color.relief)
                 
                 Button {
                     detailVM.vote {
-                        showLogin.toggle()
+//                        showLogin.toggle()
                     } onSuccess: {
                         context.fetch()
                     }
@@ -65,19 +64,19 @@ struct PodiumCell: View {
             
         }
         .background(.clear)
-        .sheet(isPresented: $showLogin, content: {
-            LoginSignUp()
-        })
-        .onAppear {
-            detailVM.details = entry.songInfo
-            detailVM.cityID = entry.cityId
-            detailVM.voted = entry.voted
-        }
+//        .sheet(isPresented: $showLogin, content: {
+//            LoginSignUp()
+//        })
+//        .onAppear {
+//            detailVM.details = entry.songInfo
+//            detailVM.cityID = entry.cityId
+//            detailVM.voted = entry.voted
+//        }
     }
 }
 
 struct PodiumCell_Previews: PreviewProvider {
     static var previews: some View {
-        PodiumCell(position: .second, entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 234, cityId: 1))
+        PodiumCell(position: .second, viewModel: SongDetailViewModel(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), coordinator: PlaylistCellCoordinator(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), parent: TabCoordinator())))
     }
 }

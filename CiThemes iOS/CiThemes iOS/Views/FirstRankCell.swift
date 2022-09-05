@@ -10,14 +10,12 @@ import SwiftUI
 struct FirstRankCell: View {
     @EnvironmentObject var context: PlaylistViewModel
 
-    var entry: PlaylistEntry
-    @StateObject var detailVM: SongDetailViewModel = SongDetailViewModel()
-    @State var showLogin: Bool = false
+    @ObservedObject var detailVM: SongDetailViewModel
+//    @State var showLogin: Bool = false
     
-    init(entry: PlaylistEntry){
-        self.entry = entry
+    init(viewModel: SongDetailViewModel){
+        self.detailVM = viewModel
     }
-    
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -52,13 +50,13 @@ struct FirstRankCell: View {
                 }
                 .padding([.trailing], 8)
                 
-                Text(String(entry.votes.formatForDisplay()))
+                Text(String(detailVM.votes.formatForDisplay()))
                     .font(.customFont(.ralewayRegular, size: 18).bold())
                     .foregroundColor(.background)
                 
                 Button {
                     detailVM.vote {
-                        showLogin.toggle()
+//                        showLogin.toggle()
                     } onSuccess: {
                         context.fetch()
                     }
@@ -71,20 +69,19 @@ struct FirstRankCell: View {
         }
         .padding(8)
         .background(.clear)
-        .sheet(isPresented: $showLogin, content: {
-            LoginSignUp()
-        })
-        .onAppear {
-            detailVM.details = entry.songInfo
-            detailVM.cityID = entry.cityId
-            detailVM.voted = entry.voted
-        }
-
+//        .sheet(isPresented: $showLogin, content: {
+//            LoginSignUp()
+//        })
+//        .onAppear {
+//            detailVM.details = entry.songInfo
+//            detailVM.cityID = entry.cityId
+//            detailVM.voted = entry.voted
+//        }
     }
 }
 
 struct FirstRankCell_Previews: PreviewProvider {
     static var previews: some View {
-        FirstRankCell(entry: PlaylistEntry(id: 0, songInfo: SongInfo.example, votes: 500, cityId: 1))
+        FirstRankCell(viewModel: SongDetailViewModel(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), coordinator: PlaylistCellCoordinator(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), parent: TabCoordinator())))
     }
 }

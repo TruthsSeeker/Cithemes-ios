@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct SongSearch: View {
-    @StateObject var searchVM: SongSearchViewModel = SongSearchViewModel()
+    @ObservedObject var searchVM: SongSearchViewModel = SongSearchViewModel()
     @State private var detailsShown = false
-    @State private var shownItem: SongInfo?
+    @State private var shownItem: PlaylistEntry?
     @FocusState var isSearchFocused: Bool
+    @EnvironmentObject var coordinator: TabCoordinator
     
     var body: some View {
         ZStack(alignment: .top){
@@ -38,7 +39,7 @@ struct SongSearch: View {
                                     .listRowInsets(EdgeInsets())
                                     .onTapGesture {
                                         withAnimation(Animation.easeIn(duration: 0.2)) {
-                                            shownItem = result
+                                            shownItem = PlaylistEntry(id: -1, songInfo: result, cityId: -1)
                                         }
                                     }
                                     .transition(.opacity)
@@ -55,7 +56,7 @@ struct SongSearch: View {
                 }
             }
             if let item = shownItem {
-                SongDetails(details: item)
+                SongDetails(detailsViewModel: SongDetailViewModel(entry: item, coordinator: SongDetailCoordinator(entry: item, parent: coordinator)))
                     .edgesIgnoringSafeArea(.bottom)
                     .onTapGesture {
                         withAnimation(Animation.easeIn(duration: 0.2)) {

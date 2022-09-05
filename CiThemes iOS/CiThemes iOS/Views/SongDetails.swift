@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SongDetails: View {
-    @StateObject private var detailsViewModel: SongDetailViewModel = SongDetailViewModel()
+    @ObservedObject var detailsViewModel: SongDetailViewModel
     @EnvironmentObject var playlistContext: PlaylistViewModel
     @EnvironmentObject var coordinator: TabCoordinator
     @State var showLogin: Bool = false
-    var details: SongInfo
+//    var details: SongInfo
     
     var body: some View {
         ZStack {
@@ -79,7 +79,7 @@ struct SongDetails: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    if let url = details.preview {
+                    if let url = detailsViewModel.details.preview {
                         PreviewPlayer(player: PreviewPlayerViewModel(url: url))
                     }
                     
@@ -104,7 +104,7 @@ struct SongDetails: View {
             }
         }
         .onAppear {
-            detailsViewModel.details = details
+            detailsViewModel.details = detailsViewModel.details
             detailsViewModel.cityID = playlistContext.city?.id ?? 0
         }
         .onDisappear()
@@ -112,8 +112,9 @@ struct SongDetails: View {
 }
 
 struct SongDetails_Previews: PreviewProvider {
+    static var entry = PlaylistEntry(id: -1, songInfo: SongInfo.example, cityId: -1)
     static var previews: some View {
-        SongDetails(details: SongInfo.example).environmentObject(PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
+        SongDetails(detailsViewModel: SongDetailViewModel(entry: entry, coordinator: SongDetailCoordinator(entry: entry, parent: TabCoordinator()))).environmentObject(PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
             .environmentObject(TabCoordinator())
     }
 }

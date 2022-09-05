@@ -9,15 +9,15 @@ import SwiftUI
 
 struct NormalCell: View {
     var rank: Int
-    var entry: PlaylistEntry
-    @StateObject var detailVM: SongDetailViewModel = SongDetailViewModel()
+//    var entry: PlaylistEntry
+    @ObservedObject var detailVM: SongDetailViewModel
     @State var showLogin: Bool = false
     
     @EnvironmentObject var context: PlaylistViewModel
     
-    init(entry: PlaylistEntry, rank: Int) {
+    init(viewModel: SongDetailViewModel, rank: Int) {
         self.rank = rank
-        self.entry = entry
+        self.detailVM = viewModel
         
     }
 
@@ -43,7 +43,7 @@ struct NormalCell: View {
                         .foregroundColor(Color.fontSecondary)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
-                Text(String(entry.votes.formatForDisplay()))
+                Text(String(detailVM.votes.formatForDisplay()))
                     .font(Font.customFont(.ralewayRegular, size: 17))
                     .foregroundColor(Color.relief)
                 
@@ -63,20 +63,20 @@ struct NormalCell: View {
             
         }
         .background(.clear)
-        .sheet(isPresented: $showLogin, content: {
-            LoginSignUp()
-        })
-        .onAppear {
-            detailVM.details = entry.songInfo
-            detailVM.cityID = entry.cityId
-            detailVM.voted = entry.voted
-        }
+//        .sheet(isPresented: $showLogin, content: {
+//            LoginSignUp()
+//        })
+//        .onAppear {
+//            detailVM.details = entry.songInfo
+//            detailVM.cityID = entry.cityId
+//            detailVM.voted = entry.voted
+//        }
     }
 }
 
 struct NormalCell_Previews: PreviewProvider {
     static var previews: some View {
-        NormalCell(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), rank: 10)
+        NormalCell(viewModel: SongDetailViewModel(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), coordinator: PlaylistCellCoordinator(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), parent: TabCoordinator())),  rank: 10)
     }
 }
 

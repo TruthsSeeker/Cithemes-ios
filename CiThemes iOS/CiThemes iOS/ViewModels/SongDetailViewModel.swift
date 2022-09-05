@@ -13,9 +13,18 @@ final class SongDetailViewModel: ObservableObject {
     @Published var loading: Bool = false
     @Published var cityID: Int = -1
     @Published var voted: Bool = false
+    @Published var votes: Int
     
     private var voteSubscription: AnyCancellable?
     private var fetchSubscription: AnyCancellable?
+    private unowned let coordinator: UserViewCoordinator
+    
+    init(entry: PlaylistEntry, coordinator: UserViewCoordinator) {
+        self.coordinator = coordinator
+        self.details = entry.songInfo
+        self.cityID = entry.cityId
+        self.votes = entry.votes
+    }
     
     //MARK: Vote Request
     func vote(onAuthFail authClosure: @escaping ()->Void = {}, onSuccess successClosure: @escaping () -> Void = {}) {
@@ -49,7 +58,11 @@ final class SongDetailViewModel: ObservableObject {
                     if let apiError = error as? APIError {
                         switch apiError {
                         case .invalidAuth, .loginRequired:
-                            authClosure()
+                            coordinator.toggleLogin()
+                        case .httpError(let code):
+                            if code == 403 {
+                                coordinator.displayError(message: "You can only change hometowns once a month")
+                            }
                         default:
                             break
                         }
