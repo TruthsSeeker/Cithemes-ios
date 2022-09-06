@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HometownView: View {
     var hometownId: Int?
-//    @EnvironmentObject var coordinator: TabCoordinator
+//    @EnvironmentObject var coordinator: RootCoordinator
     @StateObject var playlistVM = PlaylistViewModel()
     var body: some View {
         CityPlaylist(playlistVM: playlistVM)

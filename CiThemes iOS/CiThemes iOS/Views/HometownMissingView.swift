@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HometownMissingView: View {
-    @EnvironmentObject var coordinator: TabCoordinator
+    @EnvironmentObject var coordinator: RootCoordinator
     var body: some View {
         ZStack{
             Color.background
@@ -46,15 +46,15 @@ struct HometownMissingView: View {
 }
 
 struct HometownMissingView_Previews: PreviewProvider {
-    static var userCoordinator: TabCoordinator = {
-       let coordinator = TabCoordinator()
+    static var userCoordinator: RootCoordinator = {
+       let coordinator = RootCoordinator()
         coordinator.userViewModel = UserViewModel(coordinator: coordinator)
         coordinator.userViewModel.user = User.init(id: 0, email: "", hometownId: nil, username: nil)
         return coordinator
     }()
     static var previews: some View {
         HometownMissingView()
-            .environmentObject(TabCoordinator())
+            .environmentObject(RootCoordinator())
         HometownMissingView()
             .environmentObject(userCoordinator)
     }

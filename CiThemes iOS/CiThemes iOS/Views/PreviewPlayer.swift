@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PreviewPlayer: View {
-    @StateObject var player: PreviewPlayerViewModel
+    @ObservedObject var player: PreviewPlayerViewModel
         
     var body: some View {
         HStack {
@@ -34,6 +34,9 @@ struct PreviewPlayer: View {
                 }
             }
             .tint(.attentionGrabbing)
+        }
+        .onDisappear {
+            player.stop()
         }
     }
 }

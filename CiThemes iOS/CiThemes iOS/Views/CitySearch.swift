@@ -9,7 +9,7 @@ import SwiftUI
 import Introspect
 
 struct CitySearch: View {
-    @EnvironmentObject var coordinator: TabCoordinator
+    @EnvironmentObject var coordinator: RootCoordinator
     @StateObject var searchVM: CitySearchViewModel = CitySearchViewModel()
     @State private var detailsShown = false
     @State private var nav: UINavigationController?

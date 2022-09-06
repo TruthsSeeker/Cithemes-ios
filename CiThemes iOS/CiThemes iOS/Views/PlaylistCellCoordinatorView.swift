@@ -33,6 +33,6 @@ struct PlaylistCellCoordinatorView: View {
 
 struct PlaylistCell_Previews: PreviewProvider {
     static var previews: some View {
-        PlaylistCellCoordinatorView(song: PlaylistEntry(id: -1, songInfo: SongInfo.example, cityId: -1), rank: 1, coordinator: PlaylistCellCoordinator(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), parent: TabCoordinator()))
+        PlaylistCellCoordinatorView(song: PlaylistEntry(id: -1, songInfo: SongInfo.example, cityId: -1), rank: 1, coordinator: PlaylistCellCoordinator(entry: PlaylistEntry(id: 1, songInfo: SongInfo.example, votes: 345, cityId: 1), parent: RootCoordinator()))
     }
 }

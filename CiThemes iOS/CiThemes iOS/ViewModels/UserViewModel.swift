@@ -14,9 +14,9 @@ final class UserViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var oldPassword: String = ""
     
-    private let coordinator: TabCoordinator
+    private let coordinator: RootCoordinator
     
-    init(coordinator: TabCoordinator) {
+    init(coordinator: RootCoordinator) {
         if let existingTokens = KeychainHelper.standard.read(service: .tokens, type: UserToken.self),
             let existingEmail = KeychainHelper.standard.read(service: .email, type: String.self) {
             self.user = User(id: existingTokens.refreshToken.userId, email: existingEmail, hometownId: KeychainHelper.standard.read(service: .hometownId, type: Int.self))

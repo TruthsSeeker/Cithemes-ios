@@ -8,10 +8,10 @@
 import Foundation
 
 class SongDetailCoordinator: ObservableObject, UserViewCoordinator {
-    private unowned let parent: TabCoordinator
+    private unowned let parent: RootCoordinator
     @Published var songVM: SongDetailViewModel?
     
-    init(entry: PlaylistEntry, parent: TabCoordinator){
+    init(entry: PlaylistEntry, parent: RootCoordinator){
         self.parent = parent
         self.songVM = SongDetailViewModel(entry: entry, coordinator: self)
     }
@@ -22,6 +22,10 @@ class SongDetailCoordinator: ObservableObject, UserViewCoordinator {
     
     func displayError(message: String) {
         parent.displayError(message: message)
+    }
+    
+    func hideDetails() {
+        parent.detailedSong = nil
     }
     
 }

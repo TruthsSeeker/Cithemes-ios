@@ -12,7 +12,7 @@ struct SongSearch: View {
     @State private var detailsShown = false
     @State private var shownItem: PlaylistEntry?
     @FocusState var isSearchFocused: Bool
-    @EnvironmentObject var coordinator: TabCoordinator
+    @EnvironmentObject var coordinator: RootCoordinator
     
     var body: some View {
         ZStack(alignment: .top){
@@ -39,7 +39,7 @@ struct SongSearch: View {
                                     .listRowInsets(EdgeInsets())
                                     .onTapGesture {
                                         withAnimation(Animation.easeIn(duration: 0.2)) {
-                                            shownItem = PlaylistEntry(id: -1, songInfo: result, cityId: -1)
+                                            coordinator.detailedSong = PlaylistEntry(id: -1, songInfo: result, cityId: -1)
                                         }
                                     }
                                     .transition(.opacity)
@@ -55,18 +55,23 @@ struct SongSearch: View {
                     .padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
                 }
             }
-            if let item = shownItem {
-                SongDetails(detailsViewModel: SongDetailViewModel(entry: item, coordinator: SongDetailCoordinator(entry: item, parent: coordinator)))
+            if let item = coordinator.detailedSong {
+                SongDetails(coordinator: SongDetailCoordinator(entry: item, parent: coordinator))
                     .edgesIgnoringSafeArea(.bottom)
-                    .onTapGesture {
-                        withAnimation(Animation.easeIn(duration: 0.2)) {
-                            shownItem = nil
-                        }
-                    }
-                    .transition(.opacity)
+//                    .onTapGesture {
+//                        withAnimation(Animation.easeIn(duration: 0.2)) {
+//                            coordinator.detailedSong = nil
+//                        }
+//                    }
+//                    .transition(.opacity)
             }
         }
         .background(Color.background)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                isSearchFocused = true
+            }
+        }
         
     }
 }

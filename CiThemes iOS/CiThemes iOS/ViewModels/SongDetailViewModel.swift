@@ -24,6 +24,7 @@ final class SongDetailViewModel: ObservableObject {
         self.details = entry.songInfo
         self.cityID = entry.cityId
         self.votes = entry.votes
+        self.voted = entry.voted
     }
     
     //MARK: Vote Request

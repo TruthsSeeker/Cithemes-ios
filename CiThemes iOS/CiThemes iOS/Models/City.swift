@@ -14,6 +14,12 @@ struct City: Identifiable, Codable {
     var name: String
     @StringURL var image: URL?
     var population: Int
+    var spotifyURI: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, country, iso2, name, image, population
+        case spotifyURI = "playlist_id"
+    }
     
     static func fetch(id: Int) async -> City? {
         guard let url = URL.getUrl(for: "/cities/\(id)") else { return nil }

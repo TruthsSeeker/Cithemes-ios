@@ -9,7 +9,7 @@ import SwiftUI
 import AlertToast
 
 struct TabNavigationView: View {
-    @ObservedObject var coordinator: TabCoordinator = TabCoordinator()
+    @ObservedObject var coordinator: RootCoordinator = RootCoordinator()
     
     init() {
         configureApperance()

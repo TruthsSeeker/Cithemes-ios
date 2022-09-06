@@ -21,6 +21,7 @@ final class PlaylistViewModel: ObservableObject {
     
 //    @Published var cityId: Int
     @Published var city: City?
+    @Published var detailedItem: PlaylistEntry?
     var songsDict: [PlaylistEntry] {
         didSet {
             songsDict.sort { lhs, rhs in

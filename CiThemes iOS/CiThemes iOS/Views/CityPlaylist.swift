@@ -9,10 +9,10 @@ import SwiftUI
 
 struct CityPlaylist: View {
     @ObservedObject var playlistVM: PlaylistViewModel
-    @EnvironmentObject var coordinator: TabCoordinator
+    @EnvironmentObject var coordinator: RootCoordinator
 
     @State var searchShown: Bool = false
-    @State var detailedSong: PlaylistEntry?
+//    @State var detailedSong: PlaylistEntry?
         
     var body: some View {
         GeometryReader { geo in
@@ -24,16 +24,29 @@ struct CityPlaylist: View {
                         RemoteImage(playlistVM.city?.image, placeholder: Image("LosAngeles"))
                             .frame(height: 200)
 
-                        ZStack {
-                            Text(playlistVM.city?.name ?? "")
-                                .font(.customFont(.ralewayRegular, size: 35))
-                                .foregroundColor(.black)
-                                .blur(radius: 1)
-                            Text(playlistVM.city?.name ?? "")
-                                .font(.customFont(.ralewayRegular, size: 35))
-                                .foregroundColor(.fontAlwaysLight)
+                        HStack {
+                            ZStack {
+                                Text(playlistVM.city?.name ?? "")
+                                    .font(.customFont(.ralewayRegular, size: 35))
+                                    .foregroundColor(.black)
+                                    .blur(radius: 1)
+                                Text(playlistVM.city?.name ?? "")
+                                    .font(.customFont(.ralewayRegular, size: 35))
+                                    .foregroundColor(.fontAlwaysLight)
+                            }
+                            .padding(8)
+                            Spacer()
+                            Link(destination: URL(string: "https://open.spotify.com/playlist/\(self.playlistVM.city?.spotifyURI ?? "")")!, label: {
+                                Image("Spotify")
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                            })
+                            .padding(8)
+                            .conditional(playlistVM.city?.spotifyURI == nil) {
+                                EmptyView()
+                            }
+
                         }
-                        .padding(8)
                     }
                     .frame(height: 200, alignment: .top)
                     ZStack {
@@ -48,7 +61,7 @@ struct CityPlaylist: View {
                                     PlaylistCellCoordinatorView(song: entry , rank: index, coordinator: PlaylistCellCoordinator(entry: entry, parent: coordinator))
                                         .onTapGesture {
                                             withAnimation(Animation.easeIn(duration: 0.2)) {
-                                                detailedSong = entry
+                                                coordinator.detailedSong = entry
                                             }
                                         }
                                         .transition(.opacity)
@@ -74,15 +87,15 @@ struct CityPlaylist: View {
                     SongSearch()
                 }
                 
-                if let item = detailedSong {
-                    SongDetails(detailsViewModel: SongDetailViewModel(entry: item, coordinator: SongDetailCoordinator(entry: item, parent: coordinator)))
+                if let item = coordinator.detailedSong {
+                    SongDetails(coordinator: SongDetailCoordinator(entry: item, parent: coordinator))
                         .edgesIgnoringSafeArea([.top,.bottom])
-                        .onTapGesture {
-                            withAnimation(Animation.easeIn(duration: 0.2)) {
-                                detailedSong = nil
-                            }
-                        }
-                        .transition(.opacity)
+//                        .onTapGesture {
+//                            withAnimation(Animation.easeIn(duration: 0.2)) {
+//                                playlistVM.detailedItem = nil
+//                            }
+//                        }
+//                        .transition(.opacity)
                         .environmentObject(playlistVM)
                 }
             }
@@ -117,6 +130,6 @@ struct CityPlaylist: View {
 
 struct CityPlaylist_Previews: PreviewProvider {
     static var previews: some View {
-        CityPlaylist(playlistVM: PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
+        CityPlaylist(playlistVM: PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456, spotifyURI: ""))).environmentObject(RootCoordinator())
     }
 }

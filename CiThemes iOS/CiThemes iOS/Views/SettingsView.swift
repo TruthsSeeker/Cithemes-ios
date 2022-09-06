@@ -10,7 +10,7 @@ import CoreLocation
 import Introspect
 
 struct SettingsView: View {
-    @EnvironmentObject var coordinator: TabCoordinator
+    @EnvironmentObject var coordinator: RootCoordinator
     @State var showAccountView: Bool = false
     @State private var nav: UINavigationController?
     

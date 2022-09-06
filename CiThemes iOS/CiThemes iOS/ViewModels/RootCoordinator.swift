@@ -1,5 +1,5 @@
 //
-//  TabCoordinator.swift
+//  RootCoordinator.swift
 //  CiThemes
 //
 //  Created by Loïc Heinrich on 09/06/2022.
@@ -15,12 +15,13 @@ enum Tab {
     case setting
 }
 
-class TabCoordinator: ObservableObject, UserViewCoordinator {
+class RootCoordinator: ObservableObject, UserViewCoordinator {
     @Published var userViewModel: UserViewModel!
     @Published var tab = Tab.home
     @Published var showSignUp: Bool = false
     @Published var hometownId: Int?
     @Published var showError: Bool = false
+    @Published var detailedSong: PlaylistEntry?
     
     var errorConfig: ErrorConfig?
     struct ErrorConfig {
