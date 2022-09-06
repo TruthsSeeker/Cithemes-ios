@@ -14,7 +14,7 @@ struct SignUp: View {
         case confirm
     }
     
-    @EnvironmentObject var coordinator: TabCoordinator
+    @EnvironmentObject var coordinator: RootCoordinator
     
     @State var emailValid: Bool = true
     @State var passwordValid: Bool = true
@@ -91,6 +91,6 @@ struct SignUp: View {
 struct SignUp_Previews: PreviewProvider {
     static var previews: some View {
         SignUp(loginAction: {})
-            .environmentObject(UserViewModel(coordinator: TabCoordinator()))
+            .environmentObject(UserViewModel(coordinator: RootCoordinator()))
     }
 }

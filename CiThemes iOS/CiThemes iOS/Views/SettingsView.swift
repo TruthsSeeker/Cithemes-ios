@@ -10,7 +10,7 @@ import CoreLocation
 import Introspect
 
 struct SettingsView: View {
-    @EnvironmentObject var coordinator: TabCoordinator
+    @EnvironmentObject var coordinator: RootCoordinator
     @State var showAccountView: Bool = false
     @State private var nav: UINavigationController?
     
@@ -55,6 +55,12 @@ struct SettingsView: View {
                         .listRowBackground(Color.background)
 //                        .listItemTint(.clear)
                         
+                        Button {
+                            coordinator.displayError(message: "Test")
+                        } label: {
+                            Text("Errorrrrr")
+                        }
+
                     }
                     .padding(.top, 16)
                 .navigationTitle(Text("Settings"))

@@ -14,13 +14,15 @@ final class UserViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var oldPassword: String = ""
     
-    private let coordinator: UserViewCoordinator
+    private let coordinator: RootCoordinator
     
-    init(coordinator: UserViewCoordinator) {
-        if let existingTokens = KeychainHelper.standard.read(service: .tokens, type: UserToken.self), let existingEmail = KeychainHelper.standard.read(service: .email, type: String.self) {
-            self.user = User(id: existingTokens.refreshToken.userId, email: existingEmail, hometownId: existingTokens.refreshToken.hometownId ?? KeychainHelper.standard.read(service: .hometownId, type: Int.self))
+    init(coordinator: RootCoordinator) {
+        if let existingTokens = KeychainHelper.standard.read(service: .tokens, type: UserToken.self),
+            let existingEmail = KeychainHelper.standard.read(service: .email, type: String.self) {
+            self.user = User(id: existingTokens.refreshToken.userId, email: existingEmail, hometownId: KeychainHelper.standard.read(service: .hometownId, type: Int.self))
         }
         self.coordinator = coordinator
+        coordinator.hometownId = self.user?.hometownId
     }
     
     lazy var decoder:JSONDecoder = {
@@ -33,7 +35,7 @@ final class UserViewModel: ObservableObject {
     
     //MARK: Signup request
     func signup() {
-        guard let url = getUrl(for: "/auth/signup") else { return }
+        guard let url = URL.getUrl(for: "/auth/signup") else { return }
         guard !email.isEmpty && !password.isEmpty else { return }
         
         var request = URLRequest(url: url)
@@ -49,7 +51,7 @@ final class UserViewModel: ObservableObject {
             .sink(receiveCompletion: { error in
             }, receiveValue: { [self] tokens in
                 saveUserData(from: tokens)
-                self.user = User(id: tokens.refreshToken.userId, email: email, hometownId: tokens.refreshToken.hometownId)
+                self.user = User(id: tokens.refreshToken.userId, email: email)
                 coordinator.toggleLogin()
                 self.email = ""
                 self.password = ""
@@ -59,7 +61,7 @@ final class UserViewModel: ObservableObject {
 
     //MARK: Login request
     func login() {
-        guard let url = getUrl(for: "/auth/login") else {
+        guard let url = URL.getUrl(for: "/auth/login") else {
             return
         }
         guard !email.isEmpty && !password.isEmpty else {
@@ -81,6 +83,8 @@ final class UserViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
+                    self.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
+                    self.coordinator.showError = true
                     #if DEBUG
                     print(error)
                     #endif
@@ -89,8 +93,9 @@ final class UserViewModel: ObservableObject {
             }, receiveValue: { [self] tokens in
                 
                 saveUserData(from: tokens)
-                self.user = User(id: tokens.refreshToken.userId, email: email, hometownId: tokens.refreshToken.hometownId)
+                self.user = User(id: tokens.refreshToken.userId, email: email, hometownId: tokens.hometownId)
                 coordinator.toggleLogin()
+                coordinator.hometownId = tokens.hometownId
                 self.email = ""
                 self.password = ""
             })
@@ -98,7 +103,7 @@ final class UserViewModel: ObservableObject {
     }
     
     func logout() {
-        guard let url = getUrl(for: "/auth/logout") else {
+        guard let url = URL.getUrl(for: "/auth/logout") else {
             return
         }
         
@@ -119,6 +124,8 @@ final class UserViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
+                    self.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
+                    self.coordinator.showError = true
                     #if DEBUG
                     print(error)
                     #endif
@@ -128,6 +135,7 @@ final class UserViewModel: ObservableObject {
                 if success {
                     KeychainHelper.standard.logout()
                     self?.user = nil
+                    self?.coordinator.hometownId = nil
                 }
             }
         subscriptions.append(publisher)
@@ -135,7 +143,7 @@ final class UserViewModel: ObservableObject {
     
     //TODO: these
     func update() {
-        guard let url = getUrl(for: "/auth/update") else {
+        guard let url = URL.getUrl(for: "/auth/update") else {
             return
         }
         
@@ -154,6 +162,8 @@ final class UserViewModel: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
+                    self.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
+                    self.coordinator.showError = true
                     #if DEBUG
                     print(error)
                     #endif
@@ -166,7 +176,7 @@ final class UserViewModel: ObservableObject {
     }
     
     func setHometown(id: Int) {
-        guard let url = getUrl(for: "/auth/hometown") else {
+        guard let url = URL.getUrl(for: "/auth/hometown") else {
             return
         }
         var request = URLRequest(url: url)
@@ -193,6 +203,8 @@ final class UserViewModel: ObservableObject {
                     if let apiError = error as? APIError {
                         switch apiError {
                         case .httpError(let int):
+                            self?.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
+                            self?.coordinator.showError = true
                             #if DEBUG
                             print(int)
                             #endif
@@ -210,6 +222,8 @@ final class UserViewModel: ObservableObject {
             } receiveValue: { response in
                 if let hometownId = response["hometown"] {
                     KeychainHelper.standard.save(hometownId, service: .hometownId)
+                    self.user?.hometownId = hometownId
+                    self.coordinator.hometownId = hometownId
                 }
             }
         subscriptions.append(publisher)
@@ -220,8 +234,8 @@ final class UserViewModel: ObservableObject {
         
         let userId = String(tokens.refreshToken.userId)
         KeychainHelper.standard.save(userId, service: .userId)
-        
         KeychainHelper.standard.save(tokens, service: .tokens)
+        KeychainHelper.standard.save(tokens.hometownId, service: .hometownId)
     }
 }
 

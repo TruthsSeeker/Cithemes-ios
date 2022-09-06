@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension ObservableObject {
-    func getUrl(for path: String) -> URL? {
+extension URL {
+    static func getUrl(for path: String) -> URL? {
         guard let listPath = Bundle.main.url(forResource: "env", withExtension: "plist") else { return nil }
         do {
             let listData = try Data(contentsOf: listPath)

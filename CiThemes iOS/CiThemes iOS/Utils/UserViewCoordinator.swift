@@ -7,6 +7,7 @@
 
 import Foundation
 
-protocol UserViewCoordinator {
+protocol UserViewCoordinator: AnyObject {
     func toggleLogin()
+    func displayError(message: String)
 }

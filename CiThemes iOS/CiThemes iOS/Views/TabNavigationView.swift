@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct TabNavigationView: View {
-    @ObservedObject var coordinator: TabCoordinator = TabCoordinator()
+    @ObservedObject var coordinator: RootCoordinator = RootCoordinator()
     
     init() {
         configureApperance()
@@ -16,7 +17,7 @@ struct TabNavigationView: View {
     
     var body: some View {
         TabView(selection: $coordinator.tab) {
-            HometownView()
+            HometownView(hometownId: coordinator.hometownId)
                 .tabItem {
                     Image("Home Tab")
                     Text("Hometown")
@@ -48,6 +49,21 @@ struct TabNavigationView: View {
                 .environmentObject(coordinator)
         }
         .environmentObject(coordinator)
+        .toast(isPresenting: $coordinator.showError, duration: 2, tapToDismiss: false) {
+            AlertToast(
+                displayMode: .alert,
+                type: coordinator.errorConfig?.type ?? .regular,
+                title: coordinator.errorConfig?.message,
+                style: .some(.style(
+                        backgroundColor: Color.relief,
+                        titleColor: Color.error,
+                        titleFont: .customFont(.openSans, size: 18))
+                )
+            )
+        } completion: {
+            coordinator.showError = false
+        }
+
     }
     
     fileprivate func configureApperance() {
@@ -68,30 +84,6 @@ struct TabNavigationView: View {
         tabitemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.tabSelected as Any]
         appearance.stackedLayoutAppearance = tabitemAppearance
         UITabBar.appearance().standardAppearance = appearance
-    }
-}
-
-struct TabBar: UIViewControllerRepresentable {
-    class Coordinator: NSObject, UITabBarControllerDelegate {
-        
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        
-    }
-    
-    func makeUIViewController(context: Context) -> TabBarController {
-        let controller = TabBarController()
-        controller.delegate = context.coordinator
-        let playlist = UIHostingController(rootView: CityPlaylist(playlistVM: PlaylistViewModel(list: [])))
-        playlist.tabBarItem = UITabBarItem(title: "Hometown", image: UIImage(named: "Home Tab"), tag: 0)
-        controller.viewControllers = [playlist]
-        
-        return controller
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        return Coordinator()
     }
 }
 

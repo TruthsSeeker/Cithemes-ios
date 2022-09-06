@@ -10,7 +10,7 @@ import Introspect
 
 struct AccountView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var coordinator: TabCoordinator
+    @EnvironmentObject var coordinator: RootCoordinator
     @State var editable: Bool = false
     @State var username: String = ""
     @State var email: String = ""
@@ -106,6 +106,6 @@ struct AccountView: View {
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
         AccountView()
-            .environmentObject(TabCoordinator())
+            .environmentObject(RootCoordinator())
     }
 }

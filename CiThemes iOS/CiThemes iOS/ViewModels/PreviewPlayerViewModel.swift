@@ -10,8 +10,8 @@ import Combine
 import AVFoundation
 
 final class PreviewPlayerViewModel: ObservableObject {
-    private let player: AVPlayer
-    private var subscriptions: [AnyCancellable] = []
+    private let player: AVPlayer = AVPlayer.shared
+    private var subscriptions: Set<AnyCancellable?> = []
     private var observer: Any?
     
     @Published var playbackProgress: Double = 0.0
@@ -20,29 +20,30 @@ final class PreviewPlayerViewModel: ObservableObject {
     @Published var playing: Bool = false
     
     init(url: URL) {
-        player = AVPlayer(url: url)
+        player.replaceCurrentItem(with: AVPlayerItem(url: url))
         let readyPublisher = player.publisher(for: \.currentItem)
-            .sink { item in
-                self.isReady = item != nil
+            .sink { [weak self] item in
+                self?.isReady = item != nil
             }
-        subscriptions.append(readyPublisher)
+        subscriptions.insert(readyPublisher)
         
         let durationPublisher = player.publisher(for: \.currentItem?.duration)
-            .sink { time in
-                self.duration = time?.seconds
+            .sink { [weak self] time in
+                self?.duration = time?.seconds
         }
-        subscriptions.append(durationPublisher)
+        subscriptions.insert(durationPublisher)
         
         observer = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.1, preferredTimescale: 100), queue: nil) { [weak self] time in
             self?.playbackProgress = time.seconds
         }
-        
+        print("init PreviewPlayerVM")
     }
     
     deinit {
         if let observer = observer {
             player.removeTimeObserver(observer)
         }
+        print("deinit PreviewPlayerVM")
     }
     
     private func play() {
@@ -72,6 +73,15 @@ final class PreviewPlayerViewModel: ObservableObject {
             player.play()
         }
 
+    }
+    
+    public func stop() {
+        player.pause()
+        playing = false
+//        player.replaceCurrentItem(with: nil)
+//        if let observer = observer {
+//            player.removeTimeObserver(observer)
+//        }
     }
     
     public func getPlaybackRange() -> ClosedRange<Double> {

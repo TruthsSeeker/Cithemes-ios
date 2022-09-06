@@ -21,6 +21,7 @@ final class PlaylistViewModel: ObservableObject {
     
 //    @Published var cityId: Int
     @Published var city: City?
+    @Published var detailedItem: PlaylistEntry?
     var songsDict: [PlaylistEntry] {
         didSet {
             songsDict.sort { lhs, rhs in
@@ -39,7 +40,7 @@ final class PlaylistViewModel: ObservableObject {
     
     
     func fetch(onComplete complete: @escaping () -> Void = {}) {
-        guard var url = getUrl(for: "/cities/\(city?.id ?? 0)/playlist") else {
+        guard var url = URL.getUrl(for: "/cities/\(city?.id ?? 0)/playlist") else {
             return
         }
         

@@ -13,7 +13,7 @@ struct Login: View {
         case password
     }
     
-    @EnvironmentObject var coordinator: TabCoordinator
+    @EnvironmentObject var coordinator: RootCoordinator
     @State var emailValid: Bool = true
     
     
@@ -78,7 +78,7 @@ struct Login_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             Login(signUpAction: {})
-                .environmentObject(TabCoordinator())
+                .environmentObject(RootCoordinator())
         }
     }
 }

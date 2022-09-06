@@ -8,24 +8,27 @@
 import SwiftUI
 
 struct SongDetails: View {
-    @StateObject private var detailsViewModel: SongDetailViewModel = SongDetailViewModel()
+    @ObservedObject var coordinator: SongDetailCoordinator
     @EnvironmentObject var playlistContext: PlaylistViewModel
-    @EnvironmentObject var coordinator: TabCoordinator
-    @State var showLogin: Bool = false
-    var details: SongInfo
-    
+
     var body: some View {
         ZStack {
             Color.dimming
+                .onTapGesture {
+                    withAnimation(Animation.easeIn(duration: 0.2)) {
+                        coordinator.hideDetails()
+                    }
+                }
+                .transition(.opacity)
             GeometryReader { geo in
                 VStack {
                     HStack(alignment: .top, spacing: 8) {
-                        RemoteImage(detailsViewModel.details.cover, placeholder: Image("rhcp", bundle: nil))
+                        RemoteImage(coordinator.songVM?.details.cover, placeholder: Image("rhcp", bundle: nil))
                             .frame(width: 90, height: 90, alignment: .center)
                             .cornerRadius(8)
                             .clipped()
                         VStack(alignment: .leading, spacing: 2){
-                            Text(detailsViewModel.details.title ?? "")
+                            Text(coordinator.songVM?.details.title ?? "")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .font(Font.customFont(.ralewayRegular, size: 18))
                                 .foregroundColor(Color.fontMain)
@@ -33,7 +36,7 @@ struct SongDetails: View {
                                 Text("Artist:")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
-                                Text(detailsViewModel.details.artist ?? "")
+                                Text(coordinator.songVM?.details.artist ?? "")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -43,7 +46,7 @@ struct SongDetails: View {
                                 Text("Album:")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
-                                Text(detailsViewModel.details.album ?? "")
+                                Text(coordinator.songVM?.details.album ?? "")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -54,7 +57,7 @@ struct SongDetails: View {
                                 Text("Released:")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
-                                Text(detailsViewModel.details.release ?? "")
+                                Text(coordinator.songVM?.details.release ?? "")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -65,7 +68,7 @@ struct SongDetails: View {
                                 Text("Duration:")
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
-                                Text(TimeInterval(detailsViewModel.details.duration ?? 0).minuteSecond)
+                                Text(TimeInterval(coordinator.songVM?.details.duration ?? 0).minuteSecond)
                                     .font(Font.customFont(.openSans, size: 11))
                                     .foregroundColor(Color.fontSecondary)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -79,16 +82,24 @@ struct SongDetails: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Button("Vote") {
+                    if let url = coordinator.songVM?.details.preview {
+                        PreviewPlayer(player: PreviewPlayerViewModel(url: url))
+                    }
+                    
+//                    Button("Vote") {
+//                        guard KeychainHelper.standard.read(service: .tokens, account: KeychainHelper.account, type: UserToken.self) != nil else {
+//                            coordinator.toggleLogin()
+//                            return
+//                        }
+//                        coordinator.songVM?.vote()
+//
+//                    }
+                    DetailsVote(votes: coordinator.songVM?.votes ?? 0, voted: coordinator.songVM?.voted ?? false) {
                         guard KeychainHelper.standard.read(service: .tokens, account: KeychainHelper.account, type: UserToken.self) != nil else {
-                            coordinator.showSignUp.toggle()
+                            coordinator.toggleLogin()
                             return
                         }
-                        detailsViewModel.vote()
-                        
-                    }
-                    .sheet(isPresented: $coordinator.showSignUp) {
-                        LoginSignUp()
+                        coordinator.songVM?.vote()
                     }
                 }
                 .padding(EdgeInsets(top: 12, leading: 8, bottom: 12, trailing: 8))
@@ -97,17 +108,20 @@ struct SongDetails: View {
                 .cornerRadius(12)
                 .alignmentGuide(VerticalAlignment.center, computeValue: { $0[.bottom] })
                 .position(x: geo.size.width / 2, y: geo.size.height / 2)
+                .onTapGesture {
+                    withAnimation(Animation.easeIn(duration: 0.2)) {
+                        playlistContext.detailedItem = nil
+                    }
+                }
             }
-        }
-        .onAppear {
-            detailsViewModel.details = details
-            detailsViewModel.cityID = playlistContext.city?.id ?? 0
         }
     }
 }
 
 struct SongDetails_Previews: PreviewProvider {
+    static var entry = PlaylistEntry(id: -1, songInfo: SongInfo.example, cityId: -1)
     static var previews: some View {
-        SongDetails(details: SongInfo.example).environmentObject(PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
+        SongDetails(coordinator: SongDetailCoordinator(entry: entry, parent: RootCoordinator())).environmentObject(PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456)))
+            .environmentObject(RootCoordinator())
     }
 }
