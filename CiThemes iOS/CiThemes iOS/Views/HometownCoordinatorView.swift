@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct HometownCoordinatorView: View {
-    @State var hometownId: Int? = KeychainHelper.standard.read(service: .hometownId, type: Int.self)
+    var hometownId: Int?
     @EnvironmentObject var coordinator: PlaylistCoordinator
     @FocusState var isFocused
     

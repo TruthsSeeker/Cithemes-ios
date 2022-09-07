@@ -144,7 +144,6 @@ final class UserViewModel: ObservableObject {
         subscriptions.append(publisher)
     }
     
-    //TODO: these
     func update() {
         guard let url = URL.getUrl(for: "/auth/update") else {
             return

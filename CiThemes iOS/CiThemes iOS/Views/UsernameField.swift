@@ -20,7 +20,7 @@ struct UsernameField: View {
             VStack{
                 ZStack(alignment: .leading) {
                     if username.isEmpty {
-                        Text("Username")
+                        Text("E-mail")
                             .font(Font.customFont(.openSans, size: 14))
                             .foregroundColor(Color.relief.opacity(0.9))
                     }

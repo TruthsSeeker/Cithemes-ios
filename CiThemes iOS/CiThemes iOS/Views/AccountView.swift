@@ -22,9 +22,6 @@ struct AccountView: View {
         ZStack {
             if coordinator.userViewModel.user != nil {
                 List {
-                    TextField("Username", text: $username)
-                        .disabled(!editable)
-                        .tint(.red)
                     TextField("Email", text: $email)
                         .disabled(!editable)
                     
