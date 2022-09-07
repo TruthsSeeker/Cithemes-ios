@@ -35,7 +35,6 @@ struct SettingsView: View {
                                 }
                         }
                         .listRowBackground(Color.background)
-//                        .listItemTint(.clear)
                         
                         NavigationLink {
                             Text("Homepage")
@@ -53,7 +52,6 @@ struct SettingsView: View {
                             }
                         }
                         .listRowBackground(Color.background)
-//                        .listItemTint(.clear)
                         
                         Button {
                             coordinator.displayError(message: "Test")

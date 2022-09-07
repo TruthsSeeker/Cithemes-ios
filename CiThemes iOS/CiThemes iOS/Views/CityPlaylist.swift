@@ -11,8 +11,6 @@ struct CityPlaylist: View {
     @ObservedObject var playlistVM: PlaylistViewModel
     @EnvironmentObject var coordinator: RootCoordinator
 
-    @State var searchShown: Bool = false
-//    @State var detailedSong: PlaylistEntry?
         
     var body: some View {
         GeometryReader { geo in
@@ -61,7 +59,7 @@ struct CityPlaylist: View {
                                     PlaylistCellCoordinatorView(song: entry , rank: index, coordinator: PlaylistCellCoordinator(entry: entry, parent: coordinator))
                                         .onTapGesture {
                                             withAnimation(Animation.easeIn(duration: 0.2)) {
-                                                coordinator.detailedSong = entry
+                                                playlistVM.setDetails(entry)
                                             }
                                         }
                                         .transition(.opacity)
@@ -75,30 +73,12 @@ struct CityPlaylist: View {
                     
                     }
                 }
-                .edgesIgnoringSafeArea([.top, .bottom])
+                .edgesIgnoringSafeArea([.top])
 
                 SearchButton(width: 45, height: 45) {
-                    self.searchShown = true
+                    playlistVM.showSearch()
                 }
                 .position(x: geo.size.width - 45, y: geo.size.height - 45)
-                .sheet(isPresented: self.$searchShown) {
-                    self.searchShown = false
-                } content: {
-                    SongSearch()
-                }
-                
-                if let item = coordinator.detailedSong {
-                    SongDetails(coordinator: SongDetailCoordinator(entry: item, parent: coordinator))
-                        .edgesIgnoringSafeArea([.top,.bottom])
-//                        .onTapGesture {
-//                            withAnimation(Animation.easeIn(duration: 0.2)) {
-//                                playlistVM.detailedItem = nil
-//                            }
-//                        }
-//                        .transition(.opacity)
-                        .environmentObject(playlistVM)
-                }
-            }
         }.onAppear {
             playlistVM.fetch()
         }
@@ -127,9 +107,11 @@ struct CityPlaylist: View {
         }
     }
 }
+}
 
 struct CityPlaylist_Previews: PreviewProvider {
+    static var city = City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456, spotifyURI: "")
     static var previews: some View {
-        CityPlaylist(playlistVM: PlaylistViewModel(list: [], city: City(country: "France", iso2: "FR", name: "Strasbourg", population: 123456, spotifyURI: ""))).environmentObject(RootCoordinator())
+        CityPlaylist(playlistVM: PlaylistViewModel(list: [], city: city , coordinator: PlaylistCoordinator(parent: RootCoordinator(), city: city))).environmentObject(RootCoordinator())
     }
 }

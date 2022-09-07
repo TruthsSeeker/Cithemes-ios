@@ -16,7 +16,7 @@
 		6207D29427A1655400969803 /* Font+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6207D29327A1655400969803 /* Font+Custom.swift */; };
 		62161604284F49F2003817C8 /* HometownMissingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62161603284F49F2003817C8 /* HometownMissingView.swift */; };
 		6218CC732851E7F2008B5303 /* UserViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218CC722851E7F2008B5303 /* UserViewCoordinator.swift */; };
-		6218CC752852268D008B5303 /* HometownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218CC742852268D008B5303 /* HometownView.swift */; };
+		6218CC752852268D008B5303 /* HometownCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218CC742852268D008B5303 /* HometownCoordinatorView.swift */; };
 		6218CC7728523914008B5303 /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6218CC7628523914008B5303 /* StyledButton.swift */; };
 		6224B8E92806DD3F0004AEEA /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224B8E82806DD3F0004AEEA /* KeychainHelper.swift */; };
 		6224B8EB280700FD0004AEEA /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6224B8EA280700FD0004AEEA /* UserToken.swift */; };
@@ -53,8 +53,13 @@
 		626F339B28A2945F003663CF /* Publisher+singleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F339A28A2945F003663CF /* Publisher+singleOutput.swift */; };
 		626FD9EC28C7478500417790 /* AVPlayer+shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FD9EB28C7478500417790 /* AVPlayer+shared.swift */; };
 		626FD9EE28C7549100417790 /* DetailsVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FD9ED28C7549100417790 /* DetailsVote.swift */; };
+		626FD9F028C7A44300417790 /* SongSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FD9EF28C7A44300417790 /* SongSearchCoordinator.swift */; };
+		626FD9F228C7A51100417790 /* SongDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FD9F128C7A51100417790 /* SongDetailsCoordinator.swift */; };
+		626FD9F428C7A6D800417790 /* PlaylistCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FD9F328C7A6D800417790 /* PlaylistCoordinator.swift */; };
+		626FD9F628C882F500417790 /* SongSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FD9F528C882F500417790 /* SongSearch.swift */; };
+		626FD9F828C8881300417790 /* CityPlaylistCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626FD9F728C8881300417790 /* CityPlaylistCoordinatorView.swift */; };
 		627E4A5028081ADB007B4107 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627E4A4F28081ADB007B4107 /* Validator.swift */; };
-		62858BDB2799563B005C0D34 /* SongSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BDA2799563B005C0D34 /* SongSearch.swift */; };
+		62858BDB2799563B005C0D34 /* SongSearchCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BDA2799563B005C0D34 /* SongSearchCoordinatorView.swift */; };
 		62858BE127995E3C005C0D34 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BE027995E3C005C0D34 /* SearchBar.swift */; };
 		62858BE327998122005C0D34 /* RalewayDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62858BE227997D35005C0D34 /* RalewayDots-Regular.ttf */; };
 		62858BE527998AA5005C0D34 /* SongSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BE427998AA5005C0D34 /* SongSearchViewModel.swift */; };
@@ -128,7 +133,7 @@
 		6207D29327A1655400969803 /* Font+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Custom.swift"; sourceTree = "<group>"; };
 		62161603284F49F2003817C8 /* HometownMissingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HometownMissingView.swift; sourceTree = "<group>"; };
 		6218CC722851E7F2008B5303 /* UserViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewCoordinator.swift; sourceTree = "<group>"; };
-		6218CC742852268D008B5303 /* HometownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HometownView.swift; sourceTree = "<group>"; };
+		6218CC742852268D008B5303 /* HometownCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HometownCoordinatorView.swift; sourceTree = "<group>"; };
 		6218CC7628523914008B5303 /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		6224B8E82806DD3F0004AEEA /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		6224B8EA280700FD0004AEEA /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
@@ -170,8 +175,13 @@
 		626F339A28A2945F003663CF /* Publisher+singleOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+singleOutput.swift"; sourceTree = "<group>"; };
 		626FD9EB28C7478500417790 /* AVPlayer+shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+shared.swift"; sourceTree = "<group>"; };
 		626FD9ED28C7549100417790 /* DetailsVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVote.swift; sourceTree = "<group>"; };
+		626FD9EF28C7A44300417790 /* SongSearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchCoordinator.swift; sourceTree = "<group>"; };
+		626FD9F128C7A51100417790 /* SongDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailsCoordinator.swift; sourceTree = "<group>"; };
+		626FD9F328C7A6D800417790 /* PlaylistCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCoordinator.swift; sourceTree = "<group>"; };
+		626FD9F528C882F500417790 /* SongSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearch.swift; sourceTree = "<group>"; };
+		626FD9F728C8881300417790 /* CityPlaylistCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPlaylistCoordinatorView.swift; sourceTree = "<group>"; };
 		627E4A4F28081ADB007B4107 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
-		62858BDA2799563B005C0D34 /* SongSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearch.swift; sourceTree = "<group>"; };
+		62858BDA2799563B005C0D34 /* SongSearchCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchCoordinatorView.swift; sourceTree = "<group>"; };
 		62858BE027995E3C005C0D34 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		62858BE227997D35005C0D34 /* RalewayDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RalewayDots-Regular.ttf"; sourceTree = "<group>"; };
 		62858BE427998AA5005C0D34 /* SongSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchViewModel.swift; sourceTree = "<group>"; };
@@ -265,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				6218CC722851E7F2008B5303 /* UserViewCoordinator.swift */,
+				626FD9F128C7A51100417790 /* SongDetailsCoordinator.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -378,7 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				62161603284F49F2003817C8 /* HometownMissingView.swift */,
-				6218CC742852268D008B5303 /* HometownView.swift */,
+				6218CC742852268D008B5303 /* HometownCoordinatorView.swift */,
 				629BCB1628B4D7BB00C8592A /* HometownCoordinator.swift */,
 			);
 			name = Hometown;
@@ -451,6 +462,8 @@
 				6265818327FEDF8C0037D6A8 /* PodiumCell.swift */,
 				6265814927FECE130037D6A8 /* FirstRankCell.swift */,
 				62B2029628C2028C009DC0EF /* PlaylistCellCoordinator.swift */,
+				626FD9F328C7A6D800417790 /* PlaylistCoordinator.swift */,
+				626FD9F728C8881300417790 /* CityPlaylistCoordinatorView.swift */,
 			);
 			name = Playlist;
 			sourceTree = "<group>";
@@ -513,8 +526,10 @@
 		62C56E37282A6F28002BB4F8 /* Song Search */ = {
 			isa = PBXGroup;
 			children = (
-				62858BDA2799563B005C0D34 /* SongSearch.swift */,
+				62858BDA2799563B005C0D34 /* SongSearchCoordinatorView.swift */,
 				6207D28A279EDBEE00969803 /* SongSearchResult.swift */,
+				626FD9EF28C7A44300417790 /* SongSearchCoordinator.swift */,
+				626FD9F528C882F500417790 /* SongSearch.swift */,
 			);
 			name = "Song Search";
 			sourceTree = "<group>";
@@ -708,11 +723,13 @@
 				62AB2C86280FF52700A57371 /* Authenticator.swift in Sources */,
 				6224B8EB280700FD0004AEEA /* UserToken.swift in Sources */,
 				62AB2C8A280FF67A00A57371 /* RefreshToken.swift in Sources */,
+				626FD9F828C8881300417790 /* CityPlaylistCoordinatorView.swift in Sources */,
 				628FFA722784AF1300343216 /* SongDetailViewModel.swift in Sources */,
 				629D18B62805833B0014F2E1 /* PasswordField.swift in Sources */,
 				62AC3A66282266B900202285 /* SettingsView.swift in Sources */,
 				624D0F7027E9017B003CC730 /* PlaylistEntry.swift in Sources */,
 				6265818427FEDF8C0037D6A8 /* PodiumCell.swift in Sources */,
+				626FD9F028C7A44300417790 /* SongSearchCoordinator.swift in Sources */,
 				62D7F6DE281FDD2200DF1DAB /* TabNavigationView.swift in Sources */,
 				62039533282A73BB003E4E9B /* CitySearchResult.swift in Sources */,
 				62C41A9A2780932B00B6490E /* PlaylistViewModel.swift in Sources */,
@@ -720,7 +737,7 @@
 				6265818227FEDA500037D6A8 /* CiThemesApp.swift in Sources */,
 				627E4A5028081ADB007B4107 /* Validator.swift in Sources */,
 				629D18B82805A0C50014F2E1 /* User.swift in Sources */,
-				6218CC752852268D008B5303 /* HometownView.swift in Sources */,
+				6218CC752852268D008B5303 /* HometownCoordinatorView.swift in Sources */,
 				62F545A5280DA6660028C260 /* JWTWrapper.swift in Sources */,
 				62BEA20E27FF20F40002FFA9 /* CityPlaylist.swift in Sources */,
 				62BEA20C27FF1A790002FFA9 /* PlaylistCellCoordinatorView.swift in Sources */,
@@ -730,7 +747,9 @@
 				6207D28E279EE63100969803 /* Color+Theme.swift in Sources */,
 				62039535282A73DB003E4E9B /* City.swift in Sources */,
 				62B7238328216D1800D43C84 /* TabBarController.swift in Sources */,
+				626FD9F628C882F500417790 /* SongSearch.swift in Sources */,
 				62DFF4022851DADE004B071A /* RootCoordinator.swift in Sources */,
+				626FD9F228C7A51100417790 /* SongDetailsCoordinator.swift in Sources */,
 				626FD9EE28C7549100417790 /* DetailsVote.swift in Sources */,
 				62858BE7279ADD6E005C0D34 /* SongInfo.swift in Sources */,
 				62DFF4002850E970004B071A /* UIImage+Gradated.swift in Sources */,
@@ -738,10 +757,11 @@
 				62FA333427DA4FFD00B07426 /* RootResponse.swift in Sources */,
 				62858BE527998AA5005C0D34 /* SongSearchViewModel.swift in Sources */,
 				62BEA21028002FE30002FFA9 /* NormalCell.swift in Sources */,
-				62858BDB2799563B005C0D34 /* SongSearch.swift in Sources */,
+				62858BDB2799563B005C0D34 /* SongSearchCoordinatorView.swift in Sources */,
 				624D0F7227E9C5A2003CC730 /* StringIDWrapper.swift in Sources */,
 				62C56E3A282A6F5D002BB4F8 /* CitySearch.swift in Sources */,
 				629BCB1C28B4DE9400C8592A /* ConditionalModifier.swift in Sources */,
+				626FD9F428C7A6D800417790 /* PlaylistCoordinator.swift in Sources */,
 				6207D29427A1655400969803 /* Font+Custom.swift in Sources */,
 				62A3549427DB680E00161906 /* SongDetails.swift in Sources */,
 				629D18B12805697A0014F2E1 /* LoginSignUp.swift in Sources */,
@@ -937,14 +957,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = GNZ5A99724;
 				INFOPLIST_FILE = "CiThemes iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = loicheinrich.dev.CiThemes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -958,14 +978,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = GNZ5A99724;
 				INFOPLIST_FILE = "CiThemes iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = loicheinrich.dev.CiThemes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

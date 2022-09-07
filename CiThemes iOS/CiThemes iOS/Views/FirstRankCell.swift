@@ -11,7 +11,6 @@ struct FirstRankCell: View {
     @EnvironmentObject var context: PlaylistViewModel
 
     @ObservedObject var detailVM: SongDetailViewModel
-//    @State var showLogin: Bool = false
     
     init(viewModel: SongDetailViewModel){
         self.detailVM = viewModel
@@ -56,7 +55,6 @@ struct FirstRankCell: View {
                 
                 Button {
                     detailVM.vote {
-//                        showLogin.toggle()
                     } onSuccess: {
                         context.fetch()
                     }
@@ -69,14 +67,6 @@ struct FirstRankCell: View {
         }
         .padding(8)
         .background(.clear)
-//        .sheet(isPresented: $showLogin, content: {
-//            LoginSignUp()
-//        })
-//        .onAppear {
-//            detailVM.details = entry.songInfo
-//            detailVM.cityID = entry.cityId
-//            detailVM.voted = entry.voted
-//        }
     }
 }
 

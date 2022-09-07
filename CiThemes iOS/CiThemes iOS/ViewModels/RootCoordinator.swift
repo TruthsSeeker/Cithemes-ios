@@ -17,6 +17,8 @@ enum Tab {
 
 class RootCoordinator: ObservableObject, UserViewCoordinator {
     @Published var userViewModel: UserViewModel!
+    @Published var hometownCoordinator: PlaylistCoordinator!
+    @Published var hometownViewModel: PlaylistViewModel?
     @Published var tab = Tab.home
     @Published var showSignUp: Bool = false
     @Published var hometownId: Int?
@@ -31,7 +33,7 @@ class RootCoordinator: ObservableObject, UserViewCoordinator {
     
     init() {
         self.userViewModel = UserViewModel(coordinator: self)
-        
+        self.hometownCoordinator = PlaylistCoordinator(parent: self, city: nil)
     }
     
     func toggleLogin() {

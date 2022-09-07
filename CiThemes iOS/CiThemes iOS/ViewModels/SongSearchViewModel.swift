@@ -8,16 +8,29 @@
 import Foundation
 import Combine
 
-final class SongSearchViewModel: ObservableObject {
+final class SongSearchViewModel: ObservableObject, Identifiable {
     @Published var searchTerms: String = ""
     @Published var results: [SongInfo] = []
     @Published var loading: Bool = false
+    @Published var city: City
+    
     lazy var decoder:JSONDecoder = {
         var dcdr = JSONDecoder()
         dcdr.keyDecodingStrategy = .convertFromSnakeCase
         return dcdr
     }()
+    
     private var searchResultsSubscription: AnyCancellable?
+    private unowned let coordinator: SongDetailsCoordinator
+    
+    init(city: City, coordinator: SongDetailsCoordinator) {
+        self.coordinator = coordinator
+        self.city = city
+    }
+    
+    func setDetails(for entry: PlaylistEntry) {
+        coordinator.setDetail(for: entry)
+    }
 
     func search() {
         loading = true

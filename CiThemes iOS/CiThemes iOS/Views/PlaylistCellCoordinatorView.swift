@@ -18,13 +18,13 @@ struct PlaylistCellCoordinatorView: View {
         Group {
             switch rank {
             case 0:
-                FirstRankCell(viewModel: coordinator.song!)
+                FirstRankCell(viewModel: coordinator.songVM!)
             case 1:
-                PodiumCell(position: .second, viewModel: coordinator.song!)
+                PodiumCell(position: .second, viewModel: coordinator.songVM!)
             case 2:
-                PodiumCell(position: .third, viewModel: coordinator.song!)
+                PodiumCell(position: .third, viewModel: coordinator.songVM!)
             default:
-                NormalCell(viewModel: coordinator.song!, rank: rank + 1)
+                NormalCell(viewModel: coordinator.songVM!, rank: rank + 1)
             }
         }
     }

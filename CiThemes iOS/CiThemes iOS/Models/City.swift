@@ -33,4 +33,6 @@ struct City: Identifiable, Codable {
         }
         return nil
     }
+    
+    static let placeholder = City(country: "France", iso2: "FR", name: "Strasbour", population: 123456)
 }

@@ -51,7 +51,6 @@ struct PodiumCell: View {
                 
                 Button {
                     detailVM.vote {
-//                        showLogin.toggle()
                     } onSuccess: {
                         context.fetch()
                     }
@@ -64,14 +63,6 @@ struct PodiumCell: View {
             
         }
         .background(.clear)
-//        .sheet(isPresented: $showLogin, content: {
-//            LoginSignUp()
-//        })
-//        .onAppear {
-//            detailVM.details = entry.songInfo
-//            detailVM.cityID = entry.cityId
-//            detailVM.voted = entry.voted
-//        }
     }
 }
 

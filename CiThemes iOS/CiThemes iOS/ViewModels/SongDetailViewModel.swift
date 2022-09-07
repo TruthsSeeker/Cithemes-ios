@@ -17,14 +17,18 @@ final class SongDetailViewModel: ObservableObject {
     
     private var voteSubscription: AnyCancellable?
     private var fetchSubscription: AnyCancellable?
-    private unowned let coordinator: UserViewCoordinator
+    private unowned let coordinator: SongDetailsCoordinator
     
-    init(entry: PlaylistEntry, coordinator: UserViewCoordinator) {
+    init(entry: PlaylistEntry, coordinator: SongDetailsCoordinator) {
         self.coordinator = coordinator
         self.details = entry.songInfo
         self.cityID = entry.cityId
         self.votes = entry.votes
         self.voted = entry.voted
+    }
+    
+    func dismiss() {
+        coordinator.dismissDetails()
     }
     
     //MARK: Vote Request

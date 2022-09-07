@@ -78,10 +78,7 @@ final class PreviewPlayerViewModel: ObservableObject {
     public func stop() {
         player.pause()
         playing = false
-//        player.replaceCurrentItem(with: nil)
-//        if let observer = observer {
-//            player.removeTimeObserver(observer)
-//        }
+
     }
     
     public func getPlaybackRange() -> ClosedRange<Double> {

@@ -126,6 +126,9 @@ final class UserViewModel: ObservableObject {
                 case .failure(let error):
                     self.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
                     self.coordinator.showError = true
+                    KeychainHelper.standard.logout()
+                    self.user = nil
+                    self.coordinator.hometownId = nil
                     #if DEBUG
                     print(error)
                     #endif

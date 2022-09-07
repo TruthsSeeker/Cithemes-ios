@@ -40,7 +40,7 @@ struct CitySearch: View {
                                 } else {
                                     List(searchVM.results) { result in
                                         NavigationLink(destination: {
-                                            CityPlaylist(playlistVM: PlaylistViewModel(list: [], city: result))
+                                            CityPlaylistCoordinatorView(coordinator: PlaylistCoordinator(parent: coordinator, city: result))
                                         }, label: {
                                             CitySearchResult(city: result)
                                         })
