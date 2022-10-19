@@ -11,11 +11,16 @@ struct SpotifyListen: View {
     @Environment(\.openURL) private var openURL
 
     @State var canOpen: Bool = false
-    let link: URL
+    let songID: String
     
     var body: some View {
         Button {
-            openURL(link)
+            if let url = URL(string:"spotify:track:\(songID)"), UIApplication.shared.canOpenURL(url) {
+                openURL(url)
+                
+            } else if let url = URL(string: "https://open.spotify.com/track/\(songID)") {
+                openURL(url)
+            }
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
@@ -32,13 +37,13 @@ struct SpotifyListen: View {
             }
         }
         .onAppear {
-            canOpen = UIApplication.shared.canOpenURL(link)
+            canOpen = UIApplication.shared.canOpenURL(URL(string:"spotify:track:\(songID)")!)
         }
     }
 }
 
 struct SpotifyListen_Previews: PreviewProvider {
     static var previews: some View {
-        SpotifyListen(link: URL(string: "https://open.spotify.com/track/3YfS47QufnLDFA71FUsgCM")!)
+        SpotifyListen(songID: "3YfS47QufnLDFA71FUsgCM")
     }
 }

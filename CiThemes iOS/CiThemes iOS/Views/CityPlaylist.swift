@@ -35,7 +35,10 @@ struct CityPlaylist: View {
                             .padding(8)
                             Spacer()
                             Button {
-                                if let url = URL(string: "https://open.spotify.com/playlist/\(self.playlistVM.city?.spotifyURI ?? "")") {
+                                if let url = URL(string: "spotify:playlist:\(self.playlistVM.city?.spotifyURI ?? "")"), UIApplication.shared.canOpenURL(url) {
+                                    openURL(url)
+                                    
+                                } else if let url = URL(string: "https://open.spotify.com/playlist/\(self.playlistVM.city?.spotifyURI ?? "")") {
                                     openURL(url)
                                 }
                             } label: {

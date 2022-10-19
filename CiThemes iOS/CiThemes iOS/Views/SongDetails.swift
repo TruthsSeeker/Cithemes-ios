@@ -87,7 +87,7 @@ struct SongDetails: View {
                     }
 
                     HStack {
-                        SpotifyListen(link: URL(string: "https://open.spotify.com/track/\(songVM.details.spotifyID ?? "")")!)
+                        SpotifyListen(songID: songVM.details.spotifyID ?? "")
                         DetailsVote(votes: songVM.votes, voted: songVM.voted) {
                             songVM.vote()
                         }
