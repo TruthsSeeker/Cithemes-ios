@@ -10,7 +10,7 @@ import SwiftUI
 struct CityPlaylist: View {
     @ObservedObject var playlistVM: PlaylistViewModel
     @EnvironmentObject var coordinator: RootCoordinator
-
+    @Environment(\.openURL) private var openURL
         
     var body: some View {
         GeometryReader { geo in
@@ -19,7 +19,7 @@ struct CityPlaylist: View {
                 
                 VStack {
                     ZStack(alignment: .bottomLeading) {
-                        RemoteImage(playlistVM.city?.image, placeholder: Image("LosAngeles"))
+                        RemoteImage(playlistVM.city?.image, placeholder: Image("placeholder"))
                             .frame(height: 200)
 
                         HStack {
@@ -34,11 +34,15 @@ struct CityPlaylist: View {
                             }
                             .padding(8)
                             Spacer()
-                            Link(destination: URL(string: "https://open.spotify.com/playlist/\(self.playlistVM.city?.spotifyURI ?? "")")!, label: {
+                            Button {
+                                if let url = URL(string: "https://open.spotify.com/playlist/\(self.playlistVM.city?.spotifyURI ?? "")") {
+                                    openURL(url)
+                                }
+                            } label: {
                                 Image("Spotify")
                                     .resizable()
                                     .frame(width: 32, height: 32)
-                            })
+                            }
                             .padding(8)
                             .conditional(playlistVM.city?.spotifyURI == nil) {
                                 EmptyView()

@@ -10,6 +10,7 @@ import SwiftUI
 struct SongDetails: View {
     @ObservedObject var songVM: SongDetailViewModel
     @EnvironmentObject var playlistContext: PlaylistViewModel
+    
 
     var body: some View {
         ZStack {
@@ -25,7 +26,6 @@ struct SongDetails: View {
                     HStack(alignment: .top, spacing: 8) {
                         RemoteImage(songVM.details.cover, placeholder: Image("rhcp", bundle: nil))
                             .frame(width: 90, height: 90, alignment: .center)
-                            .cornerRadius(8)
                             .clipped()
                         VStack(alignment: .leading, spacing: 2){
                             Text(songVM.details.title ?? "")
@@ -86,8 +86,11 @@ struct SongDetails: View {
                         PreviewPlayer(player: PreviewPlayerViewModel(url: url))
                     }
 
-                    DetailsVote(votes: songVM.votes, voted: songVM.voted) {
-                        songVM.vote()
+                    HStack {
+                        SpotifyListen(link: URL(string: "https://open.spotify.com/track/\(songVM.details.spotifyID ?? "")")!)
+                        DetailsVote(votes: songVM.votes, voted: songVM.voted) {
+                            songVM.vote()
+                        }
                     }
                 }
                 .padding(EdgeInsets(top: 12, leading: 8, bottom: 12, trailing: 8))

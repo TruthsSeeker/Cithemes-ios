@@ -10,6 +10,8 @@
 		62039533282A73BB003E4E9B /* CitySearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62039532282A73BB003E4E9B /* CitySearchResult.swift */; };
 		62039535282A73DB003E4E9B /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62039534282A73DB003E4E9B /* City.swift */; };
 		62039537282A746A003E4E9B /* CitySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62039536282A746A003E4E9B /* CitySearchViewModel.swift */; };
+		6205233E28FD9C98007A95B7 /* ProvidedBySpotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6205233D28FD9C98007A95B7 /* ProvidedBySpotify.swift */; };
+		6205234028FD9F58007A95B7 /* Image+static.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6205233F28FD9F58007A95B7 /* Image+static.swift */; };
 		6207D28B279EDBEE00969803 /* SongSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6207D28A279EDBEE00969803 /* SongSearchResult.swift */; };
 		6207D28E279EE63100969803 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6207D28D279EE63100969803 /* Color+Theme.swift */; };
 		6207D29027A0565C00969803 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6207D28F27A0565C00969803 /* RemoteImage.swift */; };
@@ -37,6 +39,7 @@
 		622EC88B26A703D400786192 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88126A703D400786192 /* OpenSans-Regular.ttf */; };
 		622EC88C26A703D400786192 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88226A703D400786192 /* OpenSans-ExtraBold.ttf */; };
 		622EC89026A704B700786192 /* Raleway-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */; };
+		6233A8FE28FFDB5C00CCD850 /* SpotifyListen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6233A8FD28FFDB5C00CCD850 /* SpotifyListen.swift */; };
 		6234399D278EE0E20016093C /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6234399C278EE0E20016093C /* SearchButton.swift */; };
 		623F39CB284A458400930201 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623F39CA284A458400930201 /* AccountView.swift */; };
 		624D0F7027E9017B003CC730 /* PlaylistEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624D0F6F27E9017B003CC730 /* PlaylistEntry.swift */; };
@@ -64,6 +67,7 @@
 		62858BE327998122005C0D34 /* RalewayDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62858BE227997D35005C0D34 /* RalewayDots-Regular.ttf */; };
 		62858BE527998AA5005C0D34 /* SongSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BE427998AA5005C0D34 /* SongSearchViewModel.swift */; };
 		62858BE7279ADD6E005C0D34 /* SongInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62858BE6279ADD6E005C0D34 /* SongInfo.swift */; };
+		6285CED428E1A1F60030ECD5 /* Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6285CED328E1A1F60030ECD5 /* Dark.png */; };
 		628FFA722784AF1300343216 /* SongDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628FFA712784AF1300343216 /* SongDetailViewModel.swift */; };
 		629BCB1728B4D7BB00C8592A /* HometownCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629BCB1628B4D7BB00C8592A /* HometownCoordinator.swift */; };
 		629BCB1928B4DE1000C8592A /* View+Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629BCB1828B4DE1000C8592A /* View+Conditional.swift */; };
@@ -127,6 +131,8 @@
 		62039532282A73BB003E4E9B /* CitySearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchResult.swift; sourceTree = "<group>"; };
 		62039534282A73DB003E4E9B /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		62039536282A746A003E4E9B /* CitySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchViewModel.swift; sourceTree = "<group>"; };
+		6205233D28FD9C98007A95B7 /* ProvidedBySpotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidedBySpotify.swift; sourceTree = "<group>"; };
+		6205233F28FD9F58007A95B7 /* Image+static.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+static.swift"; sourceTree = "<group>"; };
 		6207D28A279EDBEE00969803 /* SongSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchResult.swift; sourceTree = "<group>"; };
 		6207D28D279EE63100969803 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		6207D28F27A0565C00969803 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 		622EC88126A703D400786192 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		622EC88226A703D400786192 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		622EC88E26A704B700786192 /* Raleway-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		6233A8FD28FFDB5C00CCD850 /* SpotifyListen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyListen.swift; sourceTree = "<group>"; };
 		6234399C278EE0E20016093C /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		623F39CA284A458400930201 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		624D0F6F27E9017B003CC730 /* PlaylistEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistEntry.swift; sourceTree = "<group>"; };
@@ -186,6 +193,7 @@
 		62858BE227997D35005C0D34 /* RalewayDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RalewayDots-Regular.ttf"; sourceTree = "<group>"; };
 		62858BE427998AA5005C0D34 /* SongSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchViewModel.swift; sourceTree = "<group>"; };
 		62858BE6279ADD6E005C0D34 /* SongInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongInfo.swift; sourceTree = "<group>"; };
+		6285CED328E1A1F60030ECD5 /* Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dark.png; sourceTree = "<group>"; };
 		628FFA712784AF1300343216 /* SongDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailViewModel.swift; sourceTree = "<group>"; };
 		629BCB1628B4D7BB00C8592A /* HometownCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HometownCoordinator.swift; sourceTree = "<group>"; };
 		629BCB1828B4DE1000C8592A /* View+Conditional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Conditional.swift"; sourceTree = "<group>"; };
@@ -305,6 +313,7 @@
 		622EC83C26A6EEC900786192 /* CiThemes iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6285CED228E1A1E20030ECD5 /* Icons */,
 				622EC89126A70A0800786192 /* Models */,
 				622EC86F26A6F0BF00786192 /* Views */,
 				62C41A982780931500B6490E /* ViewModels */,
@@ -385,6 +394,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		6285CED228E1A1E20030ECD5 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				6285CED328E1A1F60030ECD5 /* Dark.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		629BCB1528B4D7A200C8592A /* Hometown */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +456,7 @@
 				626F339A28A2945F003663CF /* Publisher+singleOutput.swift */,
 				629BCB1828B4DE1000C8592A /* View+Conditional.swift */,
 				626FD9EB28C7478500417790 /* AVPlayer+shared.swift */,
+				6205233F28FD9F58007A95B7 /* Image+static.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -495,6 +513,7 @@
 				62B75F622857276D0062A888 /* PreviewPlayer.swift */,
 				622CB5EE28C5E38600AF9CB8 /* SongDetailCoordinator.swift */,
 				626FD9ED28C7549100417790 /* DetailsVote.swift */,
+				6233A8FD28FFDB5C00CCD850 /* SpotifyListen.swift */,
 			);
 			name = "Song Details";
 			sourceTree = "<group>";
@@ -530,6 +549,7 @@
 				6207D28A279EDBEE00969803 /* SongSearchResult.swift */,
 				626FD9EF28C7A44300417790 /* SongSearchCoordinator.swift */,
 				626FD9F528C882F500417790 /* SongSearch.swift */,
+				6205233D28FD9C98007A95B7 /* ProvidedBySpotify.swift */,
 			);
 			name = "Song Search";
 			sourceTree = "<group>";
@@ -676,6 +696,7 @@
 				6267E52F28A26ABC005D900F /* .gitignore in Resources */,
 				622EC89026A704B700786192 /* Raleway-VariableFont_wght.ttf in Resources */,
 				622EC88726A703D400786192 /* OpenSans-SemiBold.ttf in Resources */,
+				6285CED428E1A1F60030ECD5 /* Dark.png in Resources */,
 				62FA332E27D6368200B07426 /* env.plist in Resources */,
 				622EC88526A703D400786192 /* OpenSans-Bold.ttf in Resources */,
 				622EC88926A703D400786192 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -745,11 +766,13 @@
 				629D18C22805CE860014F2E1 /* SignUp.swift in Sources */,
 				624D0F7827EA21D8003CC730 /* URL+getUrl.swift in Sources */,
 				6207D28E279EE63100969803 /* Color+Theme.swift in Sources */,
+				6233A8FE28FFDB5C00CCD850 /* SpotifyListen.swift in Sources */,
 				62039535282A73DB003E4E9B /* City.swift in Sources */,
 				62B7238328216D1800D43C84 /* TabBarController.swift in Sources */,
 				626FD9F628C882F500417790 /* SongSearch.swift in Sources */,
 				62DFF4022851DADE004B071A /* RootCoordinator.swift in Sources */,
 				626FD9F228C7A51100417790 /* SongDetailsCoordinator.swift in Sources */,
+				6205233E28FD9C98007A95B7 /* ProvidedBySpotify.swift in Sources */,
 				626FD9EE28C7549100417790 /* DetailsVote.swift in Sources */,
 				62858BE7279ADD6E005C0D34 /* SongInfo.swift in Sources */,
 				62DFF4002850E970004B071A /* UIImage+Gradated.swift in Sources */,
@@ -771,6 +794,7 @@
 				62161604284F49F2003817C8 /* HometownMissingView.swift in Sources */,
 				629D18B428056D680014F2E1 /* UsernameField.swift in Sources */,
 				622EC84026A6EEC900786192 /* SceneDelegate.swift in Sources */,
+				6205234028FD9F58007A95B7 /* Image+static.swift in Sources */,
 				626FD9EC28C7478500417790 /* AVPlayer+shared.swift in Sources */,
 				629D18BA2805A1450014F2E1 /* UserViewModel.swift in Sources */,
 				62AB2C88280FF64D00A57371 /* AccessToken.swift in Sources */,
@@ -957,14 +981,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GNZ5A99724;
 				INFOPLIST_FILE = "CiThemes iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = loicheinrich.dev.CiThemes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -978,14 +1002,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GNZ5A99724;
 				INFOPLIST_FILE = "CiThemes iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = loicheinrich.dev.CiThemes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

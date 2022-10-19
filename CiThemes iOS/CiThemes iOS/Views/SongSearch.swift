@@ -27,6 +27,14 @@ struct SongSearch: View {
                             .font(.custom("RalewayDots-Regular", size: 48))
                             .foregroundColor(Color.relief)
                     } else {
+                        HStack {
+                            Image.spotifyLogo
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 30, alignment: .leading)
+                                .padding(8)
+                            Spacer()
+                        }
                         List(searchVM.results) { result in
                             SongSearchResult(song: result)
                                 .listRowBackground(Color.background)
@@ -42,6 +50,7 @@ struct SongSearch: View {
                             .onAppear {
                                 UITableView.appearance().separatorColor = .clear
                                 UITableView.appearance().keyboardDismissMode = .onDrag
+                                UITableView.appearance().backgroundColor = .clear
                             }
                     }
                     
@@ -61,7 +70,13 @@ struct SongSearch: View {
 
 struct SongSearch_Previews: PreviewProvider {
     static var city = City(country: "France", iso2: "FR", name: "Strasbour", population: 123456)
+    static var viewModel = {
+        var coordinator = PlaylistCoordinator(parent: RootCoordinator(), city: SongSearch_Previews.city)
+        coordinator.searchVM = SongSearchViewModel(city: city, coordinator: coordinator)
+        coordinator.searchVM?.results = [SongInfo()]
+        return coordinator.searchVM!
+    }()
     static var previews: some View {
-        SongSearch(searchVM: SongSearchViewModel(city: city, coordinator: PlaylistCoordinator(parent: RootCoordinator(), city: city)))
+        SongSearch(searchVM: viewModel)
     }
 }
