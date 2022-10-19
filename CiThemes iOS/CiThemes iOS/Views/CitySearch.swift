@@ -38,21 +38,27 @@ struct CitySearch: View {
                                             .foregroundColor(Color.relief)
                                     }
                                 } else {
-                                    List(searchVM.results) { result in
-                                        NavigationLink(destination: {
-                                            CityPlaylistCoordinatorView(coordinator: PlaylistCoordinator(parent: coordinator, city: result))
-                                        }, label: {
-                                            CitySearchResult(city: result)
-                                        })
-                                        .listRowBackground(Color.background)
-                                        .listRowInsets(EdgeInsets())
-                                            
+                                    ScrollView {
+                                        LazyVStack {
+                                            ForEach(searchVM.results) { result in
+                                                NavigationLink(destination: {
+                                                    CityPlaylistCoordinatorView(coordinator: PlaylistCoordinator(parent: coordinator, city: result))
+                                                }, label: {
+                                                    CitySearchResult(city: result)
+                                                })
+                                                .listRowBackground(Color.background)
+                                                .listRowInsets(EdgeInsets())
+                                                
+                                            }
+                                        }
+                                        
                                     }
-                                    .listStyle(PlainListStyle())
-                                    .onAppear {
-                                        UITableView.appearance().separatorColor = .clear
-                                        UITableView.appearance().keyboardDismissMode = .onDrag
-                                    }
+//                                    .listStyle(PlainListStyle())
+//                                    .onAppear {
+//                                        UITableView.appearance().separatorColor = .clear
+//                                        UITableView.appearance().keyboardDismissMode = .onDrag
+//                                        UITableView.appearance().backgroundColor = .background
+//                                    }
                                 }
                                 
                                 LocationButton { location in
@@ -89,6 +95,6 @@ struct CitySearch: View {
 
 struct CitySearch_Previews: PreviewProvider {
     static var previews: some View {
-        CitySearch()
+        CitySearch().environmentObject(RootCoordinator())
     }
 }

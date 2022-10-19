@@ -35,23 +35,28 @@ struct SongSearch: View {
                                 .padding(8)
                             Spacer()
                         }
-                        List(searchVM.results) { result in
-                            SongSearchResult(song: result)
-                                .listRowBackground(Color.background)
-                                .listRowInsets(EdgeInsets())
-                                .onTapGesture {
-                                    withAnimation(Animation.easeIn(duration: 0.2)) {
-                                        searchVM.setDetails(for: PlaylistEntry(id: -1, songInfo: result, cityId: searchVM.city.id ?? -1))
-                                    }
+                        ScrollView {
+                            LazyVStack {
+                                ForEach(searchVM.results) { result in
+                                    SongSearchResult(song: result)
+                                        .listRowBackground(Color.background)
+                                        .listRowInsets(EdgeInsets())
+                                        .onTapGesture {
+                                            withAnimation(Animation.easeIn(duration: 0.2)) {
+                                                searchVM.setDetails(for: PlaylistEntry(id: -1, songInfo: result, cityId: searchVM.city.id ?? -1))
+                                            }
+                                        }
+                                        .transition(.opacity)
                                 }
-                                .transition(.opacity)
-                        }
-                            .listStyle(PlainListStyle())
-                            .onAppear {
-                                UITableView.appearance().separatorColor = .clear
-                                UITableView.appearance().keyboardDismissMode = .onDrag
-                                UITableView.appearance().backgroundColor = .clear
                             }
+                        }
+//                        List(searchVM.results)
+//                            .listStyle(PlainListStyle())
+//                            .onAppear {
+//                                UITableView.appearance().separatorColor = .clear
+//                                UITableView.appearance().keyboardDismissMode = .onDrag
+//                                UITableView.appearance().backgroundColor = .background
+//                            }
                     }
                     
                 }
