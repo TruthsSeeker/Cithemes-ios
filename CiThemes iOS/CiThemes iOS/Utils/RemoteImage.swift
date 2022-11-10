@@ -12,7 +12,7 @@ struct RemoteImage: View {
     @ObservedObject fileprivate var loader: ImageLoader
     var placeholder: Image?
     
-    init(_ url: URL?, placeholder: Image? = nil) {
+    init(_ url: URL?, placeholder: Image? = Image("placeholder")) {
         loader = ImageLoader(url)
         self.placeholder = placeholder
     }
@@ -41,7 +41,10 @@ fileprivate class ImageLoader: ObservableObject {
     @Published var data: Data?
     
     init(_ url: URL?) {
-        guard let url = url else {
+        // Only load if the url is valid and doesn't refer to the placeholder
+        // So that the correct placeholder image will be displayed
+        // depending on dark/light mode setting
+        guard let url = url, !url.absoluteString.contains("placeholder") else {
             return
         }
         URLSession.shared.dataTask(with: url) { data, res, err in
