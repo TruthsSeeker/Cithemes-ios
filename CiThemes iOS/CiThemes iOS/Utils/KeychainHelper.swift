@@ -70,7 +70,7 @@ final class KeychainHelper {
         self.delete(service: .email)
         self.delete(service: .tokens)
         self.delete(service: .userId)
-        self.delete(service: .hometownId)
+        self.delete(service: .hometown)
     }
 }
 
@@ -108,6 +108,6 @@ extension KeychainHelper {
         case tokens
         case email
         case userId
-        case hometownId
+        case hometown
     }
 }

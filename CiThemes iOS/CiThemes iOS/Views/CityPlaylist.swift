@@ -92,7 +92,7 @@ struct CityPlaylist: View {
         .environmentObject(playlistVM)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                if let hometownId = coordinator.userViewModel.user?.hometownId, hometownId == playlistVM.city?.id ?? -1 {
+                if let hometownId = coordinator.userViewModel.user?.hometown?.hometownId, hometownId == playlistVM.city?.id ?? -1 {
                     EmptyView()
                 } else {
                     Button {

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LoginSignUp: View {
-    //TODO LoginSignupCoordinator
     @State var loginIsShown: Bool = true
     
     var body: some View {

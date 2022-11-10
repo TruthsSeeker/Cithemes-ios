@@ -21,7 +21,7 @@ class RootCoordinator: ObservableObject, UserViewCoordinator {
     @Published var hometownViewModel: PlaylistViewModel?
     @Published var tab = Tab.home
     @Published var showSignUp: Bool = false
-    @Published var hometownId: Int?
+    @Published var hometown: Hometown?
     @Published var showError: Bool = false
     @Published var detailedSong: PlaylistEntry?
     
@@ -40,8 +40,8 @@ class RootCoordinator: ObservableObject, UserViewCoordinator {
         showSignUp.toggle()
     }
     
-    func updateHometown(id: Int?) {
-        self.hometownId = id
+    func updateHometown(_ hometown: Hometown?) {
+        self.hometown = hometown
     }
     
     func displayError(message: String) {

@@ -17,7 +17,7 @@ struct TabNavigationView: View {
     
     var body: some View {
         TabView(selection: $coordinator.tab) {
-            HometownCoordinatorView(hometownId: coordinator.hometownId)
+            HometownCoordinatorView(hometown: coordinator.hometown)
                 .tabItem {
                     Image("Home Tab")
                     Text("Hometown")

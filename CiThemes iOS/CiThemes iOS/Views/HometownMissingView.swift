@@ -49,7 +49,7 @@ struct HometownMissingView_Previews: PreviewProvider {
     static var userCoordinator: RootCoordinator = {
        let coordinator = RootCoordinator()
         coordinator.userViewModel = UserViewModel(coordinator: coordinator)
-        coordinator.userViewModel.user = User.init(id: 0, email: "", hometownId: nil, username: nil)
+        coordinator.userViewModel.user = User.init(id: 0, email: "", hometown: nil, username: nil)
         return coordinator
     }()
     static var previews: some View {
