@@ -19,7 +19,6 @@ final class PlaylistViewModel: ObservableObject {
         return dcdr
     }()
     
-//    @Published var cityId: Int
     @Published var city: City?
     @Published var detailedItem: PlaylistEntry?
     var songsDict: [PlaylistEntry] {
@@ -31,14 +30,31 @@ final class PlaylistViewModel: ObservableObject {
         }
     }
     
-    init(list: [PlaylistEntry] = [], city: City? = nil) {
-        self.songsDict = list
-        self.city = city
-    }
-    
     private var playlistSubscription: AnyCancellable?
     
+    private unowned let coordinator: PlaylistCoordinator
     
+    init(list: [PlaylistEntry] = [], city: City? = nil, coordinator: PlaylistCoordinator) {
+        self.songsDict = list
+        self.city = city
+        self.coordinator = coordinator
+    }
+    
+    func setDetails(_ entry: PlaylistEntry?) {
+        if let entry = entry {
+            coordinator.setDetail(for: entry)
+        } else {
+            coordinator.dismissDetails()
+        }
+    }
+    
+    func showSearch() {
+        guard let city = city else {
+            return
+        }
+        coordinator.search(for: city)
+    }
+        
     func fetch(onComplete complete: @escaping () -> Void = {}) {
         guard var url = URL.getUrl(for: "/cities/\(city?.id ?? 0)/playlist") else {
             return
@@ -84,5 +100,5 @@ final class PlaylistViewModel: ObservableObject {
     
     static var placeholder = PlaylistViewModel(list: Array(repeating: 0, count: 50).map({ _ in
         return PlaylistEntry(id: UUID().hashValue, songInfo: SongInfo(id: UUID().uuidString, title: String(Int.random(in: 1...100000)), artist: String(Int.random(in: 1...100000))), votes: Int.random(in: 0...1000), cityId: -1)
-    }), city: City(country: "France", iso2: "FR", name: "Strasbour", population: 123456))
+    }), city: City(country: "France", iso2: "FR", name: "Strasbour", population: 123456), coordinator: PlaylistCoordinator(parent: RootCoordinator(), city: City(country: "France", iso2: "FR", name: "Strasbour", population: 123456)))
 }

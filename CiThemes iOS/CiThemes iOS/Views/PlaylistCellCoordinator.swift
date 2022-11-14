@@ -8,19 +8,23 @@
 import Foundation
 import Combine
 
-class PlaylistCellCoordinator: ObservableObject, UserViewCoordinator {
+class PlaylistCellCoordinator: ObservableObject, UserViewCoordinator, SongDetailsCoordinator {
     private unowned let parent: RootCoordinator
-    @Published var song: SongDetailViewModel?
+    @Published var songVM: SongDetailViewModel?
     @Published var showDetails: Bool = false
     
     init(entry: PlaylistEntry, parent: RootCoordinator) {
         self.parent = parent
-        self.song = SongDetailViewModel(entry: entry, coordinator: self)
+        self.songVM = SongDetailViewModel(entry: entry, coordinator: self)
+    }
+    func dismissDetails() {
+        songVM = nil
     }
     
-    func toggleDetails() {
-        showDetails.toggle()
+    func setDetail(for entry: PlaylistEntry) {
+        songVM = SongDetailViewModel(entry: entry, coordinator: self)
     }
+    
     
     func displayError(message: String) {
         parent.displayError(message: message)

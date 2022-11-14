@@ -19,10 +19,12 @@ final class UserViewModel: ObservableObject {
     init(coordinator: RootCoordinator) {
         if let existingTokens = KeychainHelper.standard.read(service: .tokens, type: UserToken.self),
             let existingEmail = KeychainHelper.standard.read(service: .email, type: String.self) {
-            self.user = User(id: existingTokens.refreshToken.userId, email: existingEmail, hometownId: KeychainHelper.standard.read(service: .hometownId, type: Int.self))
+            let hometown = KeychainHelper.standard.read(service: .hometown, type: Hometown.self)
+            self.user = User(id: existingTokens.refreshToken.userId, email: existingEmail, hometown: hometown)
         }
+        // TODO: Retrieve hometown from CoreData
         self.coordinator = coordinator
-        coordinator.hometownId = self.user?.hometownId
+        coordinator.hometown = self.user?.hometown
     }
     
     lazy var decoder:JSONDecoder = {
@@ -77,7 +79,8 @@ final class UserViewModel: ObservableObject {
         
         let publisher = NetworkManager.shared.requestPublisher(for: request, decoding: RootResponse<UserToken>.self)
             .map(\.result)
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
+            
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
@@ -93,11 +96,16 @@ final class UserViewModel: ObservableObject {
             }, receiveValue: { [self] tokens in
                 
                 saveUserData(from: tokens)
-                self.user = User(id: tokens.refreshToken.userId, email: email, hometownId: tokens.hometownId)
-                coordinator.toggleLogin()
-                coordinator.hometownId = tokens.hometownId
-                self.email = ""
-                self.password = ""
+                Task {
+                    let hometown = await Hometown.fetch(id: tokens.hometownId)
+                    await MainActor.run {
+                        self.user = User(id: tokens.refreshToken.userId, email: email, hometown: hometown)
+                        coordinator.toggleLogin()
+                        coordinator.hometown = hometown
+                        self.email = ""
+                        self.password = ""
+                    }
+                }
             })
         subscriptions.append(publisher)
     }
@@ -126,6 +134,9 @@ final class UserViewModel: ObservableObject {
                 case .failure(let error):
                     self.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
                     self.coordinator.showError = true
+                    KeychainHelper.standard.logout()
+                    self.user = nil
+                    self.coordinator.hometown = nil
                     #if DEBUG
                     print(error)
                     #endif
@@ -135,13 +146,12 @@ final class UserViewModel: ObservableObject {
                 if success {
                     KeychainHelper.standard.logout()
                     self?.user = nil
-                    self?.coordinator.hometownId = nil
+                    self?.coordinator.hometown = nil
                 }
             }
         subscriptions.append(publisher)
     }
     
-    //TODO: these
     func update() {
         guard let url = URL.getUrl(for: "/auth/update") else {
             return
@@ -189,7 +199,7 @@ final class UserViewModel: ObservableObject {
         }
         request.httpBody = data
     
-        let publisher = NetworkManager.shared.authenticatedRequestPublisher(for: request, decoding: RootResponse<[String:Int]>.self)
+        let publisher = NetworkManager.shared.authenticatedRequestPublisher(for: request, decoding: RootResponse<Hometown>.self)
             .receive(on: DispatchQueue.main)
             .map(\.result)
             .sink { [weak self] completion in
@@ -219,12 +229,46 @@ final class UserViewModel: ObservableObject {
                     }
                     break
                 }
-            } receiveValue: { response in
-                if let hometownId = response["hometown"] {
-                    KeychainHelper.standard.save(hometownId, service: .hometownId)
-                    self.user?.hometownId = hometownId
-                    self.coordinator.hometownId = hometownId
+            } receiveValue: { hometown in
+                KeychainHelper.standard.save(hometown, service: .hometown)
+                self.user?.hometown = hometown
+                self.coordinator.hometown = hometown
+            }
+        subscriptions.append(publisher)
+    }
+    
+    func updatePassword(_ oldPassword: String, newPassword: String, onComplete: @escaping () -> Void) {
+        guard let url = URL.getUrl(for: "/auth/update"),
+              let id = user?.id
+        else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        guard let data = try? JSONEncoder().encode(["id": String(id), "password": oldPassword, "new_password": newPassword]) else { return }
+        request.httpBody = data
+        
+        let publisher = NetworkManager.shared.authenticatedRequestPublisher(for: request, decoding: RootResponse<String>.self)
+            .receive(on: DispatchQueue.main)
+            .map(\.result)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.coordinator.errorConfig = .init(message: error.localizedDescription, type: .error(.error))
+                    self.coordinator.showError = true
+                    #if DEBUG
+                    print(error)
+                    #endif
+                    break
                 }
+            } receiveValue: { message in
+                print(message)
+                onComplete()
             }
         subscriptions.append(publisher)
     }
@@ -235,7 +279,10 @@ final class UserViewModel: ObservableObject {
         let userId = String(tokens.refreshToken.userId)
         KeychainHelper.standard.save(userId, service: .userId)
         KeychainHelper.standard.save(tokens, service: .tokens)
-        KeychainHelper.standard.save(tokens.hometownId, service: .hometownId)
+        Task {
+            let hometown = await Hometown.fetch(id: tokens.hometownId)
+            KeychainHelper.standard.save(hometown, service: .hometown)
+        }
     }
 }
 

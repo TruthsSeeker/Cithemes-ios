@@ -8,12 +8,13 @@
 import Foundation
 
 class SongDetailCoordinator: ObservableObject, UserViewCoordinator {
-    private unowned let parent: RootCoordinator
+    
+    private unowned let parent: SongDetailsCoordinator
     @Published var songVM: SongDetailViewModel?
     
-    init(entry: PlaylistEntry, parent: RootCoordinator){
+    init(entry: PlaylistEntry, parent: SongDetailsCoordinator){
         self.parent = parent
-        self.songVM = SongDetailViewModel(entry: entry, coordinator: self)
+        self.songVM = SongDetailViewModel(entry: entry, coordinator: parent)
     }
     
     func toggleLogin() {
@@ -23,9 +24,4 @@ class SongDetailCoordinator: ObservableObject, UserViewCoordinator {
     func displayError(message: String) {
         parent.displayError(message: message)
     }
-    
-    func hideDetails() {
-        parent.detailedSong = nil
-    }
-    
 }

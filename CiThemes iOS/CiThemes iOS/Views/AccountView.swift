@@ -14,35 +14,44 @@ struct AccountView: View {
     @State var editable: Bool = false
     @State var username: String = ""
     @State var email: String = ""
-    @State var password: String = ""
-    @State var newPassword: String = ""
-    @State var confirmNewPassword: String = ""
+
     @State var list: UITableView?
     var body: some View {
         ZStack {
+            Color.background
+                .ignoresSafeArea()
             if coordinator.userViewModel.user != nil {
-                List {
-                    TextField("Username", text: $username)
-                        .disabled(!editable)
-                        .tint(.red)
+                VStack(alignment: .leading, spacing: 12) {
                     TextField("Email", text: $email)
                         .disabled(!editable)
+                        .frame(height: 60)
                     
-                    NavigationLink("Change your password") {
-                        //TODO: Change password view
-                        Text("Change Password Placeholder")
+                    NavigationLink {
+                        ChangePasswordView()
                     }
+                    label: {
+                        HStack {
+                            Text("Change your password")
+                                .foregroundColor(.fontMain)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.fontMain)
+                        }
+                    }
+                    .frame(height: 40)
                     .foregroundColor(.fontMain)
                     Button {
                         coordinator.userViewModel.logout()
-                        //TODO NavigationBar Coordinator
                         self.presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Logout")
-                            .foregroundColor(.fontMain)
+                            .foregroundColor(Color.fontMain)
                     }
-                
+                    .frame(height: 40)
+                    Spacer()
                 }
+                .padding(12)
+                .padding(.top, 32)
             } else {
                 VStack {
                     Text("You don't seem to be logged in")

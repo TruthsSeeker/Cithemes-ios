@@ -20,7 +20,8 @@ struct SettingsView: View {
                     Color.background
                         .ignoresSafeArea()
                     List {
-                        NavigationLink(isActive: $showAccountView) {
+                        //MARK: Account page
+                        NavigationLink() {
                             AccountView()
                         } label: {
                                 HStack {
@@ -35,10 +36,10 @@ struct SettingsView: View {
                                 }
                         }
                         .listRowBackground(Color.background)
-//                        .listItemTint(.clear)
                         
+                        //MARK: Hometown page
                         NavigationLink {
-                            Text("Homepage")
+                            HometownSettingsView()
                         } label: {
                             HStack {
                                 Image(systemName: "building.2.crop.circle")
@@ -53,13 +54,23 @@ struct SettingsView: View {
                             }
                         }
                         .listRowBackground(Color.background)
-//                        .listItemTint(.clear)
                         
-                        Button {
-                            coordinator.displayError(message: "Test")
+                        //MARK: Contact page
+                        NavigationLink {
+                            AboutSettingsView()
                         } label: {
-                            Text("Errorrrrr")
+                            HStack {
+                                Image(systemName: "info.bubble")
+                                    .resizable()
+                                    .foregroundColor(.fontMain)
+                                    .frame(width: 24, height: 24)
+                                    .padding(.leading, -4)
+                                Text("About")
+                                    .foregroundColor(.fontMain)
+                                    .padding(.leading, 8)
+                            }
                         }
+                        .listRowBackground(Color.background)
 
                     }
                     .padding(.top, 16)
@@ -67,26 +78,13 @@ struct SettingsView: View {
                 }
                 
             }
+            .tint(.fontMain)
             .background(.background)
-            .introspectNavigationController(customize: { nav in
-                self.nav = nav
-                self.setNavigationBarAppearance()
-                
-            })
-    }
-    
-    private func setNavigationBarAppearance() {
-        guard let nav = self.nav, coordinator.tab == .setting else { return }
-        nav.navigationBar.tintColor = UIColor.relief
-        nav.navigationBar.isTranslucent = true
-        nav.navigationBar.backgroundColor = .clear
-        
-        UITableView.appearance().backgroundColor = .clear
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView().environmentObject(RootCoordinator())
     }
 }
