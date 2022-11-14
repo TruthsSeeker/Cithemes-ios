@@ -75,21 +75,13 @@ struct CitySearch: View {
             .navigationBarHidden(true)
             .navigationBarTitle("")
         }
-        .introspectNavigationController { nav in
-            self.nav = nav
-            setNavigationBarAppearance()
-        }
+        .tint(.fontAlwaysLight)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 searchFieldFocused = true
             }
         }
         
-    }
-    
-    func setNavigationBarAppearance() {
-        guard let nav = nav, coordinator.tab == .search else { return }
-        nav.navigationBar.tintColor = UIColor.fontAlwaysLight
     }
 }
 

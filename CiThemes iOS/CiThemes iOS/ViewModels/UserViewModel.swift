@@ -19,7 +19,8 @@ final class UserViewModel: ObservableObject {
     init(coordinator: RootCoordinator) {
         if let existingTokens = KeychainHelper.standard.read(service: .tokens, type: UserToken.self),
             let existingEmail = KeychainHelper.standard.read(service: .email, type: String.self) {
-            self.user = User(id: existingTokens.refreshToken.userId, email: existingEmail, hometown: KeychainHelper.standard.read(service: .hometown, type: Hometown.self))
+            let hometown = KeychainHelper.standard.read(service: .hometown, type: Hometown.self)
+            self.user = User(id: existingTokens.refreshToken.userId, email: existingEmail, hometown: hometown)
         }
         // TODO: Retrieve hometown from CoreData
         self.coordinator = coordinator
@@ -278,7 +279,10 @@ final class UserViewModel: ObservableObject {
         let userId = String(tokens.refreshToken.userId)
         KeychainHelper.standard.save(userId, service: .userId)
         KeychainHelper.standard.save(tokens, service: .tokens)
-        KeychainHelper.standard.save(tokens.hometownId, service: .hometown)
+        Task {
+            let hometown = await Hometown.fetch(id: tokens.hometownId)
+            KeychainHelper.standard.save(hometown, service: .hometown)
+        }
     }
 }
 
