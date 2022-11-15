@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "alerttoast",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/elai950/AlertToast",
+      "state" : {
+        "branch" : "master",
+        "revision" : "a437862bb6605080a5816e866cbd4ac8c8657b49"
+      }
+    },
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/SwiftUI-Introspect.git",
+      "state" : {
+        "revision" : "f2616860a41f9d9932da412a8978fec79c06fe24",
+        "version" : "0.1.4"
+      }
+    }
+  ],
+  "version" : 2
+}
