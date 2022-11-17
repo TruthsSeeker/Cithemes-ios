@@ -24,7 +24,10 @@ struct AboutSettingsView: View {
                 
                 Text("Data usage Policy")
                     .font(Font.customFont(.openSans, size: 28))
-                Text("We use your email as account name, that's it")
+                Link("CiThemes Data Usage Policy", destination: URL(string: "https://cithemes.notion.site/cithemes/CiThemes-Privacy-Policy-ec4c3ea9b0e04a32a6f8b2023c03db5b")!)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(Font.customFont(.ralewayRegular, size: 18))
+                    .foregroundColor(Color.fontMain)
                 Spacer()
                 
             }

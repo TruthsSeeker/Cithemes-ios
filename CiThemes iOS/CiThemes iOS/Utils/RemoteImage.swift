@@ -33,7 +33,7 @@ struct RemoteImage: View {
 
 struct RemoteImage_Previews: PreviewProvider {
     static var previews: some View {
-        RemoteImage(URL(string: "www.example.com"), placeholder: Image("LosAngeles"))
+        RemoteImage(URL(string: "www.example.com"), placeholder: Image("placeholder"))
     }
 }
 
