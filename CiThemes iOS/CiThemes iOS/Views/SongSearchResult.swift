@@ -15,7 +15,7 @@ struct SongSearchResult: View {
                 .frame(height: 60, alignment: .center)
             .foregroundColor(Color.background)
             HStack(alignment: .top) {
-                RemoteImage(song.cover, placeholder: Image("LosAngeles"))
+                RemoteImage(song.cover, placeholder: Image("placeholder"))
                     .frame(width: 45, height: 45, alignment: .center)
                     .clipped()
                 

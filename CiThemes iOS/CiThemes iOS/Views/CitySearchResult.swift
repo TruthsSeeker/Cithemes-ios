@@ -15,7 +15,7 @@ struct CitySearchResult: View {
                 .frame(height: 120, alignment: .center)
             .foregroundColor(Color.background)
             HStack(alignment: .top) {
-                RemoteImage(city.image, placeholder: Image("LosAngeles"))
+                RemoteImage(city.image, placeholder: Image("placeholder"))
                     .frame(width: 90, height: 90, alignment: .center)
                     .cornerRadius(8)
                     .clipped()
